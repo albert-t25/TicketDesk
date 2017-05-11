@@ -131,6 +131,10 @@
     <Compile Include="Migrations\201506240309537_Td2.5.018.Designer.cs">
       <DependentUpon>201506240309537_Td2.5.018.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705100914412_PropertiesToProject.cs" />
+    <Compile Include="Migrations\201705100914412_PropertiesToProject.Designer.cs">
+      <DependentUpon>201705100914412_PropertiesToProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DemoDataManager.cs" />
     <Compile Include="Infrastructure\PropertyUtility.cs" />
     <Compile Include="Infrastructure\TdDomainSecurityProviderBase.cs" />
@@ -245,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506240309537_Td2.5.018.resx">
       <DependentUpon>201506240309537_Td2.5.018.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705100914412_PropertiesToProject.resx">
+      <DependentUpon>201705100914412_PropertiesToProject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

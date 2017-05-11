@@ -20,6 +20,20 @@ namespace TicketDesk.Domain.Model
         [Display(Name = "Project_Description", ResourceType = typeof(Strings))]
         public string ProjectDescription { get; set; }
 
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [Phone]
+        [Display(Name = "Phone")]
+        public string Phone { get; set; }
+
+        [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
+        [Display(Name = "Address", ResourceType = typeof(Strings))]
+        public string Address { get; set; }
         [Column(TypeName = "timestamp")]
         [MaxLength(8)]
         [Timestamp]
