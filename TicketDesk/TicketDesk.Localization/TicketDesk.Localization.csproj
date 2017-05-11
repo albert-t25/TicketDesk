@@ -45,6 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Strings-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\Strings.pt-BR.Designer.cs">
       <DependentUpon>Strings.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -56,6 +61,11 @@
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="CultureHelper.cs" />
+    <Compile Include="Domain\Strings-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Strings.pt-BR.Designer.cs">
       <DependentUpon>Strings.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -65,6 +75,31 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Identity\Strings-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings-sq.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\Strings-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings-sq.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Strings-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings-sq.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PushNotifications\Strings-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings-sq.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Validation-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Validation.pt-BR.Designer.cs">
       <DependentUpon>Validation.pt-BR.resx</DependentUpon>
@@ -117,6 +152,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Account\ChangePassword-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChangePassword-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\ChangePassword.pt-BR.Designer.cs">
       <DependentUpon>ChangePassword.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -126,6 +166,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ChangePassword.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Account\EditProfile-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EditProfile-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\Account\EditProfile.pt-BR.Designer.cs">
       <DependentUpon>EditProfile.pt-BR.resx</DependentUpon>
@@ -137,6 +182,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EditProfile.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Account\Manage-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Manage-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\Manage.pt-BR.Designer.cs">
       <DependentUpon>Manage.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -146,6 +196,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Manage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApplicationSettings\Index-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\ApplicationSettings\Index.pt-BR.Designer.cs">
       <DependentUpon>Index.pt-BR.resx</DependentUpon>
@@ -157,6 +212,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\DataManagement\Demo-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Demo-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\DataManagement\Demo.pt-BR.Designer.cs">
       <DependentUpon>Demo.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -166,6 +226,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Demo.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataManagement\Index-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\DataManagement\Index.pt-BR.Designer.cs">
       <DependentUpon>Index.pt-BR.resx</DependentUpon>
@@ -177,6 +242,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Emails\Strings-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Emails\Strings.pt-BR.Designer.cs">
       <DependentUpon>Strings.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -186,6 +256,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\About-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>About-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\About.pt-BR.Designer.cs">
       <DependentUpon>About.pt-BR.resx</DependentUpon>
@@ -197,10 +272,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>About.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Home\AccessDenied-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccessDenied-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Home\AccessDenied.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AccessDenied.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\Index-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\Index.pt-BR.Designer.cs">
       <DependentUpon>Index.pt-BR.resx</DependentUpon>
@@ -213,6 +298,11 @@
       <DependentUpon>Index.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ProjectSettings\Edit-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Edit-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProjectSettings\Edit.pt-BR.Designer.cs">
       <DependentUpon>Edit.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -222,6 +312,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Edit.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectSettings\Index-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\ProjectSettings\Index.pt-BR.Designer.cs">
       <DependentUpon>Index.pt-BR.resx</DependentUpon>
@@ -233,6 +328,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProjectSettings\New-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>New-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProjectSettings\New.pt-BR.Designer.cs">
       <DependentUpon>New.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -242,6 +342,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>New.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PushNotificationSettings\ConfigureDeliveryProvider-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfigureDeliveryProvider-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\PushNotificationSettings\ConfigureDeliveryProvider.pt-BR.Designer.cs">
       <DependentUpon>ConfigureDeliveryProvider.pt-BR.resx</DependentUpon>
@@ -253,6 +358,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConfigureDeliveryProvider.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\PushNotificationSettings\Index-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\PushNotificationSettings\Index.pt-BR.Designer.cs">
       <DependentUpon>Index.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -262,6 +372,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PushNotificationSettings\ListDeliveryProviderSettings-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListDeliveryProviderSettings-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\PushNotificationSettings\ListDeliveryProviderSettings.pt-BR.Designer.cs">
       <DependentUpon>ListDeliveryProviderSettings.pt-BR.resx</DependentUpon>
@@ -273,6 +388,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ListDeliveryProviderSettings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\SearchManager\Index-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\SearchManager\Index.pt-BR.Designer.cs">
       <DependentUpon>Index.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -282,6 +402,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Search\Index-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\Search\Index.pt-BR.Designer.cs">
       <DependentUpon>Index.pt-BR.resx</DependentUpon>
@@ -293,6 +418,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Shared\Error-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Error-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Shared\Error.pt-BR.Designer.cs">
       <DependentUpon>Error.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -302,6 +432,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Error.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\Lockout-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lockout-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\Shared\Lockout.pt-BR.Designer.cs">
       <DependentUpon>Lockout.pt-BR.resx</DependentUpon>
@@ -313,6 +448,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lockout.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Shared\_Layout-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_Layout-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Shared\_Layout.pt-BR.Designer.cs">
       <DependentUpon>_Layout.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -322,6 +462,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>_Layout.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TicketActivity\Strings-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\TicketActivity\Strings.pt-BR.Designer.cs">
       <DependentUpon>Strings.pt-BR.resx</DependentUpon>
@@ -333,6 +478,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\TicketCenter\Index-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\TicketCenter\Index.pt-BR.Designer.cs">
       <DependentUpon>Index.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -342,6 +492,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ticket\Index-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\Ticket\Index.pt-BR.Designer.cs">
       <DependentUpon>Index.pt-BR.resx</DependentUpon>
@@ -353,6 +508,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Ticket\New-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>New-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Ticket\New.pt-BR.Designer.cs">
       <DependentUpon>New.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -362,6 +522,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>New.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserAdministration\Edit-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Edit-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\UserAdministration\Edit.pt-BR.Designer.cs">
       <DependentUpon>Edit.pt-BR.resx</DependentUpon>
@@ -373,6 +538,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Edit.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserAdministration\Index-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserAdministration\Index.pt-BR.Designer.cs">
       <DependentUpon>Index.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -382,6 +552,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\Lockout-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lockout-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\User\Lockout.pt-BR.Designer.cs">
       <DependentUpon>Lockout.pt-BR.resx</DependentUpon>
@@ -393,6 +568,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lockout.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\User\Register-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Register-sq.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\User\Register.pt-BR.Designer.cs">
       <DependentUpon>Register.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -402,6 +582,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Register.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\SignIn-sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SignIn-sq.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\User\SignIn.pt-BR.Designer.cs">
       <DependentUpon>SignIn.pt-BR.resx</DependentUpon>
@@ -415,6 +600,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controllers\Strings-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controllers\Strings.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.pt-BR.Designer.cs</LastGenOutput>
@@ -422,6 +611,10 @@
     <EmbeddedResource Include="Controllers\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\Strings-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Strings.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -432,6 +625,26 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Identity\Strings-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Infrastructure\Strings-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Strings-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PushNotifications\Strings-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Validation-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Validation.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -474,6 +687,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Account\ChangePassword-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ChangePassword-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Account\ChangePassword.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ChangePassword.pt-BR.Designer.cs</LastGenOutput>
@@ -481,6 +698,10 @@
     <EmbeddedResource Include="Views\Account\ChangePassword.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ChangePassword.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Account\EditProfile-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EditProfile-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Account\EditProfile.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -490,6 +711,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EditProfile.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Account\Manage-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Manage-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Account\Manage.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Manage.pt-BR.Designer.cs</LastGenOutput>
@@ -497,6 +722,10 @@
     <EmbeddedResource Include="Views\Account\Manage.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Manage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ApplicationSettings\Index-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ApplicationSettings\Index.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -506,6 +735,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\DataManagement\Demo-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Demo-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\DataManagement\Demo.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Demo.pt-BR.Designer.cs</LastGenOutput>
@@ -513,6 +746,10 @@
     <EmbeddedResource Include="Views\DataManagement\Demo.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Demo.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DataManagement\Index-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DataManagement\Index.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -522,6 +759,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Emails\Strings-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Emails\Strings.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.pt-BR.Designer.cs</LastGenOutput>
@@ -529,6 +770,10 @@
     <EmbeddedResource Include="Views\Emails\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Home\About-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>About-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Home\About.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -538,10 +783,18 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>About.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Home\AccessDenied-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AccessDenied-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Home\AccessDenied.pt-BR.resx" />
     <EmbeddedResource Include="Views\Home\AccessDenied.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AccessDenied.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Home\Index-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Home\Index.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -551,6 +804,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProjectSettings\Edit-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Edit-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ProjectSettings\Edit.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Edit.pt-BR.Designer.cs</LastGenOutput>
@@ -558,6 +815,10 @@
     <EmbeddedResource Include="Views\ProjectSettings\Edit.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Edit.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProjectSettings\Index-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProjectSettings\Index.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -567,6 +828,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProjectSettings\New-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>New-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ProjectSettings\New.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>New.pt-BR.Designer.cs</LastGenOutput>
@@ -574,6 +839,10 @@
     <EmbeddedResource Include="Views\ProjectSettings\New.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>New.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PushNotificationSettings\ConfigureDeliveryProvider-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConfigureDeliveryProvider-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PushNotificationSettings\ConfigureDeliveryProvider.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -583,6 +852,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ConfigureDeliveryProvider.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\PushNotificationSettings\Index-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\PushNotificationSettings\Index.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.pt-BR.Designer.cs</LastGenOutput>
@@ -590,6 +863,10 @@
     <EmbeddedResource Include="Views\PushNotificationSettings\Index.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PushNotificationSettings\ListDeliveryProviderSettings-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ListDeliveryProviderSettings-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PushNotificationSettings\ListDeliveryProviderSettings.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -599,6 +876,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ListDeliveryProviderSettings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\SearchManager\Index-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\SearchManager\Index.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.pt-BR.Designer.cs</LastGenOutput>
@@ -606,6 +887,10 @@
     <EmbeddedResource Include="Views\SearchManager\Index.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Search\Index-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Search\Index.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -615,6 +900,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Shared\Error-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\Error.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.pt-BR.Designer.cs</LastGenOutput>
@@ -622,6 +911,10 @@
     <EmbeddedResource Include="Views\Shared\Error.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Shared\Lockout-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lockout-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\Lockout.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -631,6 +924,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lockout.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Shared\_Layout-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>_Layout-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\_Layout.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>_Layout.pt-BR.Designer.cs</LastGenOutput>
@@ -638,6 +935,10 @@
     <EmbeddedResource Include="Views\Shared\_Layout.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>_Layout.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TicketActivity\Strings-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TicketActivity\Strings.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -647,6 +948,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\TicketCenter\Index-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\TicketCenter\Index.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.pt-BR.Designer.cs</LastGenOutput>
@@ -654,6 +959,10 @@
     <EmbeddedResource Include="Views\TicketCenter\Index.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Ticket\Index-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Ticket\Index.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -664,6 +973,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Ticket\New-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>New-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Ticket\New.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>New.pt-BR.Designer.cs</LastGenOutput>
@@ -671,6 +984,10 @@
     <EmbeddedResource Include="Views\Ticket\New.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>New.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserAdministration\Edit-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Edit-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserAdministration\Edit.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -680,6 +997,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Edit.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserAdministration\Index-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\UserAdministration\Index.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.pt-BR.Designer.cs</LastGenOutput>
@@ -687,6 +1008,10 @@
     <EmbeddedResource Include="Views\UserAdministration\Index.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\User\Lockout-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lockout-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\User\Lockout.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -696,6 +1021,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lockout.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\User\Register-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Register-sq.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\User\Register.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Register.pt-BR.Designer.cs</LastGenOutput>
@@ -703,6 +1032,10 @@
     <EmbeddedResource Include="Views\User\Register.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Register.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\User\SignIn-sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SignIn-sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\User\SignIn.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

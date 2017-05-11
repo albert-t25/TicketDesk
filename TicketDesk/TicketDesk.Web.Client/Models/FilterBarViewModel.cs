@@ -11,14 +11,14 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using TicketDesk.Domain.Model;
-using TicketDesk.Web.Identity;
 using TicketDesk.Localization.Models;
+using TicketDesk.Web.Identity;
 
 namespace TicketDesk.Web.Client.Models
 {
@@ -67,7 +67,7 @@ namespace TicketDesk.Web.Client.Models
                 var fColumn = CurrentListSetting.FilterColumns.SingleOrDefault(fc => fc.ColumnName == "TicketStatus");
                 if (fColumn != null)
                 {
-                    if (!fColumn.ColumnValue.ToString().Equals("Closed", StringComparison.InvariantCultureIgnoreCase)) 
+                    if (!fColumn.ColumnValue.ToString().Equals("Closed", StringComparison.InvariantCultureIgnoreCase))
                     {
                         selectedStatus = fColumn.ColumnValue.ToString();
                     }
@@ -78,14 +78,14 @@ namespace TicketDesk.Web.Client.Models
                 }
 
                 return new SelectList(
-                    new[] 
-                    {   
-                        new { Text=Strings.TicketStatus_Any, Value="Any"}, 
-                        new { Text=Strings.TicketStatus_Open, Value="Open"},
-                        new { Text=Strings.TicketStatus_Active, Value="Active"},
-                        new { Text=Strings.TicketStatus_MoreInfo, Value="MoreInfo"},
-                        new { Text=Strings.TicketStatus_Resolved, Value="Resolved"},
-                        new { Text=Strings.TicketStatus_Closed, Value="Closed"}
+                    new[]
+                    {
+                        new { Text=Strings_sq.TicketStatus_Any, Value="Any"},
+                        new { Text=Strings_sq.TicketStatus_Open, Value="Open"},
+                        new { Text=Strings_sq.TicketStatus_Active, Value="Active"},
+                        new { Text=Strings_sq.TicketStatus_MoreInfo, Value="MoreInfo"},
+                        new { Text=Strings_sq.TicketStatus_Resolved, Value="Resolved"},
+                        new { Text=Strings_sq.TicketStatus_Closed, Value="Closed"}
                     },
                 "Value",
                 "Text",
@@ -110,7 +110,7 @@ namespace TicketDesk.Web.Client.Models
             }
         }
 
-       
+
 
         public SelectList SubmittersSelectList
         {
@@ -122,15 +122,15 @@ namespace TicketDesk.Web.Client.Models
                 {
                     selectedUserName = fColumn.ColumnValue.ToString();
                 }
-               
+
                 var lusers = GetUsersInRole("TdInternalUsers");
-                lusers.Insert(0, new UserItem { Name = "anyone", DisplayName = Strings.AssignedTo_Anyone });
+                lusers.Insert(0, new UserItem { Name = "anyone", DisplayName = Strings_sq.AssignedTo_Anyone });
 
                 return new SelectList(lusers, "Name", "DisplayName", selectedUserName);
             }
         }
 
-       
+
 
         public SelectList AssignedToSelectList
         {
@@ -142,12 +142,12 @@ namespace TicketDesk.Web.Client.Models
                 {
                     //when filter for column exists, but the value is null it means the selection was unassigned
                     selectedUserName = (fColumn.ColumnValue ?? "unassigned").ToString();
-                        //(string.IsNullOrEmpty(fColumn.ColumnValue.ToString())) ? "unassigned" : fColumn.ColumnValue.ToString();
+                    //(string.IsNullOrEmpty(fColumn.ColumnValue.ToString())) ? "unassigned" : fColumn.ColumnValue.ToString();
                 }
 
                 var lusers = GetUsersInRole("TdHelpDeskUsers");
-                lusers.Insert(0, new UserItem { Name = "anyone", DisplayName = Strings.AssignedTo_Anyone });
-                lusers.Insert(1, new UserItem { Name = "unassigned", DisplayName = Strings.AssignedTo_Unassigned });
+                lusers.Insert(0, new UserItem { Name = "anyone", DisplayName = Strings_sq.AssignedTo_Anyone });
+                lusers.Insert(1, new UserItem { Name = "unassigned", DisplayName = Strings_sq.AssignedTo_Unassigned });
 
                 return new SelectList(lusers, "Name", "DisplayName", selectedUserName);
             }
@@ -179,7 +179,7 @@ namespace TicketDesk.Web.Client.Models
                 {
                     statusHtmlAttributes.Add("Disabled", true);
                 }
-                
+
                 return statusHtmlAttributes;
             }
         }

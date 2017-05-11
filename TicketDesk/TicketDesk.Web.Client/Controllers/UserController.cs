@@ -11,6 +11,9 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System;
 using System.Configuration;
 using System.Linq;
@@ -18,16 +21,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using TicketDesk.Domain;
+using TicketDesk.Localization.Controllers;
 using TicketDesk.PushNotifications;
 using TicketDesk.PushNotifications.Model;
 using TicketDesk.Web.Client.Models;
 using TicketDesk.Web.Identity;
 using TicketDesk.Web.Identity.Model;
-using TicketDesk.Localization.Controllers;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -73,7 +73,7 @@ namespace TicketDesk.Web.Client.Controllers
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     HostingEnvironment.QueueBackgroundWorkItem(ct =>
                     {
-                        using(var notificationContext = new TdPushNotificationContext())
+                        using (var notificationContext = new TdPushNotificationContext())
                         {
                             notificationContext.SubscriberPushNotificationSettingsManager.AddSettingsForSubscriber(
                                 new SubscriberNotificationSetting
@@ -132,7 +132,7 @@ namespace TicketDesk.Web.Client.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 default:
-                    ModelState.AddModelError("", Strings.InvalidLoginAttempt);
+                    ModelState.AddModelError("", Strings_sq.InvalidLoginAttempt);
                     return View(model);
             }
         }

@@ -3,13 +3,13 @@
 
 @section title
 {
-    @Edit.Title
+    @Edit_sq.Title
 }
 
 <main>
     <div class="container">
         <fieldset>
-            <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">@Edit.Legend</legend>
+            <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">@Edit_sq.Legend</legend>
             <div class="col-lg-7 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12">
                 @using (Html.BeginForm("Edit", "ProjectSettings", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
@@ -18,7 +18,7 @@
                     ;
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h2 class="panel-title">@Edit.Header</h2>
+                            <h2 class="panel-title">@Edit_sq.Header</h2>
                         </div>
                         <div class="panel-body">
                             @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -42,7 +42,7 @@
                                 @if (ViewBag.EnableDelete ?? false)
                                 {
                                     <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-confirm">
-                                        <i class="fa fa-remove"></i>&nbsp;&nbsp;@Edit.DeleteOption
+                                        <i class="fa fa-remove"></i>&nbsp;&nbsp;@Edit_sq.DeleteOption
                                     </a>
                                 }
 
@@ -50,9 +50,9 @@
                             </div>
                             <div class="">
                                 <button type="submit" class="btn btn-success" tabindex="10">
-                                    <i class="fa fa-save"></i>&nbsp;&nbsp;@Edit.SaveOption
+                                    <i class="fa fa-save"></i>&nbsp;&nbsp;@Edit_sq.SaveOption
                                 </button>&nbsp;&nbsp;
-                                @Html.ActionLink(Edit.BackOption, "Index")
+                                @Html.ActionLink(Edit_sq.BackOption, "Index")
 
                             </div>
                         </div>
@@ -69,29 +69,29 @@
             {
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="@Edit.CloseOption"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="delete-confirm-label">@Edit.DeleteConfirmation</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="@Edit_sq.CloseOption"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="delete-confirm-label">@Edit_sq.DeleteConfirmation</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
                             <div class="alert alert-danger">
-                                @Edit.DeleteAlert
+                                @Edit_sq.DeleteAlert
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">@Edit.ReassignTickets</label>
+                            <label class="control-label">@Edit_sq.ReassignTickets</label>
                             <div class="">
-                                @Html.DropDownList("ReassignTo", (System.Web.Mvc.SelectList)ViewBag.ProjectReassignList, new { @class = "form-control", data_val = "true", data_val_required = Edit.ProjectRequired, })
+                                @Html.DropDownList("ReassignTo", (System.Web.Mvc.SelectList)ViewBag.ProjectReassignList, new { @class = "form-control", data_val = "true", data_val_required = Edit_sq.ProjectRequired, })
                                 @Html.ValidationMessage("ReassignTo", "", new { @class = "text-danger" })
-                                <span class="help-block">@Edit.ReassignTickets_Help</span>
+                                <span class="help-block">@Edit_sq.ReassignTickets_Help</span>
                             </div>
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">@Edit.CancelOption</button>
-                        <button type="submit" class="btn btn-primary">@Edit.DeleteOption</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@Edit_sq.CancelOption</button>
+                        <button type="submit" class="btn btn-primary">@Edit_sq.DeleteOption</button>
 
                     </div>
                 </div>

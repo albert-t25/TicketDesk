@@ -16,42 +16,42 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
+using TicketDesk.Localization;
+using TicketDesk.Localization.Models;
 using TicketDesk.Web.Identity;
 using TicketDesk.Web.Identity.Model;
-using TicketDesk.Localization.Models;
-using TicketDesk.Localization;
 
 namespace TicketDesk.Web.Client.Models
 {
     public class AccountPasswordViewModel
     {
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
         [DataType(DataType.Password)]
-        [Display(Name = "CurrentPassword", ResourceType = typeof(Strings))]
+        [Display(Name = "CurrentPassword", ResourceType = typeof(Strings_sq))]
         public string OldPassword { get; set; }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [StringLength(100, ErrorMessageResourceName = "FieldMinimumLength", ErrorMessageResourceType = typeof(Validation), MinimumLength = 6)]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(100, ErrorMessageResourceName = "FieldMinimumLength", ErrorMessageResourceType = typeof(Validation_sq), MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "NewPassword", ResourceType = typeof(Strings))]
+        [Display(Name = "NewPassword", ResourceType = typeof(Strings_sq))]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "ConfirmNewPassword", ResourceType = typeof(Strings))]
-        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessageResourceName = "NewConfirmationDoNotMatch", ErrorMessageResourceType = typeof(Strings))]
+        [Display(Name = "ConfirmNewPassword", ResourceType = typeof(Strings_sq))]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessageResourceName = "NewConfirmationDoNotMatch", ErrorMessageResourceType = typeof(Strings_sq))]
         public string ConfirmPassword { get; set; }
     }
 
     public class AccountProfileViewModel
     {
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [EmailAddress(ErrorMessage = null, ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "Email", ResourceType = typeof(Strings))]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [EmailAddress(ErrorMessage = null, ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(Name = "Email", ResourceType = typeof(Strings_sq))]
         public string Email { get; set; }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "DisplayName", ResourceType = typeof(Strings))]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(Name = "DisplayName", ResourceType = typeof(Strings_sq))]
         public string DisplayName { get; set; }
     }
 
@@ -68,17 +68,17 @@ namespace TicketDesk.Web.Client.Models
             User = user;
             IsLocked = lockDate > DateTime.UtcNow && lockDate < DateTime.MaxValue.ToUniversalTime();
             IsDisabled = lockDate == DateTime.MaxValue.ToUniversalTime();
-            Roles = roles ?? new string[] {};
+            Roles = roles ?? new string[] { };
         }
 
         public TicketDeskUser User { get; set; }
 
-        [Display(Name = "Locked", Prompt = "Locked_Prompt", ResourceType = typeof(Strings))]
-        [LocalizedDescription("IsLocked_Description", NameResourceType = typeof(Strings))]
+        [Display(Name = "Locked", Prompt = "Locked_Prompt", ResourceType = typeof(Strings_sq))]
+        [LocalizedDescription("IsLocked_Description", NameResourceType = typeof(Strings_sq))]
         public bool IsLocked { get; set; }
 
-        [Display(Name = "Disabled", Prompt = "Disabled_Prompt", ResourceType = typeof(Strings))]
-        [LocalizedDescription("IsDisabled_Description", NameResourceType = typeof(Strings))]
+        [Display(Name = "Disabled", Prompt = "Disabled_Prompt", ResourceType = typeof(Strings_sq))]
+        [LocalizedDescription("IsDisabled_Description", NameResourceType = typeof(Strings_sq))]
         public bool IsDisabled { get; set; }
 
         public IEnumerable<string> Roles { get; set; }

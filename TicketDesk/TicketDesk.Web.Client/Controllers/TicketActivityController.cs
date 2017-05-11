@@ -24,6 +24,8 @@ using TicketDesk.Domain;
 using TicketDesk.Domain.Model;
 using TicketDesk.IO;
 using TicketDesk.Localization.Controllers;
+using TicketDesk.Web.Client.Models;
+using TicketDesk.Web.Identity.Model;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -31,7 +33,7 @@ namespace TicketDesk.Web.Client.Controllers
     [Route("{action}")]
     [TdAuthorize(Roles = "TdInternalUsers,TdHelpDeskUsers,TdAdministrators")]
     [ValidateInput(false)]
-    public class TicketActivityController : Controller
+    public class TicketActivityController : BaseController
     {
         private TdDomainContext Context { get; set; }
         public TicketActivityController(TdDomainContext context)
@@ -123,7 +125,7 @@ namespace TicketDesk.Web.Client.Controllers
             string tagList)
         {
             details = details.StripHtmlWhenEmpty();
-            var projectName = await Context.Projects.Where(p => p.ProjectId == projectId).Select(s=>s.ProjectName).FirstOrDefaultAsync();
+            var projectName = await Context.Projects.Where(p => p.ProjectId == projectId).Select(s => s.ProjectName).FirstOrDefaultAsync();
             var activityFn = Context.TicketActions.EditTicketInfo(comment, projectId, projectName, title, details, priority, ticketType, category, owner, tagList, Context.TicketDeskSettings);
             return await PerformTicketAction(ticketId, activityFn, TicketActivity.EditTicketInfo);
         }
@@ -278,6 +280,25 @@ namespace TicketDesk.Web.Client.Controllers
                 try
                 {
                     ticket.PerformAction(activityFn);
+
+                    if (ticket.TicketStatus.ToString().ToLower() == "Resolved".ToLower())
+                    {
+                        //EL: add logic to send email to client when a ticket is resolved
+                        //var ticket = Context.Tickets.Include(t => t.TicketTags).First(t => t.TicketId == ticketId);
+                        UserDisplayInfo userInfo = ticket.GetAssignedToInfo();
+                        var root = Context.TicketDeskSettings.ClientSettings.GetDefaultSiteRootUrl();
+
+                        string body = this.RenderViewToString(ControllerContext, "~/Views/Emails/Ticket.Html.cshtml", new TicketEmail()
+                        {
+                            Ticket = ticket,
+                            SiteRootUrl = root,
+                            IsMultiProject = false
+                        });
+
+                        EmailHelper sendEmail = new EmailHelper();
+                        //TODO: remove the to emial....get the client(project) email from ticket.Project.Email
+                        sendEmail.SendEmail(userInfo.Email, "Kërkesa juaj: " + ticket.Title + " është zgjidhur.", body);
+                    }
                 }
                 catch (SecurityException ex)
                 {

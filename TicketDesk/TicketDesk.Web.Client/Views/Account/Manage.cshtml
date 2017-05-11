@@ -1,14 +1,14 @@
 ﻿@using TicketDesk.Localization.Views.Account
 @section title
 {
-    @Manage.Title
+    @Manage_sq.Title
 }
 @section Scripts {
 }
 <main>
     <div class="container">
         <fieldset>
-            <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">@Manage.Legend</legend>
+            <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">@Manage_sq.Legend</legend>
             <div class="col-lg-7 col-lg-offset-2 col-md-8 col-md-offset-1 col-sm-12">
 
                 <div class="container-fluid">
@@ -17,10 +17,10 @@
                         <p class="alert alert-success">@ViewBag.StatusMessage</p>
                     }
                     <a href="@Url.Action("EditProfile")" class="btn btn-primary btn-block btn-lg">
-                        <i class="fa fa-user"></i> @Manage.EditProfile
+                        <i class="fa fa-user"></i> @Manage_sq.EditProfile
                     </a>
                     <a href="@Url.Action("ChangePassword")" class="btn btn-primary btn-block btn-lg">
-                        <i class="fa fa-lock"></i> @Manage.ChangePassword
+                        <i class="fa fa-lock"></i> @Manage_sq.ChangePassword
                     </a>
                 </div>
 

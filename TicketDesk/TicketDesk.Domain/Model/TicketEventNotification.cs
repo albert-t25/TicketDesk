@@ -36,7 +36,7 @@ namespace TicketDesk.Domain.Model
 
         [Key]
         [Column(Order = 2)]
-        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
+        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
         [Index]
         public string SubscriberId { get; set; }
 

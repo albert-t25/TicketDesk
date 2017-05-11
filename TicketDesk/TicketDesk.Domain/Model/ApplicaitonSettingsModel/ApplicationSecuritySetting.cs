@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
 using TicketDesk.Localization.Domain;
 
 namespace TicketDesk.Domain.Model
@@ -10,7 +10,7 @@ namespace TicketDesk.Domain.Model
     {
         public ApplicationSecuritySetting()
         {
-            DefaultNewUserRoles = new List<string>(new[] {"TdPendingUsers"});
+            DefaultNewUserRoles = new List<string>(new[] { "TdPendingUsers" });
         }
 
         [JsonIgnore]
@@ -25,7 +25,7 @@ namespace TicketDesk.Domain.Model
                 {
                     return;
                 }
-                var jsettings = new JsonSerializerSettings {ObjectCreationHandling = ObjectCreationHandling.Replace};
+                var jsettings = new JsonSerializerSettings { ObjectCreationHandling = ObjectCreationHandling.Replace };
                 var jData = JsonConvert.DeserializeObject<ApplicationSecuritySetting>(value, jsettings);
                 DefaultNewUserRoles = jData.DefaultNewUserRoles;
             }
@@ -36,10 +36,10 @@ namespace TicketDesk.Domain.Model
 
 
         [NotMapped]
-        [Display(Name = "DefaultNewUserRoles", ResourceType = typeof(Strings))]
+        [Display(Name = "DefaultNewUserRoles", ResourceType = typeof(Strings_sq))]
         public ICollection<string> DefaultNewUserRoles
         {
-            get { return defaultNewUserRoles;}
+            get { return defaultNewUserRoles; }
             set
             {
                 if (!value.Contains("TdPendingUsers"))

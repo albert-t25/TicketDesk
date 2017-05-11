@@ -22,6 +22,8 @@ using TicketDesk.Domain;
 using TicketDesk.Domain.Model;
 using TicketDesk.IO;
 using TicketDesk.Localization.Controllers;
+using TicketDesk.Web.Client.Models;
+using TicketDesk.Web.Identity.Model;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -31,7 +33,7 @@ namespace TicketDesk.Web.Client.Controllers
     [RoutePrefix("ticket")]
     [Route("{action=index}")]
     [TdAuthorize(Roles = "TdInternalUsers,TdHelpDeskUsers,TdAdministrators")]
-    public class TicketController : Controller
+    public class TicketController : BaseController
     {
         private TdDomainContext Context { get; set; }
         public TicketController(TdDomainContext context)
@@ -47,7 +49,7 @@ namespace TicketDesk.Web.Client.Controllers
         [Route("{id:int}")]
         public async Task<ActionResult> Index(int id)
         {
-           
+
             var model = await Context.Tickets.Include(t => t.TicketSubscribers).FirstOrDefaultAsync(t => t.TicketId == id);
             if (model == null)
             {
@@ -99,6 +101,23 @@ namespace TicketDesk.Web.Client.Controllers
                 {
                     if (await CreateTicketAsync(ticket, tempId))
                     {
+                        if (ticket.IsAssigned)
+                        {
+                            //send email to the person that the ticket is assigned
+                            UserDisplayInfo userInfo = ticket.GetAssignedToInfo();
+                            var root = Context.TicketDeskSettings.ClientSettings.GetDefaultSiteRootUrl();
+
+                            string body = this.RenderViewToString(ControllerContext, "~/Views/Emails/Ticket.Html.cshtml", new TicketEmail()
+                            {
+                                Ticket = ticket,
+                                SiteRootUrl = root,
+                                IsMultiProject = false
+                            });
+
+                            EmailHelper sendEmail = new EmailHelper();
+                            sendEmail.SendEmail(userInfo.Email, "Një detyre e re për ju.", body);
+                        }
+
                         return RedirectToAction("Index", new { id = ticket.TicketId });
                     }
                 }
@@ -172,12 +191,12 @@ namespace TicketDesk.Web.Client.Controllers
         {
             if (ticket.ProjectId == default(int))
             {
-                var projects = await Context.Projects.Select(s=>s.ProjectId).ToListAsync();
+                var projects = await Context.Projects.Select(s => s.ProjectId).ToListAsync();
                 var isMulti = (projects.Count > 1);
                 ViewBag.IsMultiProject = isMulti;
-               
+
                 //set to first project if only one project exists, otherwise use user's selected project
-                ticket.ProjectId = (isMulti) ? await Context.UserSettingsManager.GetUserSelectedProjectIdAsync(Context) : projects.FirstOrDefault(); 
+                ticket.ProjectId = (isMulti) ? await Context.UserSettingsManager.GetUserSelectedProjectIdAsync(Context) : projects.FirstOrDefault();
             }
         }
 

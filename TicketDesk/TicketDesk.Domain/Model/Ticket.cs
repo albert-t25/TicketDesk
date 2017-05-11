@@ -33,56 +33,56 @@ namespace TicketDesk.Domain.Model
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
         [Key]
-        [Display(ResourceType = typeof(Strings), Name = "TicketTicketId", ShortName = "TicketTicketIdShort")]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketTicketId", ShortName = "TicketTicketIdShort")]
         public int TicketId { get; set; }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Display(ResourceType = typeof(Strings), Name = "TicketProject", ShortName = "TicketProjectShort")]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketProject", ShortName = "TicketProjectShort")]
         public int ProjectId { get; set; }
 
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [StringLength(50, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(ResourceType = typeof(Strings), Name = "TicketTicketType", ShortName = "TicketTicketTypeShort")]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(50, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketTicketType", ShortName = "TicketTicketTypeShort")]
         public string TicketType { get; set; }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [StringLength(50, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(ResourceType = typeof(Strings), Name = "TicketCategory", ShortName = "TicketCategoryShort")]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(50, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketCategory", ShortName = "TicketCategoryShort")]
         public string Category { get; set; }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [StringLength(500, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(ResourceType = typeof(Strings), Name = "TicketTitle", ShortName = "TicketTitleShort")]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(500, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketTitle", ShortName = "TicketTitleShort")]
         public string Title { get; set; }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [Display(ResourceType = typeof(Strings), Name = "TicketDetails", ShortName = "TicketDetailsShort")]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketDetails", ShortName = "TicketDetailsShort")]
         public string Details { get; set; }
 
-        [Display(ResourceType = typeof(Strings), Name = "TicketIsHtml", ShortName = "TicketIsHtmlShort")]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketIsHtml", ShortName = "TicketIsHtmlShort")]
         public bool IsHtml { get; set; }
 
-        [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(ResourceType = typeof(Strings), Name = "TicketTagList", ShortName = "TicketTagListShort")]
+        [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketTagList", ShortName = "TicketTagListShort")]
         public string TagList { get; set; }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(ResourceType = typeof(Strings), Name = "TicketCreatedBy", ShortName = "TicketCreatedByShort")]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketCreatedBy", ShortName = "TicketCreatedByShort")]
         public string CreatedBy { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Display(ResourceType = typeof(Strings), Name = "TicketCreatedDate", ShortName = "TicketCreatedDateShort")]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketCreatedDate", ShortName = "TicketCreatedDateShort")]
         public DateTimeOffset CreatedDate { get; set; }
 
         private string _owner;
 
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(ResourceType = typeof(Strings), Name = "TicketOwner", ShortName = "TicketOwnerShort")]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketOwner", ShortName = "TicketOwnerShort")]
         public string Owner
         {
             get
@@ -98,8 +98,8 @@ namespace TicketDesk.Domain.Model
 
         private string _assignedTo;
 
-        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(ResourceType = typeof(Strings), Name = "TicketAssignedTo", ShortName = "TicketAssignedToShort")]
+        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketAssignedTo", ShortName = "TicketAssignedToShort")]
         public string AssignedTo
         {
             get
@@ -113,31 +113,31 @@ namespace TicketDesk.Domain.Model
             }
         }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [Display(ResourceType = typeof(Strings), Name = "TicketTicketStatus", ShortName = "TicketTicketStatusShort")]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketTicketStatus", ShortName = "TicketTicketStatusShort")]
         public TicketStatus TicketStatus { get; set; }
 
-        [Display(ResourceType = typeof(Strings), Name = "TicketCurrentStatusDate", ShortName = "TicketCurrentStatusDateShort")]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketCurrentStatusDate", ShortName = "TicketCurrentStatusDateShort")]
         public DateTimeOffset CurrentStatusDate { get; set; }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(ResourceType = typeof(Strings), Name = "TicketCurrentStatusSetBy", ShortName = "TicketCurrentStatusSetByShort")]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketCurrentStatusSetBy", ShortName = "TicketCurrentStatusSetByShort")]
         public string CurrentStatusSetBy { get; set; }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(ResourceType = typeof(Strings), Name = "TicketLastUpdateBy", ShortName = "TicketLastUpdateByShort")]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketLastUpdateBy", ShortName = "TicketLastUpdateByShort")]
         public string LastUpdateBy { get; set; }
 
-        [Display(ResourceType = typeof(Strings), Name = "TicketLastUpdateDate", ShortName = "TicketLastUpdateDateShort")]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketLastUpdateDate", ShortName = "TicketLastUpdateDateShort")]
         public DateTimeOffset LastUpdateDate { get; set; }
 
-        [StringLength(25, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(ResourceType = typeof(Strings), Name = "TicketPriority", ShortName = "TicketPriorityShort")]
+        [StringLength(25, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketPriority", ShortName = "TicketPriorityShort")]
         public string Priority { get; set; }
 
-        [Display(ResourceType = typeof(Strings), Name = "TicketAffectsCustomer", ShortName = "TicketAffectsCustomerShort")]
+        [Display(ResourceType = typeof(Strings_sq), Name = "TicketAffectsCustomer", ShortName = "TicketAffectsCustomerShort")]
         public bool AffectsCustomer { get; set; }
 
         [Column(TypeName = "timestamp")]

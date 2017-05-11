@@ -3,7 +3,7 @@
 
 @section title
 {
-    @Edit.Title
+    @Edit_sq.Title
 }
 @section scripts
 {
@@ -20,7 +20,7 @@
 <main>
     <div class="container">
         <fieldset>
-            <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">@Edit.Legend</legend>
+            <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">@Edit_sq.Legend</legend>
             <div class="col-lg-7 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12">
                 @using (Html.BeginForm("Edit", "UserAdministration", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
@@ -28,7 +28,7 @@
                     @Html.HiddenFor(m => m.User.Id);
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h2 class="panel-title">@Edit.Header</h2>
+                            <h2 class="panel-title">@Edit_sq.Header</h2>
                         </div>
                         <div class="panel-body">
                             @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -82,7 +82,7 @@
                                         <span class="input-group-btn"  
                                               data-toggle="tooltip"
                                               data-placement="top"
-                                              title="@Edit.ShowRoleDescriptions">
+                                              title="@Edit_sq.ShowRoleDescriptions">
                                             <button class="btn btn-default btn-sm" type="button" data-toggle="collapse" href="#collapseRoleDescription" aria-expanded="false" aria-controls="collapseRoleDescription">
                                                 <i class="fa fa-info"></i>
                                             </button>
@@ -92,28 +92,28 @@
                                         <div class="well" style="margin-top: 5px;">
                                             <dl class="list list-inline">
                                                 <dt>
-                                                    @Edit.PendingApproval
+                                                    @Edit_sq.PendingApproval
                                                 </dt>
                                                 <dd class="text-muted">
-                                                    @Edit.PendingApproval_Description
+                                                    @Edit_sq.PendingApproval_Description
                                                 </dd>
                                                 <dt>
-                                                    @Edit.InternalUsers
+                                                    @Edit_sq.InternalUsers
                                                 </dt>
                                                 <dd class="text-muted">
-                                                    @Edit.InternalUsers_Description
+                                                    @Edit_sq.InternalUsers_Description
                                                 </dd>
                                                 <dt>
-                                                    @Edit.HelpDeskStaff
+                                                    @Edit_sq.HelpDeskStaff
                                                 </dt>
                                                 <dd class="text-muted">
-                                                    @Edit.HelpDeskStaff_Description
+                                                    @Edit_sq.HelpDeskStaff_Description
                                                 </dd>
                                                 <dt>
-                                                    @Edit.Administrators
+                                                    @Edit_sq.Administrators
                                                 </dt>
                                                 <dd class="text-muted">
-                                                    @Edit.Administrators_Description
+                                                    @Edit_sq.Administrators_Description
                                                 </dd>
                                             </dl>
                                         </div>
@@ -123,8 +123,8 @@
                         </div>
                         <div class="panel-footer">
                             <div class="">
-                                <button type="submit" class="btn btn-success" tabindex="10"><i class="fa fa-save"></i>&nbsp;&nbsp;@Edit.SaveOption</button>&nbsp;&nbsp;
-                                @Html.ActionLink(Edit.BackOption, "Index")
+                                <button type="submit" class="btn btn-success" tabindex="10"><i class="fa fa-save"></i>&nbsp;&nbsp;@Edit_sq.SaveOption</button>&nbsp;&nbsp;
+                                @Html.ActionLink(Edit_sq.BackOption, "Index")
                             </div>
                         </div>
                     </div>

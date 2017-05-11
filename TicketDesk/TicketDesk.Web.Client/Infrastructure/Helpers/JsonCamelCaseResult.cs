@@ -14,12 +14,12 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
-using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 using TicketDesk.Localization.Infrastructure;
 
 namespace TicketDesk.Web.Client
@@ -37,7 +37,7 @@ namespace TicketDesk.Web.Client
             if (JsonRequestBehavior == JsonRequestBehavior.DenyGet &&
                 string.Equals(context.HttpContext.Request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
             {
-                throw new InvalidOperationException(Strings.GETNotAllowed);
+                throw new InvalidOperationException(Strings_sq.GETNotAllowed);
             }
 
             var response = context.HttpContext.Response;

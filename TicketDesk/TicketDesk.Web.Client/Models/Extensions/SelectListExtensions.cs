@@ -26,7 +26,7 @@ namespace TicketDesk.Web.Client
     /// </summary>
     public static class SelectListExtensions
     {
-        private static string DefaultItemText { get { return Strings.SelectList_DefaultItem; } }
+        private static string DefaultItemText { get { return Strings_sq.SelectList_DefaultItem; } }
 
         #region general select list
 

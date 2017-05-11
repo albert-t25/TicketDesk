@@ -2,20 +2,20 @@
 @model TicketDesk.Web.Client.Models.AccountProfileViewModel
 @section title
 {
-    @EditProfile.Title
+    @EditProfile_sq.Title
 }
 @section Scripts {
 }
 <main>
     <div class="container">
         <fieldset>
-            <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">@EditProfile.Legend</legend>
+            <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">@EditProfile_sq.Legend</legend>
             <div class="col-lg-7 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12">
                 @using (Html.BeginForm("EditProfile", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h2 class="panel-title">@EditProfile.Header</h2>
+                            <h2 class="panel-title">@EditProfile_sq.Header</h2>
                         </div>
                         <div class="panel-body">
 
@@ -40,8 +40,8 @@
 
                         </div>
                         <div class="panel-footer">
-                            <button type="submit" class="btn btn-success" tabindex="10">@EditProfile.SaveOption</button>&nbsp;&nbsp;
-                            @Html.ActionLink(EditProfile.BackOption, "Manage")
+                            <button type="submit" class="btn btn-success" tabindex="10">@EditProfile_sq.SaveOption</button>&nbsp;&nbsp;
+                            @Html.ActionLink(EditProfile_sq.BackOption, "Manage")
                         </div>
                     </div>
                 }

@@ -11,13 +11,13 @@ namespace TicketDesk.Domain.Model
         [Key]
         public int ProjectId { get; set; }
 
-        [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "Project_Name", ResourceType = typeof(Strings))]
+        [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(Name = "Project_Name", ResourceType = typeof(Strings_sq))]
         public string ProjectName { get; set; }
 
-        [StringLength(500, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "Project_Description", ResourceType = typeof(Strings))]
+        [StringLength(500, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(Name = "Project_Description", ResourceType = typeof(Strings_sq))]
         public string ProjectDescription { get; set; }
 
         [Required]
@@ -39,6 +39,6 @@ namespace TicketDesk.Domain.Model
         [Timestamp]
         public byte[] Version { get; set; }
 
-        public virtual ICollection<Ticket> Tickets { get; set; } 
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

@@ -71,16 +71,22 @@
 
                     </div>
                     <div>
-                        <div>@(string.IsNullOrEmpty(Model.Priority) ? string.Empty : string.Format(Index.Priority, Model.Priority)) @Model.Category @Model.TicketType</div>
+                        <div>
+                            @Html.Raw(string.Format(Index_sq.Priority + ": {0}", Model.Priority))
+                            <br/>
+                            @Html.Raw(string.Format("Kategoria: {0}", Model.Category))
+                            <br />
+                            @Html.Raw(string.Format("Tipi: {0}", Model.TicketType))
+                        </div>
 
                         <div>
-                            @Html.Raw(string.Format(Index.AssignedTo, string.IsNullOrEmpty(Model.AssignedTo) ? "<span class='label label-warning'>" + Index.Unassigned + "</span>" : Model.GetAssignedToInfo().DisplayName))
+                            @Html.Raw(string.Format(Index_sq.AssignedTo, string.IsNullOrEmpty(Model.AssignedTo) ? "<span class='label label-warning'>" + Index_sq.Unassigned + "</span>" : Model.GetAssignedToInfo().DisplayName))
                         </div>
                         <div>
-                            @Html.Raw(string.Format(Index.OwnedBy, Model.GetOwnerInfo().DisplayName))
+                            @Html.Raw(string.Format(Index_sq.OwnedBy, Model.GetOwnerInfo().DisplayName))
                         </div>
                         <div class="hidden-sm hidden-md hidden-lg">
-                            @Html.Raw(string.Format(Index.UpdatedBy, Model.GetLastUpdatedByInfo().DisplayName, Model.LastUpdateDate.DateTime.ToShortDateString(), Model.LastUpdateDate.DateTime.ToShortTimeString()))
+                            @Html.Raw(string.Format(Index_sq.UpdatedBy, Model.GetLastUpdatedByInfo().DisplayName, Model.LastUpdateDate.DateTime.ToShortDateString(), Model.LastUpdateDate.DateTime.ToShortTimeString()))
                         </div>
                     </div>
                 </div>
@@ -99,56 +105,56 @@
                 <aside class="small">
                     <div style="padding: 5px;">
                         <div class="row">
-                            @Html.LabelFor(m => m.TicketStatus, new {@class = "col-sm-5 col-lg-4 text-right"})
+                            @Html.LabelFor(m => m.TicketStatus, new { @class = "col-sm-5 col-lg-4 text-right" })
                             <div class="col-sm-7 col-lg-8">
                                 @Model.TicketStatus.GetDisplayName()
                             </div>
                         </div>
                         <div class="row">
-                            @Html.LabelFor(m => m.LastUpdateBy, new {@class = "col-sm-5 col-lg-4 text-right"})
+                            @Html.LabelFor(m => m.LastUpdateBy, new { @class = "col-sm-5 col-lg-4 text-right" })
                             <div class="col-sm-7 col-lg-8">
                                 @Model.GetLastUpdatedByInfo().DisplayName
                             </div>
                         </div>
                         <div class="row">
-                            @Html.LabelFor(m => m.LastUpdateDate, new {@class = "col-sm-5 col-lg-4 text-right"})
+                            @Html.LabelFor(m => m.LastUpdateDate, new { @class = "col-sm-5 col-lg-4 text-right" })
                             <div class="col-sm-7 col-lg-8">
                                 @Model.LastUpdateDate.DateTime.ToShortDateString() @Model.LastUpdateDate.DateTime.ToShortTimeString()
                             </div>
                         </div>
 
                         <div class="row">
-                            @Html.LabelFor(m => m.CurrentStatusSetBy, new {@class = "col-sm-5 col-lg-4 text-right"})
+                            @Html.LabelFor(m => m.CurrentStatusSetBy, new { @class = "col-sm-5 col-lg-4 text-right" })
                             <div class="col-sm-7 col-lg-8">
                                 @Model.GetCurrentStatusSetByInfo().DisplayName
                             </div>
                         </div>
                         <div class="row">
-                            @Html.LabelFor(m => m.CurrentStatusDate, new {@class = "col-sm-5 col-lg-4 text-right"})
+                            @Html.LabelFor(m => m.CurrentStatusDate, new { @class = "col-sm-5 col-lg-4 text-right" })
                             <div class="col-sm-7 col-lg-8">
                                 @Model.CurrentStatusDate.DateTime.ToShortDateString() @Model.CurrentStatusDate.DateTime.ToShortTimeString()
                             </div>
                         </div>
                         <div class="row">
-                            @Html.LabelFor(m => m.CreatedBy, new {@class = "col-sm-5 col-lg-4 text-right"})
+                            @Html.LabelFor(m => m.CreatedBy, new { @class = "col-sm-5 col-lg-4 text-right" })
                             <div class="col-sm-7 col-lg-8">
                                 @Model.GetCreatedByInfo().DisplayName
                             </div>
                         </div>
                         <div class="row">
-                            @Html.LabelFor(m => m.CreatedDate, new {@class = "col-sm-5 col-lg-4 text-right"})
+                            @Html.LabelFor(m => m.CreatedDate, new { @class = "col-sm-5 col-lg-4 text-right" })
                             <div class="col-sm-7 col-lg-8">
                                 @Model.CreatedDate.DateTime.ToShortDateString() @Model.CreatedDate.DateTime.ToShortTimeString()
                             </div>
                         </div>
 
                         <div class="row">
-                            <label class="col-sm-5 col-lg-4 text-right">@Index.Subscribers</label>
+                            <label class="col-sm-5 col-lg-4 text-right">@Index_sq.Subscribers</label>
                             <div class="col-sm-7 col-lg-8">
 
                                 @foreach (var sub in Model.TicketSubscribers)
                                 {
-                                <div>@sub.GetSubscriberDisplayInfo().DisplayName</div>
+                                    <div>@sub.GetSubscriberDisplayInfo().DisplayName</div>
                                 }
                             </div>
                         </div>
