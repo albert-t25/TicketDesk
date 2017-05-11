@@ -61,7 +61,7 @@ namespace TicketDesk.Localization.Views.ProjectSettings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ktheu tek klientët.
+        ///   Looks up a localized string similar to Kthehu tek klientët.
         /// </summary>
         public static string BackOption {
             get {

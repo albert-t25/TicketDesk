@@ -22,17 +22,17 @@ namespace TicketDesk.Domain.Model
 
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Email", ResourceType = typeof(Strings_sq))]
         public string Email { get; set; }
 
         [Required]
         [Phone]
-        [Display(Name = "Phone")]
+        [Display(Name = "Phone", ResourceType = typeof(Strings_sq))]
         public string Phone { get; set; }
 
         [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
         [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "Address", ResourceType = typeof(Strings))]
+        [Display(Name = "Address", ResourceType = typeof(Strings_sq))]
         public string Address { get; set; }
         [Column(TypeName = "timestamp")]
         [MaxLength(8)]

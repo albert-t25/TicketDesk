@@ -61,6 +61,15 @@ namespace TicketDesk.Localization.Domain {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adresa.
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lejo përdoruesit të modifikojnë prioritetin?.
         /// </summary>
         public static string AllowInternalUsersToEditPriority {
@@ -178,6 +187,15 @@ namespace TicketDesk.Localization.Domain {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Përdoruesi nuk është i autorizuar për të krijuar një kërkesë të re.
         /// </summary>
         public static string ExceptionSecurityUserCannotCreateNewTicket {
@@ -192,6 +210,15 @@ namespace TicketDesk.Localization.Domain {
         public static string ExceptionSettingsTypeConversionError {
             get {
                 return ResourceManager.GetString("ExceptionSettingsTypeConversionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Telefon.
+        /// </summary>
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
             }
         }
         
@@ -939,6 +966,15 @@ namespace TicketDesk.Localization.Domain {
         public static string TicketTitleShort {
             get {
                 return ResourceManager.GetString("TicketTitleShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orët e punës.
+        /// </summary>
+        public static string WorkingHours {
+            get {
+                return ResourceManager.GetString("WorkingHours", resourceCulture);
             }
         }
     }

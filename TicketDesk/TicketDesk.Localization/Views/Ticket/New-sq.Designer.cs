@@ -176,5 +176,14 @@ namespace TicketDesk.Localization.Views.Ticket {
                 return ResourceManager.GetString("UnableCreateTicket", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orët e punës.
+        /// </summary>
+        public static string WorkingHours_Placeholder {
+            get {
+                return ResourceManager.GetString("WorkingHours_Placeholder", resourceCulture);
+            }
+        }
     }
 }

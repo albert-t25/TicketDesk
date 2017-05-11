@@ -117,46 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AffectsCustomer" xml:space="preserve">
-    <value>Ka difekt</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="Attachment_Demo_Alert" xml:space="preserve">
-    <value>&lt;p&gt;TicketDesk është në demo mode. Bashkëngjitja e dokumentave është e bllokuar.&lt;/p&gt;</value>
-  </data>
-  <data name="Attachment_Instructions" xml:space="preserve">
-    <value>Hidh dokumentin këtu ose kliko për të zgjedhur.</value>
-  </data>
-  <data name="BackOption" xml:space="preserve">
-    <value>Kthehu tek lista</value>
-  </data>
-  <data name="Details" xml:space="preserve">
-    <value>Detajet</value>
-  </data>
-  <data name="EditOption" xml:space="preserve">
-    <value>Modifiko</value>
-  </data>
-  <data name="Files" xml:space="preserve">
-    <value>Dokumentat</value>
-  </data>
-  <data name="Header" xml:space="preserve">
-    <value>Krijo një kërkesë të re</value>
-  </data>
-  <data name="PreviewOption" xml:space="preserve">
-    <value>Parashiko</value>
-  </data>
-  <data name="SaveOption" xml:space="preserve">
-    <value>Krijo</value>
-  </data>
-  <data name="TicketTitle_Placeholder" xml:space="preserve">
-    <value>Titulli i kërkesës</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Kërkesë e re</value>
-  </data>
-  <data name="UnableCreateTicket" xml:space="preserve">
-    <value>Nuk mund ta krijojme këtë kërkesë. Ju lutem kontrrolloni gabimet më poshtë</value>
-  </data>
-  <data name="WorkingHours_Placeholder" xml:space="preserve">
-    <value>Orët e punës</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>
