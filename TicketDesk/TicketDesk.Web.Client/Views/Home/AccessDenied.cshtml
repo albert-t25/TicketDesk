@@ -19,17 +19,17 @@
 <main>
     <div class="container">
         <fieldset>
-            <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">@AccessDenied.Legend</legend>
+            <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">@AccessDenied_sq.Legend</legend>
             <div class="col-lg-7 col-lg-offset-2 col-md-8 col-md-offset-1 col-sm-12">
 
                 <div class="panel panel-danger">
                     <div class="panel-body">
                         @Html.Raw(User.Identity.IsAuthenticated && User.IsInRole("TdPendingUsers") ?
-                            AccessDenied.PendingUser :
-                            AccessDenied.PermissionDenied)
+                            AccessDenied_sq.PendingUser :
+                            AccessDenied_sq.PermissionDenied)
                     </div><div class="panel-footer">
 
-                        @Html.ActionLink(@AccessDenied.HomeLink, "Index",null, new {@class = "btn btn-default" })
+                        @Html.ActionLink(@AccessDenied_sq.HomeLink, "Index",null, new {@class = "btn btn-default" })
                     </div>
                 </div>
 

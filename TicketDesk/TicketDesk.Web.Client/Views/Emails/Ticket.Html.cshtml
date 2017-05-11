@@ -17,14 +17,13 @@
 @using TicketDesk.Domain
 @using TicketDesk.Domain.Model
 @model TicketDesk.Web.Client.Models.TicketEmail
-Content-Type: text/html; charset=utf-8
 
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@string.Format(Strings.Title, Model.Ticket.TicketId)</title>
+    <title>@string.Format(Strings_sq.Title, Model.Ticket.TicketId)</title>
     <style type="text/css">
         * {
             font-family: Calibri, Tahoma, Verdana, Helvetica, Sans-Serif;
@@ -63,12 +62,14 @@ Content-Type: text/html; charset=utf-8
         <table style="background-color: #B3CBDF;width: 100%;">
             <tr>
                 <td style="width: 55px; font-weight: bold; border-right: 1px solid #dcdcdc; text-align: center;" rowspan="2">
-                    <a href="@((Model.SiteRootUrl??string.Empty).TrimEnd('/'))@Url.Action("Index", "Ticket", new {Id = Model.Ticket.TicketId })">
+                    @*@((Model.SiteRootUrl ?? string.Empty).TrimEnd('/'))@Url.Action("Index", "Ticket", new { Id = Model.Ticket.TicketId })*@
+                    <a href="#">
                         @Model.Ticket.TicketStatus.GetDisplayName()
                     </a>
                 </td>
                 <td style="width: 40px; font-weight: bold; border-right: 1px solid #dcdcdc; text-align: center;" rowspan="2">
-                    <a href="@((Model.SiteRootUrl??string.Empty).TrimEnd('/'))@Url.Action("Index", "Ticket", new {Id = Model.Ticket.TicketId })">
+                    @*@((Model.SiteRootUrl ?? string.Empty).TrimEnd('/'))@Url.Action("Index", "Ticket", new { Id = Model.Ticket.TicketId })*@
+                    <a href="#">
                         #@Model.Ticket.TicketId
                     </a>
 
@@ -76,7 +77,8 @@ Content-Type: text/html; charset=utf-8
             </tr>
             <tr>
                 <td colspan="2" style="font-weight: bold;">
-                    <a href="@((Model.SiteRootUrl??string.Empty).TrimEnd('/'))@Url.Action("Index", "Ticket", new {Id = Model.Ticket.TicketId })">
+                    @*@((Model.SiteRootUrl ?? string.Empty).TrimEnd('/'))@Url.Action("Index", "Ticket", new { Id = Model.Ticket.TicketId })*@
+                    <a href="#">
                         @Model.Ticket.Title
                     </a>
                 </td>
@@ -99,14 +101,18 @@ Content-Type: text/html; charset=utf-8
             }
             <tr>
                 <td>
-                    @(string.IsNullOrEmpty(Model.Ticket.Priority) ? string.Empty : string.Format(Strings.Priority, Model.Ticket.Priority)) @Model.Ticket.Category @Model.Ticket.TicketType
+                    @(string.IsNullOrEmpty(Model.Ticket.Priority) ? string.Empty : string.Format(Strings_sq.Priority + ": {0}", Model.Ticket.Priority))
+                    <br />
+                    @(string.IsNullOrEmpty(Model.Ticket.Category) ? string.Empty : string.Format("Kategoria: {0}", Model.Ticket.Category))
+                    <br/>
+                    @(string.IsNullOrEmpty(Model.Ticket.TicketType) ? string.Empty : string.Format("Tipi: {0}", Model.Ticket.TicketType))
                 </td>
             </tr>
             @if (Model.IsMultiProject)
             {
                 <tr>
                     <td>
-                        @string.Format(Strings.Project, Model.Ticket.Project.ProjectName)
+                        @string.Format(Strings_sq.Project, Model.Ticket.Project.ProjectName)
                     </td>
                 </tr>
             }
@@ -114,19 +120,19 @@ Content-Type: text/html; charset=utf-8
                 <td>
                     @Html.Raw((string.IsNullOrEmpty(Model.Ticket.AssignedTo))
                         ?
-                        string.Format(Strings.AssignedTo, "<span class=\"tag\">" + Strings.Unassigned + "</span>")
+                        string.Format(Strings_sq.AssignedTo, "<span class=\"tag\">" + Strings_sq.Unassigned + "</span>")
                         :
-                        string.Format(Strings.AssignedTo, Model.Ticket.GetAssignedToInfo().DisplayName)
+                        string.Format(Strings_sq.AssignedTo, Model.Ticket.GetAssignedToInfo().DisplayName)
                     )
                 </td>
             <tr>
                 <td>
-                    @string.Format(Strings.Owner, Model.Ticket.GetOwnerInfo().DisplayName)
+                    @string.Format(Strings_sq.Owner, Model.Ticket.GetOwnerInfo().DisplayName)
                 </td>
             </tr>
             <tr>
                 <td>
-                    @string.Format(Strings.UpdatedBy, Model.Ticket.GetLastUpdatedByInfo().DisplayName, Model.Ticket.LastUpdateDate.DateTime.ToShortDateString(), Model.Ticket.LastUpdateDate.DateTime.ToShortTimeString())
+                    @string.Format(Strings_sq.UpdatedBy, Model.Ticket.GetLastUpdatedByInfo().DisplayName, Model.Ticket.LastUpdateDate.DateTime.ToShortDateString(), Model.Ticket.LastUpdateDate.DateTime.ToShortTimeString())
                 </td>
             </tr>
         </table>
@@ -143,7 +149,7 @@ Content-Type: text/html; charset=utf-8
         <table style="background-color: #B3CBDF; width: 100%;">
             <tr>
                 <td style="font-weight: bold;">
-                    @Strings.Activity
+                    @Strings_sq.Activity
                 </td>
             </tr>
         </table>

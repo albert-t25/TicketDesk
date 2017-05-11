@@ -11,14 +11,14 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
-using System.Linq;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using TicketDesk.Domain;
 using TicketDesk.Domain.Model;
-using TicketDesk.Search.Common;
 using TicketDesk.Localization.Controllers;
+using TicketDesk.Search.Common;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -46,7 +46,7 @@ namespace TicketDesk.Web.Client.Controllers
                 if (Context.Projects.Count() > 1)
                 {
                     ViewBag.IsMultiProject = true;
-                    ViewBag.SearchProjectName = (projectId == 0) ? Strings.ShowingFromAllProjects : string.Format(Strings.ShowingFromProject, Context.Projects.First(p => p.ProjectId == projectId).ProjectName);
+                    ViewBag.SearchProjectName = (projectId == 0) ? Strings_sq.ShowingFromAllProjects : string.Format(Strings_sq.ShowingFromProject, Context.Projects.First(p => p.ProjectId == projectId).ProjectName);
                 }
 
 

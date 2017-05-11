@@ -11,20 +11,20 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
+using Ganss.XSS;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Ganss.XSS;
 using TicketDesk.IO;
+using TicketDesk.Localization.Models;
 using TicketDesk.Search.Common;
 using TicketDesk.Web.Client;
 using TicketDesk.Web.Client.Models;
 using TicketDesk.Web.Identity;
 using TicketDesk.Web.Identity.Model;
-using TicketDesk.Localization.Models;
 
 
 namespace TicketDesk.Domain.Model
@@ -80,7 +80,7 @@ namespace TicketDesk.Domain.Model
 
         public static HtmlString HtmlDetails(this Ticket ticket)
         {
-           
+
             var content = (ticket.IsHtml) ? ticket.Details : ticket.Details.HtmlFromMarkdown();
             var san = new HtmlSanitizer();
             return new HtmlString(san.Sanitize(content));
@@ -143,7 +143,7 @@ namespace TicketDesk.Domain.Model
             {
                 all = all.Where(u => u.Id != ticket.AssignedTo);
             }
-            return includeEmptyText ? all.ToUserSelectList(ticket.AssignedTo, Strings.AssignedTo_Unassigned) : all.ToUserSelectList(false, ticket.AssignedTo);
+            return includeEmptyText ? all.ToUserSelectList(ticket.AssignedTo, Strings_sq.AssignedTo_Unassigned) : all.ToUserSelectList(false, ticket.AssignedTo);
         }
 
         public static bool AllowEditTags(this Ticket ticket)
@@ -172,7 +172,7 @@ namespace TicketDesk.Domain.Model
         {
             //TODO: is this the best place to put this check?
             var context = DependencyResolver.Current.GetService<TdDomainContext>();
-            return (context.SecurityProvider.IsTdAdministrator || context.SecurityProvider.IsTdHelpDeskUser) || (context.SecurityProvider.IsTdInternalUser &&  context.TicketDeskSettings.Permissions.AllowInternalUsersToEditPriority);
+            return (context.SecurityProvider.IsTdAdministrator || context.SecurityProvider.IsTdHelpDeskUser) || (context.SecurityProvider.IsTdInternalUser && context.TicketDeskSettings.Permissions.AllowInternalUsersToEditPriority);
         }
 
         /// <summary>

@@ -19,41 +19,41 @@ namespace TicketDesk.Web.Client.Models
 {
     public class UserRegisterViewModel
     {
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [EmailAddress(ErrorMessage = null, ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "Email", ResourceType = typeof(Strings))]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [EmailAddress(ErrorMessage = null, ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(Name = "Email", ResourceType = typeof(Strings_sq))]
         public string Email { get; set; }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "DisplayName", ResourceType = typeof(Strings))]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(Name = "DisplayName", ResourceType = typeof(Strings_sq))]
         public string DisplayName { get; set; }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [StringLength(100, ErrorMessageResourceName = "FieldMinimumLength", ErrorMessageResourceType = typeof(Validation), MinimumLength = 6)]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(100, ErrorMessageResourceName = "FieldMinimumLength", ErrorMessageResourceType = typeof(Validation_sq), MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password", ResourceType = typeof(Strings))]
+        [Display(Name = "Password", ResourceType = typeof(Strings_sq))]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "ConfirmPassword", ResourceType = typeof(Strings))]
-        [Compare("Password", ErrorMessageResourceName = "ConfirmationDoNotMatch", ErrorMessageResourceType = typeof(Strings))]
+        [Display(Name = "ConfirmPassword", ResourceType = typeof(Strings_sq))]
+        [Compare("Password", ErrorMessageResourceName = "ConfirmationDoNotMatch", ErrorMessageResourceType = typeof(Strings_sq))]
         public string ConfirmPassword { get; set; }
     }
 
     public class UserSignInViewModel
     {
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "Email", ResourceType = typeof(Strings))]
-        [EmailAddress(ErrorMessage = null, ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType = typeof(Validation))]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(Name = "Email", ResourceType = typeof(Strings_sq))]
+        [EmailAddress(ErrorMessage = null, ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType = typeof(Validation_sq))]
         public string Email { get; set; }
 
-        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation))]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
         [DataType(DataType.Password)]
-        [Display(Name = "Password", ResourceType = typeof(Strings))]
+        [Display(Name = "Password", ResourceType = typeof(Strings_sq))]
         public string Password { get; set; }
 
-        [Display(Name = "RememberMe", ResourceType = typeof(Strings))]
+        [Display(Name = "RememberMe", ResourceType = typeof(Strings_sq))]
         public bool RememberMe { get; set; }
     }
 }

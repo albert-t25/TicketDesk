@@ -19,7 +19,7 @@
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-user"></i><span class="">
-            @(User.Identity.IsAuthenticated ? User.Identity.GetUserDisplayName() : _Layout.Account)
+            @(User.Identity.IsAuthenticated ? User.Identity.GetUserDisplayName() : _Layout_sq.Account)
         </span>
         <span class="caret"></span>
     </a>
@@ -27,16 +27,16 @@
         @if (User.Identity.IsAuthenticated)
         {
             <li>
-                @Html.ActionLink(@_Layout.MyAccount, "Manage", "Account")
+                @Html.ActionLink(@_Layout_sq.MyAccount, "Manage", "Account")
             </li>
             <li>
-                @Html.ActionLink(@_Layout.LogOff, "SignOut", "User")
+                @Html.ActionLink(@_Layout_sq.LogOff, "SignOut", "User")
             </li>
         }
         else
         {
-            <li>@Html.ActionLink(@_Layout.Register, "Register", "User", null, new { id = "registerLink" })</li>
-            <li>@Html.ActionLink(@_Layout.SignIn, "SignIn", "User", null, new { id = "loginLink" })</li>
+            <li>@Html.ActionLink(@_Layout_sq.Register, "Register", "User", null, new { id = "registerLink" })</li>
+            <li>@Html.ActionLink(@_Layout_sq.SignIn, "SignIn", "User", null, new { id = "loginLink" })</li>
         }
     </ul>
 

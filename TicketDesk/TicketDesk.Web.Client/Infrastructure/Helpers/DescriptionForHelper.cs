@@ -61,7 +61,7 @@ namespace TicketDesk.Web.Client
             var memberExpression = expression.Body as MemberExpression;
             if (memberExpression == null)
             {
-                throw new InvalidOperationException(Strings.MemberExpression);
+                throw new InvalidOperationException(Strings_sq.MemberExpression);
             }
             var prop = memberExpression.Member;
             var attr = (DescriptionAttribute)prop.GetCustomAttributes(typeof(LocalizedDescriptionAttribute), false).FirstOrDefault();

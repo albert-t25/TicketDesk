@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
 
 namespace TicketDesk.Domain.Model
 {
@@ -31,7 +31,7 @@ namespace TicketDesk.Domain.Model
         }
 
         [NotMapped]
-        public IDictionary<string,string> Settings { get; set; }
+        public IDictionary<string, string> Settings { get; set; }
 
     }
 }

@@ -11,11 +11,11 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
-using System.Data.Entity;
-using System.Threading.Tasks;
 using PagedList;
 using System;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using TicketDesk.Localization.Infrastructure;
 
 public class PagedListAsync<T> : BasePagedList<T>
@@ -34,9 +34,9 @@ public class PagedListAsync<T> : BasePagedList<T>
     async Task InitAsync(IQueryable<T> superset, int pageNumber, int pageSize)
     {
         if (pageNumber < 1)
-            throw new ArgumentOutOfRangeException("pageNumber", pageNumber, Strings.PageNumberBelow);
+            throw new ArgumentOutOfRangeException("pageNumber", pageNumber, Strings_sq.PageNumberBelow);
         if (pageSize < 1)
-            throw new ArgumentOutOfRangeException("pageSize", pageSize, Strings.PageSizeLess);
+            throw new ArgumentOutOfRangeException("pageSize", pageSize, Strings_sq.PageSizeLess);
         TotalItemCount = superset == null ? 0 : await superset.CountAsync();
         PageSize = pageSize;
         PageNumber = pageNumber;

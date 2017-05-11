@@ -18,13 +18,13 @@ namespace TicketDesk.Domain.Model
 {
     public enum TicketStatus
     {
-        [Display(Name = "TicketStatusActive", ResourceType = typeof(Strings))]
+        [Display(Name = "TicketStatusActive", ResourceType = typeof(Strings_sq))]
         Active,
-        [Display(Name = "TicketStatusMoreInfo", ResourceType = typeof(Strings))]
+        [Display(Name = "TicketStatusMoreInfo", ResourceType = typeof(Strings_sq))]
         MoreInfo,
-        [Display(Name = "TicketStatusResolved", ResourceType = typeof(Strings))]
+        [Display(Name = "TicketStatusResolved", ResourceType = typeof(Strings_sq))]
         Resolved,
-        [Display(Name = "TicketStatusClosed", ResourceType = typeof(Strings))]
+        [Display(Name = "TicketStatusClosed", ResourceType = typeof(Strings_sq))]
         Closed
     }
 }

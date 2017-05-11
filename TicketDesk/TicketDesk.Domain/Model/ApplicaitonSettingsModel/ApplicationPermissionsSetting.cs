@@ -11,9 +11,9 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
 using TicketDesk.Localization.Domain;
 
 namespace TicketDesk.Domain.Model
@@ -52,19 +52,19 @@ namespace TicketDesk.Domain.Model
             }
         }
         [NotMapped]
-        [Display(Name = "AllowInternalUsersToEditPriority", ResourceType = typeof(Strings))]
+        [Display(Name = "AllowInternalUsersToEditPriority", ResourceType = typeof(Strings_sq))]
         public bool AllowInternalUsersToEditPriority { get; set; }
 
         [NotMapped]
-        [Display(Name = "AllowInternalUsersToEditTags", ResourceType = typeof(Strings))]
+        [Display(Name = "AllowInternalUsersToEditTags", ResourceType = typeof(Strings_sq))]
         public bool AllowInternalUsersToEditTags { get; set; }
 
         [NotMapped]
-        [Display(Name = "AllowInternalUsersToSetAssigned", ResourceType = typeof(Strings))]
+        [Display(Name = "AllowInternalUsersToSetAssigned", ResourceType = typeof(Strings_sq))]
         public bool AllowInternalUsersToSetAssigned { get; set; }
 
         [NotMapped]
-        [Display(Name = "AllowInternalUsersToSetOwner", ResourceType = typeof(Strings))]
+        [Display(Name = "AllowInternalUsersToSetOwner", ResourceType = typeof(Strings_sq))]
         public bool AllowInternalUsersToSetOwner { get; set; }
     }
 

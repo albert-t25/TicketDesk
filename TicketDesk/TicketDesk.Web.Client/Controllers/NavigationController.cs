@@ -12,7 +12,7 @@ namespace TicketDesk.Web.Client.Controllers
     {
         public TdDomainContext Context { get; set; }
 
-        
+
         public NavigationController(TdDomainContext context)
         {
             Context = context;
@@ -30,14 +30,14 @@ namespace TicketDesk.Web.Client.Controllers
             }
 
             var modelProjects = projects.ToList();
-            
+
             //get user's selected project
             var projectId = AsyncHelper.RunSync(() => Context.UserSettingsManager.GetUserSelectedProjectIdAsync(Context));
 
             //add the "all projects item" then get a select list to render
-            modelProjects.Insert(0, new Project { ProjectId = 0, ProjectName = Strings.ModelProjects_DefaultOption, ProjectDescription = string.Empty });
+            modelProjects.Insert(0, new Project { ProjectId = 0, ProjectName = Strings_sq.ModelProjects_DefaultOption, ProjectDescription = string.Empty });
             var model = modelProjects.ToSelectList(p => p.ProjectId.ToString(), p => p.ProjectName, projectId, false);
-            
+
             return PartialView("_ProjectMenu", model);
         }
 

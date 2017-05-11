@@ -4,7 +4,7 @@
 
 @section title
 {
-    @Index.Title
+    @Index_sq.Title
 }
 
 @section scripts
@@ -27,7 +27,7 @@
         <fieldset>
             <!-- Form Name -->
             <legend class="col-lg-9 col-lg-offset-1 col-sm-12">
-                @Index.Legend
+                @Index_sq.Legend
             </legend>
 
             @using (Html.BeginForm("Index", "ApplicationSettings", FormMethod.Post, new { @class = "form-horizontal" }))
@@ -37,7 +37,7 @@
 
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h2 class="panel-title">@Index.Global_Header</h2>
+                            <h2 class="panel-title">@Index_sq.Global_Header</h2>
                         </div>
                         <div class="panel-body ">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -45,7 +45,7 @@
                             @Html.HiddenFor(model => model.ApplicationName)
 
                             <div class="form-group">
-                                <label class="col-md-4 col-sm-4 control-label">@Index.Global_Priority</label>
+                                <label class="col-md-4 col-sm-4 control-label">@Index_sq.Global_Priority</label>
                                 <div class="col-md-8 col-sm-8">
                                     <label class="checkbox-inline">
                                         @Html.CheckBoxFor(model => model.Permissions.AllowInternalUsersToEditPriority, new { htmlAttributes = new { @class = "form-control" } })
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 col-sm-4 control-label">@Index.Global_Tags</label>
+                                <label class="col-md-4 col-sm-4 control-label">@Index_sq.Global_Tags</label>
                                 <div class="col-md-8 col-sm-8">
                                     <label class="checkbox-inline">
                                         @Html.CheckBoxFor(model => model.Permissions.AllowInternalUsersToEditTags, new {htmlAttributes = new {@class = "form-control"}})
@@ -82,32 +82,32 @@
                             </div>
                         </div>
                         <div class="panel-heading">
-                            <h2 class="panel-title">@Index.Settings_Header</h2>
+                            <h2 class="panel-title">@Index_sq.Settings_Header</h2>
                         </div>
                         <div class="panel-body ">
                             <div class="form-group">
-                                <label class="col-md-4 col-sm-4 control-label">@Index.Settings_Editor</label>
+                                <label class="col-md-4 col-sm-4 control-label">@Index_sq.Settings_Editor</label>
                                 <div class="col-md-8 col-sm-8">
                                     <div class="radio">
                                         <label class="checkbox-inline">
                                             @Html.RadioButton("DefaultTextEditorType", "summernote", (Model.ClientSettings.GetDefaultTextEditorType() == "summernote"), new { id = "IsSummernote" })
-                                            @Index.Settings_Editor_HTML
+                                            @Index_sq.Settings_Editor_HTML
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label class="checkbox-inline">
                                             @Html.RadioButton("DefaultTextEditorType", "pagedown", (Model.ClientSettings.GetDefaultTextEditorType() == "pagedown"), new { id = "IsPagedown" })
-                                            @Index.Settings_Editor_Markdown
+                                            @Index_sq.Settings_Editor_Markdown
                                         </label>
                                     </div>
                                     <div class="help-block">
-                                        @Html.Raw(Index.Settings_Editor_Help)
+                                        @Html.Raw(Index_sq.Settings_Editor_Help)
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="panel-heading">
-                            <h2 class="panel-title">@Index.List_Header</h2>
+                            <h2 class="panel-title">@Index_sq.List_Header</h2>
                         </div>
                         <div class="panel-body ">
                             <div class="form-group">
@@ -130,7 +130,7 @@
                             </div>
                         </div>
                         <div class="panel-heading">
-                            <h2 class="panel-title">@Index.Security_Header</h2>
+                            <h2 class="panel-title">@Index_sq.Security_Header</h2>
                         </div>
                         <div class="panel-body ">
                             <div class="form-group">
@@ -143,7 +143,7 @@
                         </div>
                         <div class="panel-footer">
                             <div class="">
-                                <button type="submit" class="btn btn-success" tabindex="10"><i class="fa fa-save"></i>&nbsp;&nbsp;@Index.SaveOption</button>&nbsp;&nbsp;
+                                <button type="submit" class="btn btn-success" tabindex="10"><i class="fa fa-save"></i>&nbsp;&nbsp;@Index_sq.SaveOption</button>&nbsp;&nbsp;
 
                             </div>
                         </div>

@@ -16,7 +16,7 @@
 
 @model TicketDesk.Domain.Model.TicketEvent
 <div class="form-group form-group-sm">
-    <label class="col-sm-2 control-label " for="wmd-input-activity">@Strings.Comment_Label</label>
+    <label class="col-sm-2 control-label " for="wmd-input-activity">@Strings_sq.Comment_Label</label>
     @if (Model.IsHtml)
     {
         <div class="col-sm-8">
@@ -40,8 +40,8 @@
                     </div>
                 </div>
                 <ul class="nav nav-tabs navbar-right">
-                    <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-edit"></i>&nbsp;@Strings.Comment_EditOption</a></li>
-                    <li><a href="#tab2" data-toggle="tab"><i class="fa fa-eye"></i>&nbsp;@Strings.Comment_PreviewOption</a></li>
+                    <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-edit"></i>&nbsp;@Strings_sq.Comment_EditOption</a></li>
+                    <li><a href="#tab2" data-toggle="tab"><i class="fa fa-eye"></i>&nbsp;@Strings_sq.Comment_PreviewOption</a></li>
                 </ul>
             </div>
             @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })

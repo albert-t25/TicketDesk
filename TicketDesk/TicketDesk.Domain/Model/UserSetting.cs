@@ -18,17 +18,17 @@ using TicketDesk.Localization;
 
 namespace TicketDesk.Domain.Model
 {
-    
+
     public class UserSetting
     {
         [Key]
-        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation))]
+        [StringLength(256, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
         public string UserId { get; set; }
 
         public virtual UserTicketListSettingsCollection ListSettings { get; internal set; }
 
         public int? SelectedProjectId { get; set; }
-       
+
 
         public UserTicketListSetting GetUserListSettingByName(string listName)
         {

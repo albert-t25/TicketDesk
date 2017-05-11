@@ -21,7 +21,7 @@
 
 @section title
 {
-    @string.Format(Index.Title, Model.TicketId)
+    @string.Format(Index_sq.Title, Model.TicketId)
 }
 
 @section scripts
@@ -90,13 +90,13 @@
     </div>
     <div class="panel panel-info">
         <div class="panel-heading panel-title" style="padding: 3px 5px;">
-            @Index.Activity
+            @Index_sq.Activity
         </div>
         <div id="eventPanel" class="panel-body">
             @Html.Action("TicketEvents", new { ticketId = Model.TicketId })
         </div>
     </div>
     <p>
-        @Html.ActionLink(Index.BackOption, "Index", "TicketCenter")
+        @Html.ActionLink(Index_sq.BackOption, "Index", "TicketCenter")
     </p>
 </main>

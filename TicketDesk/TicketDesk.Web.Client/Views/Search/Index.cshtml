@@ -18,7 +18,7 @@
 @using TicketDesk.Domain.Model
 @model IEnumerable<Ticket>
 @section title{
-    @Index.Title
+    @Index_sq.Title
 }
 @section scripts
 {
@@ -33,7 +33,7 @@
     <div class="container">
         <fieldset>
             <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">
-                @Index.Legend
+                @Index_sq.Legend
             </legend>
             <div class="col-lg-7 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12">
                 @if (ViewBag.IsMultiProject ?? false)
@@ -83,15 +83,15 @@
                                             }
                                         </div>
                                         <div>
-                                            <div>@(string.IsNullOrEmpty(item.Priority) ? string.Empty : string.Format(Index.Priority, item.Priority)) @item.Category @item.TicketType</div>
+                                            <div>@(string.IsNullOrEmpty(item.Priority) ? string.Empty : string.Format(Index_sq.Priority, item.Priority)) @item.Category @item.TicketType</div>
                                             <div>
-                                                @Html.Raw(string.Format(Index.AssignedTo, (string.IsNullOrEmpty(item.AssignedTo)) ? ("<span class='label label-warning'>" + Index.Unassigned + "</span>") : item.GetAssignedToInfo().DisplayName))
+                                                @Html.Raw(string.Format(Index_sq.AssignedTo, (string.IsNullOrEmpty(item.AssignedTo)) ? ("<span class='label label-warning'>" + Index_sq.Unassigned + "</span>") : item.GetAssignedToInfo().DisplayName))
                                             </div>
                                             <div>
-                                                @Html.Raw(string.Format(Index.OwnedBy, item.GetOwnerInfo().DisplayName))
+                                                @Html.Raw(string.Format(Index_sq.OwnedBy, item.GetOwnerInfo().DisplayName))
                                             </div>
                                             <div class="hidden-sm">
-                                                @Html.Raw(string.Format(Index.UpdatedBy, item.GetLastUpdatedByInfo().DisplayName, item.LastUpdateDate.DateTime.ToShortDateString(), item.LastUpdateDate.DateTime.ToShortTimeString()))
+                                                @Html.Raw(string.Format(Index_sq.UpdatedBy, item.GetLastUpdatedByInfo().DisplayName, item.LastUpdateDate.DateTime.ToShortDateString(), item.LastUpdateDate.DateTime.ToShortTimeString()))
                                             </div>
                                         </div>
                                     </div>

@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using System;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
+using TicketDesk.Localization.Controllers;
 using TicketDesk.PushNotifications;
 using TicketDesk.PushNotifications.Model;
 using TicketDesk.Web.Client.Models;
 using TicketDesk.Web.Identity;
 using TicketDesk.Web.Identity.Model;
-using TicketDesk.Localization.Controllers;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -35,9 +35,9 @@ namespace TicketDesk.Web.Client.Controllers
         public ActionResult Manage(AccountMessageId? message)
         {
             ViewBag.StatusMessage =
-               message == AccountMessageId.ChangePasswordSuccess ? Strings.ChangePasswordSuccess
-               : message == AccountMessageId.Error ? Strings.Error
-               : message == AccountMessageId.ProfileSaveSuccess ? Strings.ProfileSaveSuccess
+               message == AccountMessageId.ChangePasswordSuccess ? Strings_sq.ChangePasswordSuccess
+               : message == AccountMessageId.Error ? Strings_sq.Error
+               : message == AccountMessageId.ProfileSaveSuccess ? Strings_sq.ProfileSaveSuccess
                : "";
             return View();
         }
@@ -59,12 +59,13 @@ namespace TicketDesk.Web.Client.Controllers
             var demoMode = (ConfigurationManager.AppSettings["ticketdesk:DemoModeEnabled"] ?? "false").Equals("true", StringComparison.InvariantCultureIgnoreCase);
             if (demoMode)
             {
-                ModelState.AddModelError("Password", Strings.UnableToChangeDemoUser);
+                ModelState.AddModelError("Password", Strings_sq.UnableToChangeDemoUser);
             }
-            else { 
-            var result =
-                    await
-                        UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            else
+            {
+                var result =
+                        await
+                            UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
                 if (result.Succeeded)
                 {
                     var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -72,11 +73,11 @@ namespace TicketDesk.Web.Client.Controllers
                     {
                         await SignInAsync(user, isPersistent: false);
                     }
-                    return RedirectToAction("Manage", new {Message = AccountMessageId.ChangePasswordSuccess});
+                    return RedirectToAction("Manage", new { Message = AccountMessageId.ChangePasswordSuccess });
                 }
                 AddErrors(result);
             }
-            
+
             return View(model);
         }
 
@@ -101,7 +102,7 @@ namespace TicketDesk.Web.Client.Controllers
             var demoMode = (ConfigurationManager.AppSettings["ticketdesk:DemoModeEnabled"] ?? "false").Equals("true", StringComparison.InvariantCultureIgnoreCase);
             if (demoMode && oldEmail.EndsWith("@example.com", StringComparison.InvariantCultureIgnoreCase))
             {
-                ModelState.AddModelError("Email", Strings.UnableToChangeDemoUser);
+                ModelState.AddModelError("Email", Strings_sq.UnableToChangeDemoUser);
             }
             else
             {
@@ -117,9 +118,9 @@ namespace TicketDesk.Web.Client.Controllers
 
                     AuthenticationManager.SignOut();
                     await SignInManager.SignInAsync(user, false, false);
-                        //.SignIn(new AuthenticationProperties { IsPersistent = false }, 
+                    //.SignIn(new AuthenticationProperties { IsPersistent = false }, 
                     //await user.GenerateUserIdentityAsync(UserManager);
-                    return RedirectToAction("Manage", new {Message = AccountMessageId.ProfileSaveSuccess});
+                    return RedirectToAction("Manage", new { Message = AccountMessageId.ProfileSaveSuccess });
                 }
             }
             return View(model);
@@ -129,16 +130,19 @@ namespace TicketDesk.Web.Client.Controllers
         {
             var noteSettings =
                 await NotificationContext.SubscriberPushNotificationSettingsManager.GetSettingsForSubscriberAsync(user.Id);
-            var dest = noteSettings.PushNotificationDestinations.FirstOrDefault(
-                d => d.DestinationType == "email" && d.DestinationAddress == oldEmail);
-            if (dest == null)
+            if (noteSettings != null)
             {
-                dest = new PushNotificationDestination() {SubscriberId = user.Id, DestinationType = "email"};
-                noteSettings.PushNotificationDestinations.Add(dest);
+                var dest = noteSettings.PushNotificationDestinations.FirstOrDefault(
+                    d => d.DestinationType == "email" && d.DestinationAddress == oldEmail);
+                if (dest == null)
+                {
+                    dest = new PushNotificationDestination() { SubscriberId = user.Id, DestinationType = "email" };
+                    noteSettings.PushNotificationDestinations.Add(dest);
+                }
+                dest.DestinationAddress = user.Email;
+                dest.SubscriberName = user.DisplayName;
+                await NotificationContext.SaveChangesAsync();
             }
-            dest.DestinationAddress = user.Email;
-            dest.SubscriberName = user.DisplayName;
-            await NotificationContext.SaveChangesAsync();
         }
 
         public enum AccountMessageId

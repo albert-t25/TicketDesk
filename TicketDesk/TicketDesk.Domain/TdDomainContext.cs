@@ -213,7 +213,7 @@ namespace TicketDesk.Domain
                 {
                     result.ValidationErrors.Add(new
                         DbValidationError("authorization",
-                        Strings.ExceptionSecurityUserCannotCreateNewTicket));
+                        Strings_sq.ExceptionSecurityUserCannotCreateNewTicket));
                 }
             }
             return result.ValidationErrors.Count > 0 ? result : base.ValidateEntity(entityEntry, items);
@@ -252,7 +252,7 @@ namespace TicketDesk.Domain
         {
             var pending = new PendingEventEntities();
             pending.PendingTicketChanges = GetTicketChanges();
-            
+
             if (SecurityProvider != null)
             {
                 ProcessDeletedProjects();
@@ -266,7 +266,7 @@ namespace TicketDesk.Domain
             return pending;
         }
 
-       
+
 
         private void CreateEventNotifications()
         {
@@ -293,7 +293,7 @@ namespace TicketDesk.Domain
             foreach (var change in projectChanges)
             {
                 var usersToUpdate = UserSettings.Where(u => u.SelectedProjectId == change.ProjectId);
-                foreach(var user in usersToUpdate)
+                foreach (var user in usersToUpdate)
                 {
                     user.SelectedProjectId = 0;
                 }
@@ -339,7 +339,7 @@ namespace TicketDesk.Domain
                         {
                             TagName = nt,
                         });
-                        TicketTags.RemoveRange(tagsToKill);
+                    TicketTags.RemoveRange(tagsToKill);
                     modifiedTicket.TicketTags.AddRange(newTags);
                 }
             }
@@ -385,7 +385,7 @@ namespace TicketDesk.Domain
             newTicket.EnsureSubscribers();
         }
 
-        
+
 
         private IEnumerable<Ticket> GetTicketChanges()
         {

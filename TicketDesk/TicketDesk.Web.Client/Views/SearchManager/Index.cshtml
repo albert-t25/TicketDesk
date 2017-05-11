@@ -16,27 +16,27 @@
 
 @section title
 {
-     @Index.Title
+     @Index_sq.Title
 }
 <div class="contentContainer">
-    <h2>@Index.Header</h2>
+    <h2>@Index_sq.Header</h2>
     <p>
         
 
     </p>
-    <div>@Html.ActionLink(Index.RemoveSearchIndex, "RemoveIndex")</div>
+    <div>@Html.ActionLink(Index_sq.RemoveSearchIndex, "RemoveIndex")</div>
     <p>
         @if (ViewBag.IndexRemoved ?? false)
         {
-            <span>@Index.Removed</span>
+            <span>@Index_sq.Removed</span>
         }
     </p>
    
-    <div>@Html.ActionLink(Index.PopulateSearchIndex, "PopulateIndex")</div>
+    <div>@Html.ActionLink(Index_sq.PopulateSearchIndex, "PopulateIndex")</div>
     <p>
         @if (ViewBag.IndexPopulated ?? false)
         {
-            <span>@Index.Populated</span>
+            <span>@Index_sq.Populated</span>
         }
     </p>
 </div>

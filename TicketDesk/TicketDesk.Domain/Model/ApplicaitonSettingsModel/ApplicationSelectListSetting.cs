@@ -11,10 +11,10 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
 using TicketDesk.Localization.Domain;
 
 namespace TicketDesk.Domain.Model
@@ -31,7 +31,7 @@ namespace TicketDesk.Domain.Model
         }
 
         [JsonIgnore]
-        [Display( AutoGenerateField = false)]
+        [Display(AutoGenerateField = false)]
         [ScaffoldColumn(false)]
         public string Serialized
         {
@@ -42,7 +42,7 @@ namespace TicketDesk.Domain.Model
                 {
                     return;
                 }
-                var jsettings = new JsonSerializerSettings {ObjectCreationHandling = ObjectCreationHandling.Replace};
+                var jsettings = new JsonSerializerSettings { ObjectCreationHandling = ObjectCreationHandling.Replace };
                 var jData = JsonConvert.DeserializeObject<ApplicationSelectListSetting>(value, jsettings);
                 CategoryList = jData.CategoryList;
                 PriorityList = jData.PriorityList;
@@ -51,15 +51,15 @@ namespace TicketDesk.Domain.Model
         }
 
         [NotMapped]
-        [Display(Name = "SelectList_Categories", ResourceType = typeof(Strings))]
+        [Display(Name = "SelectList_Categories", ResourceType = typeof(Strings_sq))]
         public ICollection<string> CategoryList { get; set; }
 
         [NotMapped]
-        [Display(Name = "SelectList_Priorities", ResourceType = typeof(Strings))]
+        [Display(Name = "SelectList_Priorities", ResourceType = typeof(Strings_sq))]
         public ICollection<string> PriorityList { get; set; }
 
         [NotMapped]
-        [Display(Name = "SelectList_TicketTypes", ResourceType = typeof(Strings))]
+        [Display(Name = "SelectList_TicketTypes", ResourceType = typeof(Strings_sq))]
         public ICollection<string> TicketTypesList { get; set; }
     }
 

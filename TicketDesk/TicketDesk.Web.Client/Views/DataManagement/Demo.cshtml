@@ -16,21 +16,21 @@
 
 @section title
 {
-    @Demo.Title
+    @Demo_sq.Title
 }
 <div class="contentContainer">
-    <h2>@Demo.Header</h2>
+    <h2>@Demo_sq.Header</h2>
     
-    <div>@Html.ActionLink(Demo.RemoveDemoData, "RemoveDemoData")</div>
+    <div>@Html.ActionLink(Demo_sq.RemoveDemoData, "RemoveDemoData")</div>
     <p>
         @if (ViewBag.DemoDataRemoved ?? false)
         {
-            <span>@Demo.Removed</span>
+            <span>@Demo_sq.Removed</span>
         }
-        <div>@Html.ActionLink(Demo.CreateDemoData, "CreateDemoData")</div>
+        <div>@Html.ActionLink(Demo_sq.CreateDemoData, "CreateDemoData")</div>
         @if (ViewBag.DemoDataCreated ?? false)
         {
-            <span>@Demo.Created</span>
+            <span>@Demo_sq.Created</span>
         }
     </p>
 </div>

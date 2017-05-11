@@ -21,18 +21,18 @@
 Content-Type: text/plain; charset=utf-8
 
 ----------------------------------------------------------------
-@string.Format(Strings.Title, Model.Ticket.TicketId) - @(string.IsNullOrEmpty(Model.Ticket.Priority) ? string.Empty : string.Format(Strings.Priority, Model.Ticket.Priority)) @Model.Ticket.Category @Model.Ticket.TicketType
+@string.Format(Strings_sq.Title, Model.Ticket.TicketId) - @(string.IsNullOrEmpty(Model.Ticket.Priority) ? string.Empty : string.Format(Strings_sq.Priority, Model.Ticket.Priority)) @Model.Ticket.Category @Model.Ticket.TicketType
     @Model.Ticket.Title
 ----------------------------------------------------------------
 @if (Model.IsMultiProject)
 {
-    string.Format(Strings.Project, Model.Ticket.Project.ProjectName);
+    string.Format(Strings_sq.Project, Model.Ticket.Project.ProjectName);
 }
-@string.Format(Strings.Status, Model.Ticket.TicketStatus.GetDisplayName())
-@string.Format(Strings.AssignedTo, Model.Ticket.GetAssignedToInfo().DisplayName)
-@string.Format(Strings.Owner, Model.Ticket.GetOwnerInfo().DisplayName)
-@string.Format(Strings.UpdatedBy, Model.Ticket.GetLastUpdatedByInfo().DisplayName, Model.Ticket.LastUpdateDate.DateTime.ToShortDateString(), Model.Ticket.LastUpdateDate.DateTime.ToShortTimeString())
-@Strings.Details
+@string.Format(Strings_sq.Status, Model.Ticket.TicketStatus.GetDisplayName())
+@string.Format(Strings_sq.AssignedTo, Model.Ticket.GetAssignedToInfo().DisplayName)
+@string.Format(Strings_sq.Owner, Model.Ticket.GetOwnerInfo().DisplayName)
+@string.Format(Strings_sq.UpdatedBy, Model.Ticket.GetLastUpdatedByInfo().DisplayName, Model.Ticket.LastUpdateDate.DateTime.ToShortDateString(), Model.Ticket.LastUpdateDate.DateTime.ToShortTimeString())
+@Strings_sq.Details
 @{
         var details = Regex.Replace(Model.Ticket.HtmlDetails().ToString(), @"<(.|\n)*?>", "");
         if (details.Length > 100)
@@ -43,7 +43,7 @@ Content-Type: text/plain; charset=utf-8
 
 @details
 ----------------------------------------------------------------
-@Strings.Activity
+@Strings_sq.Activity
 ----------------------------------------------------------------
 
 @foreach (var evt in Model.Ticket.TicketEvents.OrderByDescending(c => c.EventDate))

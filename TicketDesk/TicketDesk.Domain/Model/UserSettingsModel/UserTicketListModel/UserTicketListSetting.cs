@@ -56,7 +56,7 @@ namespace TicketDesk.Domain.Model
             {
                 FilterColumns.Add(new UserTicketListFilterColumn("TicketStatus", false, "Closed"));
             }
-            
+
         }
 
         /// <summary>
@@ -90,14 +90,17 @@ namespace TicketDesk.Domain.Model
         /// Gets or sets the display name of the list view.
         /// </summary>
         /// <value>The display name of the list view.</value>
-        public string ListDisplayName {
-            get {
+        public string ListDisplayName
+        {
+            get
+            {
                 if (DefaultListName.ContainsKey(this.ListName))
                     return DefaultListName[this.ListName];
                 else
                     return this.listDisplayName;
             }
-            set {
+            set
+            {
                 this.listDisplayName = value;
             }
         }
@@ -157,16 +160,16 @@ namespace TicketDesk.Domain.Model
             }
         }
 
-        
+
 
         internal static List<UserTicketListSetting> GetDefaultListSettings(string userId, bool isHelpDeskUserOrAdmin)
         {
-            
+
             var settings = new List<UserTicketListSetting>();
 
             var disableStatusColumn = new List<string> { "TicketStatus" };
             var disableOwnerColumn = new List<string> { "Owner" };
-            var disableAssignedColumn  = new List<string> { "AssignedTo" };
+            var disableAssignedColumn = new List<string> { "AssignedTo" };
 
             var disOrder = 0;
 
@@ -222,23 +225,23 @@ namespace TicketDesk.Domain.Model
                 {
                     {
                         "unassigned",
-                        Strings.DefaultListNameUnassigned
+                        Strings_sq.DefaultListNameUnassigned
                     },
                     {
                         "assignedToMe",
-                        Strings.DefaultListNameAssignedToMe
+                        Strings_sq.DefaultListNameAssignedToMe
                     },
                     {
                         "mytickets",
-                        Strings.DefaultListNameMyTickets
+                        Strings_sq.DefaultListNameMyTickets
                      },
                     {
                         "opentickets",
-                        Strings.DefaultListNameOpenTickets
+                        Strings_sq.DefaultListNameOpenTickets
                      },
                     {
                         "historytickets",
-                        Strings.DefaultListNameHistoryTickets
+                        Strings_sq.DefaultListNameHistoryTickets
                      }
                 };
             }

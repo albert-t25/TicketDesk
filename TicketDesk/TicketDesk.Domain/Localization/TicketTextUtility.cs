@@ -31,8 +31,8 @@ namespace TicketDesk.Domain.Localization
         {
             //no real perf advantage to a stringbuilder here
             var n = Enum.GetName(typeof(TicketActivity), ticketEvent);
-            var val = Strings.ResourceManager.GetString("TicketActivity" + n);
-            var pval = Strings.ResourceManager.GetString("TicketActivityPriority");
+            var val = Strings_sq.ResourceManager.GetString("TicketActivity" + n);
+            var pval = Strings_sq.ResourceManager.GetString("TicketActivityPriority");
             if (string.IsNullOrEmpty(val) || string.IsNullOrEmpty(pval))
             {
                 throw new NullReferenceException();

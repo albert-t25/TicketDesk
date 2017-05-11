@@ -3,7 +3,7 @@
 
 @section title
 {
-    @Index.Title
+    @Index_sq.Title
 }
 @section scripts
 {
@@ -19,10 +19,10 @@
     <div class="container-fluid">
         <fieldset>
             <legend class="col-sm-12">
-                @Index.Legend
+                @Index_sq.Legend
                 <span data-toggle="tooltip"
                       data-placement="top"
-                      title="@Index.Legend_ShowMore">
+                      title="@Index_sq.Legend_ShowMore">
                     <span class="btn btn-link btn-lg" type="button"
                           data-toggle="collapse"
                           href="#collapseProjectDescription"
@@ -35,7 +35,7 @@
             <div class="col-sm-12">
                 <div class="collapse" id="collapseProjectDescription">
                     <div class="well text-muted">
-                        @Html.Raw(Index.Legend_MoreInfo)
+                        @Html.Raw(Index_sq.Legend_MoreInfo)
                     </div>
                 </div>
                 <div class="panel panel-info">
@@ -46,13 +46,13 @@
                             <table class="table table-striped table-condensed table-hover ">
                                 <tr>
                                     <th>
-                                        @Index.Project
+                                        @Index_sq.Project
                                     </th>
                                     <th>
-                                        @Index.Description
+                                        @Index_sq.Description
                                     </th>
                                     <th>
-                                        @Index.Tickets
+                                        @Index_sq.Tickets
                                     </th>
 
                                 </tr>
@@ -76,7 +76,7 @@
                         <div class="">
 
                             <a href="@Url.Action("New", "ProjectSettings")" class="btn btn-primary">
-                                <i class="fa fa-plus"></i>&nbsp;&nbsp;@Index.SaveOption
+                                <i class="fa fa-plus"></i>&nbsp;&nbsp;@Index_sq.SaveOption
                             </a>
 
 

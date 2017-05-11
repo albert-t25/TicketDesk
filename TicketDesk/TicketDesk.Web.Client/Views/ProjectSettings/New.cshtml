@@ -3,12 +3,12 @@
 
 @section title
 {
-    @New.Title
+    @New_sq.Title
 }
 <main>
     <div class="container">
         <fieldset>
-            <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">@New.Legend</legend>
+            <legend class="col-lg-8 col-lg-offset-2 col-md-9 col-md-offset-1 col-sm-12">@New_sq.Legend</legend>
             <div class="col-lg-7 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12">
                 @using (Html.BeginForm("New", "ProjectSettings", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
@@ -16,7 +16,7 @@
                    
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h2 class="panel-title">@New.Header</h2>
+                            <h2 class="panel-title">@New_sq.Header</h2>
                         </div>
                         <div class="panel-body">
                             @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -39,9 +39,9 @@
                         <div class="panel-footer">
                             <div class="">
                                 <button type="submit" class="btn btn-success" tabindex="10">
-                                    <i class="fa fa-plus"></i>&nbsp;&nbsp;@New.SaveOption
+                                    <i class="fa fa-plus"></i>&nbsp;&nbsp;@New_sq.SaveOption
                                 </button>&nbsp;&nbsp;
-                                @Html.ActionLink(New.BackOption, "Index")
+                                @Html.ActionLink(New_sq.BackOption, "Index")
 
                             </div>
                         </div>
