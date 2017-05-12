@@ -11,7 +11,7 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
-using PagedList;
+using X.PagedList;
 using System;
 using System.Data.Entity;
 using System.Linq;

@@ -14,7 +14,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using PagedList;
+using X.PagedList;
 using TicketDesk.Domain;
 using TicketDesk.Domain.Model;
 using TicketDesk.Web.Identity;

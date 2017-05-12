@@ -9,7 +9,7 @@
 {
     @Styles.Render("~/content/select2")
     @Scripts.Render("~/bundles/select2")
-    @Scripts.Render("~/bundles/select2_locale_" + CultureHelper.GetCurrentCulture())
+    @Scripts.Render("~/bundles/select2_locale_" + TicketDesk.Localization.CultureHelper.GetCurrentCulture())
     @Scripts.Render("~/bundles/admin-edit-user")
     <script type="text/javascript">
         $(document).ready(function () {
