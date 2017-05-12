@@ -9,6 +9,7 @@ namespace TicketDesk.Web.Identity.Model
         {
             SmtpClient client = new SmtpClient(Settings.Default.Host);
             client.Port = Settings.Default.Port;
+            client.EnableSsl = Settings.Default.EnableSSL;
             client.Credentials = new NetworkCredential(Settings.Default.UserName, Settings.Default.Password);
 
             MailMessage mailMessage = new MailMessage();

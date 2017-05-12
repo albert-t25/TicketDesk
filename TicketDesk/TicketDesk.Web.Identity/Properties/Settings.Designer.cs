@@ -76,5 +76,14 @@ namespace TicketDesk.Web.Identity.Properties {
                 return ((string)(this["Subject"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnableSSL {
+            get {
+                return ((bool)(this["EnableSSL"]));
+            }
+        }
     }
 }

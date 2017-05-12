@@ -285,7 +285,7 @@ namespace TicketDesk.Web.Client.Controllers
                     {
                         //EL: add logic to send email to client when a ticket is resolved
                         //var ticket = Context.Tickets.Include(t => t.TicketTags).First(t => t.TicketId == ticketId);
-                        UserDisplayInfo userInfo = ticket.GetAssignedToInfo();
+
                         var root = Context.TicketDeskSettings.ClientSettings.GetDefaultSiteRootUrl();
 
                         string body = this.RenderViewToString(ControllerContext, "~/Views/Emails/Ticket.Html.cshtml", new TicketEmail()
@@ -296,8 +296,8 @@ namespace TicketDesk.Web.Client.Controllers
                         });
 
                         EmailHelper sendEmail = new EmailHelper();
-                        //TODO: remove the to emial....get the client(project) email from ticket.Project.Email
-                        sendEmail.SendEmail(userInfo.Email, "Kërkesa juaj: " + ticket.Title + " është zgjidhur.", body);
+
+                        sendEmail.SendEmail(ticket.Project.Email, "Kërkesa juaj: " + ticket.Title + " është zgjidhur.", body);
                     }
                 }
                 catch (SecurityException ex)
