@@ -44,9 +44,8 @@ namespace TicketDesk.Web.Client
             {
 
 
-                //run any pending migrations automatically to bring the DB up to date
-                Database.SetInitializer(
-                    new MigrateDatabaseToLatestVersion<TdDomainContext, Configuration>(true));
+                // run any pending migrations automatically to bring the DB up to date
+                Database.SetInitializer(new MigrateDatabaseToLatestVersion<TdDomainContext, Configuration>(true));
                 using (var ctx = new TdDomainContext(null))
                 {
                     try

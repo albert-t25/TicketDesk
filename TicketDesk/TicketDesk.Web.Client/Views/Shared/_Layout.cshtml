@@ -144,10 +144,10 @@
     </div>
 
     <script type="text/javascript">
-        window.currentCulture = '@CultureHelper.GetCurrentCulture()';
+        window.currentCulture = '@TicketDesk.Localization.CultureHelper.GetCurrentCulture()';
     </script>
     @Scripts.Render("~/bundles/common")
-    @Scripts.Render("~/bundles/common_locale_" + CultureHelper.GetCurrentCulture())
+    @Scripts.Render("~/bundles/common_locale_" + TicketDesk.Localization.CultureHelper.GetCurrentCulture())
     <script type="text/javascript">
         Globalize.culture(window.currentCulture);
 
