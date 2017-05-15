@@ -1,6 +1,6 @@
 ﻿@using TicketDesk.Localization.Views.UserAdministration
 @using X.PagedList.Mvc
-@model PagedList.IPagedList<TicketDesk.Web.Client.Models.UserAccountInfoViewModel>
+@model X.PagedList.IPagedList<TicketDesk.Web.Client.Models.UserAccountInfoViewModel>
 @{
     var ajaxPagerOptions = new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "userListBody", OnBegin = "adminUsers.paging.beginChangePage", OnSuccess = "adminUsers.completeChangeList", OnFailure = "adminUsers.completeChangeList" };
 }
