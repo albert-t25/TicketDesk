@@ -15,6 +15,8 @@ namespace TicketDesk.ServiceClient
 
             bool result = submitTicket.AddNewTicket(txtFullName.Text, txtClientEmail.Text, txtClientPhone.Text, txtAddress.Text, ddlTicketType.SelectedValue, ddlCategory.SelectedValue, txtTicketName.Text, txtTicketDetails.Text, ddlPriority.SelectedValue, chkAffCos.Checked);
 
+            this.FormPanel.Visible = false;
+            this.ResponsePanel.Visible = true;
             if (result)
             {
                 this.lblMessage.Text = "Kerkesa u rregjistrua me sukses!";
