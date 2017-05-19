@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketDesk.Localization", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketDesk.WebService", "TicketDesk.WebService\TicketDesk.WebService.csproj", "{C06017F1-88FA-4731-89F0-E5E232904F32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketDesk.ServiceClient", "TicketDesk.ServiceClient\TicketDesk.ServiceClient.csproj", "{11D0AB80-4E70-4B62-8B6E-815074ABFFB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{C06017F1-88FA-4731-89F0-E5E232904F32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C06017F1-88FA-4731-89F0-E5E232904F32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C06017F1-88FA-4731-89F0-E5E232904F32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11D0AB80-4E70-4B62-8B6E-815074ABFFB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11D0AB80-4E70-4B62-8B6E-815074ABFFB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11D0AB80-4E70-4B62-8B6E-815074ABFFB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11D0AB80-4E70-4B62-8B6E-815074ABFFB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
