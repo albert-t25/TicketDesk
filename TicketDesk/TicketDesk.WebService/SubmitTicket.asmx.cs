@@ -67,5 +67,39 @@ namespace TicketDesk.WebService
 
             return newTempProject.ProjectId;
         }
+
+        [WebMethod]
+        public bool EmailAddTicket(string ticketType, string category, string title, string details, string priority, bool affectedCostumer, DateTime date)
+        {
+            TdDomainContext context = new TdDomainContext();
+            int projectId = 4;
+
+            Ticket newTicket = new Ticket()
+            {
+                TicketType = ticketType,
+                Category = category,
+                Title = title,
+                Details = details,
+                IsHtml = true,
+                CreatedBy = "5e12f43a-c18e-4c8c-99be-e2ec714c6136",
+                CreatedDate = date,
+                Owner = "5e12f43a-c18e-4c8c-99be-e2ec714c6136",
+                AssignedTo = "5e12f43a-c18e-4c8c-99be-e2ec714c6136",
+                TicketStatus = TicketStatus.Active,
+                CurrentStatusDate = date,
+                CurrentStatusSetBy = "5e12f43a-c18e-4c8c-99be-e2ec714c6136",
+                LastUpdateBy = "5e12f43a-c18e-4c8c-99be-e2ec714c6136",
+                LastUpdateDate = date,
+                Priority = priority,
+                AffectsCustomer = affectedCostumer,
+                ProjectId = projectId,
+                WorkingHours = 0
+            };
+
+            context.Tickets.Add(newTicket);
+            context.SaveChanges();
+
+            return true;
+        }
     }
 }
