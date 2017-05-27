@@ -16,6 +16,8 @@
 
 @using X.PagedList.Mvc
 @using TicketDesk.Domain.Model
+@using System.Collections.Generic;
+@using System.Reflection;
 @model TicketDesk.Web.Client.Models.TicketCenterListViewModel
 @{
     var tickets = Model.Tickets;
@@ -31,19 +33,17 @@
             <table class="table table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th>
-                            @Ajax.SortableColumnHeader(Html, Model.CurrentListSetting, Model.CurrentPage, "SortList", Model.CurrentListSetting.ListName, "TicketId", Index_sq.TicketList_ID, ajaxSortOptions)
-                        </th>
-                        <th>
+                       
+                        <th class="hidden-sm hidden-xs">
                             @Ajax.SortableColumnHeader(Html, Model.CurrentListSetting, Model.CurrentPage, "SortList", Model.CurrentListSetting.ListName, "Title", Index_sq.TicketList_Title, ajaxSortOptions)
                         </th>
-                        <th>
+                        <th class="hidden-sm hidden-xs">
                             @Ajax.SortableColumnHeader(Html, Model.CurrentListSetting, Model.CurrentPage, "SortList", Model.CurrentListSetting.ListName, "TicketStatus", Index_sq.TicketList_Status, ajaxSortOptions)
                         </th>
-                        <th class="hidden-xs">
+                        <th class="hidden-sm hidden-xs">
                             @Ajax.SortableColumnHeader(Html, Model.CurrentListSetting, Model.CurrentPage, "SortList", Model.CurrentListSetting.ListName, "Owner", Index_sq.TicketList_Owner, ajaxSortOptions)
                         </th>
-                        <th>
+                        <th class="hidden-sm hidden-xs">
                             @Ajax.SortableColumnHeader(Html, Model.CurrentListSetting, Model.CurrentPage, "SortList", Model.CurrentListSetting.ListName, "AssignedTo", Index_sq.TicketList_Assigned, ajaxSortOptions)
                         </th>
                         <th class="hidden-sm hidden-xs">
@@ -61,36 +61,36 @@
                         <th>
                             @Ajax.SortableColumnHeader(Html, Model.CurrentListSetting, Model.CurrentPage, "SortList", Model.CurrentListSetting.ListName, "LastUpdateDate", Index_sq.TicketList_Updated, ajaxSortOptions)
                         </th>
+                        <th>
+                            @Ajax.SortableColumnHeader(Html, Model.CurrentListSetting, Model.CurrentPage, "SortList", Model.CurrentListSetting.ListName, "Details", Index_sq.TicketList_Details, ajaxSortOptions)
+                        </th>
                     </tr>
                 </thead>
                 <tbody class="ticketItems">
 
-                    @foreach (var item in tickets)
+                   @foreach (var item in tickets)
                     {
-                        <tr class="clickable">
-                            <td colspan="2" style="white-space: normal;">
-                                <a href="@Url.Action("Index", "Ticket", new {area = "", id = item.TicketId})", style="margin-right: 1ex;">
-                                    #@item.TicketId
-                                </a>
+                        <tr class="hidden-xs">
+                            <td >
+                                
                                 @Html.DisplayFor(modelItem => item.Title)
                                 @if (Model.DisplayProjects)
                                 {
                                     <div>
                                         <span class="small text-muted">
-                                            <i class="fa fa-book"></i>
-                                            @item.Project.ProjectName
-                                        </span>
+                                            <i class="fa fa-book">@item.Project.ProjectName</i>
+                                            </span>
                                     </div>
                                 }
                             </td>
-                            <td>
+                            <td class="hidden-sm hidden-xs">
                                 @Html.DisplayFor(modelItem => item.TicketStatus)
                             </td>
-                            <td class="hidden-xs">
+                            <td class="hidden-xs hidden-xs">
                                 @Html.DisplayFor(modelItem => item.GetOwnerInfo().DisplayName)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.GetAssignedToInfo().DisplayName)
+                            <td class="hidden-sm hidden-xs">
+                                @Html.DisplayFor(modelItem => item.GetAssignedToInfo().Email)
                             </td>
                             <td class="hidden-sm hidden-xs">
                                 @Html.DisplayFor(modelItem => item.TicketType)
@@ -108,6 +108,18 @@
                             <td>
                                 @item.LastUpdateDate.ToString("d")<br />
                                 @item.LastUpdateDate.ToString("t")
+                            </td>
+                            <td>
+                                @if (item.Details.Length > 10)
+                                {
+                                    @item.Details.Substring(0,3+(item.Details.Length) / 2)
+                                }
+                                else
+                                {
+                                    @item.Details.ToString()
+                                }
+                                
+                                   
                             </td>
 
                         </tr>

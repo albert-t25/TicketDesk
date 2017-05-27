@@ -34,12 +34,16 @@ namespace TicketDesk.Domain
                     UserTicketListSetting.GetDefaultListSettings(userId, Context.SecurityProvider.IsTdHelpDeskUser|| Context.SecurityProvider.IsTdAdministrator)
             };
         }
+        //public async Task<UserSetting> GetUsersSetttings()
+        //{
+        //    var settings =  Context.UserSettings;
 
+        //}
         public async Task<UserSetting> GetSettingsForUserAsync(string userId)
         {
             var isHelpDeskUser = Context.SecurityProvider.IsTdHelpDeskUser ||
                                     Context.SecurityProvider.IsTdAdministrator;
-            var settings = await Context.UserSettings.FindAsync(userId);
+            var settings =  Context.UserSettings.Find(userId);
 
             //ensure settings exist
             if (settings == null )

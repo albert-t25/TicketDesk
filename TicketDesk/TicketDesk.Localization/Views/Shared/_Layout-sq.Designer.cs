@@ -214,6 +214,15 @@ namespace TicketDesk.Localization.Views.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Raporti Permbledhes.
+        /// </summary>
+        public static string Summary {
+            get {
+                return ResourceManager.GetString("Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Qëndra e kërkesave.
         /// </summary>
         public static string TicketCenter {

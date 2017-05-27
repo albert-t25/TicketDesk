@@ -187,6 +187,15 @@ namespace TicketDesk.Localization.Views.TicketCenter {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detajet.
+        /// </summary>
+        public static string TicketList_Details {
+            get {
+                return ResourceManager.GetString("TicketList_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ID.
         /// </summary>
         public static string TicketList_ID {

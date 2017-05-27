@@ -18,6 +18,8 @@ using X.PagedList;
 using TicketDesk.Domain;
 using TicketDesk.Domain.Model;
 using TicketDesk.Web.Identity;
+using System;
+using System.Collections.Generic;
 
 namespace TicketDesk.Web.Client.Models
 {
@@ -43,6 +45,7 @@ namespace TicketDesk.Web.Client.Models
             return vm;
         }
 
+      
         /// <summary>
         /// Initializes a new instance of the <see cref="TicketCenterListViewModel" /> class.
         /// </summary>
@@ -84,6 +87,29 @@ namespace TicketDesk.Web.Client.Models
             return await query.ToPagedListAsync(pageIndex, pageSize);
         }
 
+        public static async Task<TicketCenterListViewModel> GetViewModelSummaryAsync(int currentPage, string listName, TdDomainContext context,Ticket item)
+        {
+            
+         var userSettings = await context.UserSettingsManager.GetSettingsForUserAsync(item.CreatedBy);
+
+            var vm = new TicketCenterListViewModel()
+            {
+                UserListSettings = userSettings.ListSettings.OrderBy(
+                        lp => lp.ListMenuDisplayOrder),
+                CurrentPage = currentPage,
+                CurrentListSetting = userSettings.GetUserListSettingByName(listName)
+            };
+
+
+            vm.Tickets = await vm.ListTicketsAsync(currentPage, context);
+                
+            
+           
+
+            return vm;
+
+        }
+
         /// <summary>
         /// Gets or (private) sets the filter bar model.
         /// </summary>
@@ -100,7 +126,7 @@ namespace TicketDesk.Web.Client.Models
         /// <value>The tickets.</value>
         public IPagedList<Ticket> Tickets { get; private set; }
 
-        public UserTicketListSetting CurrentListSetting { get; private set; }
+    public UserTicketListSetting CurrentListSetting { get; private set; }
 
         public IOrderedEnumerable<UserTicketListSetting> UserListSettings { get; private set; }
 

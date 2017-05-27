@@ -14,7 +14,11 @@
 using System;
 using System.Web;
 using System.Web.Mvc;
+using TicketDesk.Domain;
 using TicketDesk.Localization;
+using System.Collections.Generic;
+using TicketDesk.Domain.Model;
+using TicketDesk.Web.Client;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -22,6 +26,11 @@ namespace TicketDesk.Web.Client.Controllers
     [Route("{action=index}")]
     public class HomeController : Controller
     {
+        private TdDomainContext Context { get; set; }
+        public HomeController(TdDomainContext context)
+        {
+            Context = context;
+        }
         [Route("language")]
         public ActionResult SetLanguage(string name)
         {
@@ -41,7 +50,10 @@ namespace TicketDesk.Web.Client.Controllers
         [Route("index")]
         public ActionResult Index()
         {
-            return View();
+
+            // IEnumerable<Ticket> tickets = Context.Tickets;
+
+            return View();//tickets);
         }
  
         [Route("about")]

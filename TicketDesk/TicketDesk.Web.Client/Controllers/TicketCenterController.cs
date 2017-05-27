@@ -11,6 +11,9 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -40,7 +43,6 @@ namespace TicketDesk.Web.Client.Controllers
             return RedirectToAction("Index");
 
         }
-
         // GET: TicketCenter
         [Route("{listName?}/{page:int?}")]
         public async Task<ActionResult> Index(int? page, string listName)
@@ -51,6 +53,71 @@ namespace TicketDesk.Web.Client.Controllers
             var viewModel = await TicketCenterListViewModel.GetViewModelAsync(pageNumber, listName, Context, Context.SecurityProvider.CurrentUserId);//new TicketCenterListViewModel(listName, model, Context, User.Identity.GetUserId());
 
             return View(viewModel);
+        }
+        // GET: TicketCenter
+        // [Route("{listName?}/{page:int?}")]
+        public ActionResult Summary(int? page, string listName, string filters)//string from, string to)
+        {
+            
+          
+            List<IGrouping<string, Ticket>> tickets = new List<IGrouping<string, Ticket>>();
+            if (filters != null)
+            {
+                string[] formats = {"M/d/yyyy h:mm:ss tt", "M/d/yyyy h:mm tt",
+                   "MM/dd/yyyy hh:mm:ss", "M/d/yyyy h:mm:ss",
+                   "M/d/yyyy hh:mm tt", "M/d/yyyy hh tt",
+                   "M/d/yyyy h:mm", "M/d/yyyy h:mm",
+                   "MM/dd/yyyy hh:mm", "M/dd/yyyy hh:mm"};
+                DateTime dateValue;
+                string[] param = filters.Split(';');
+                string filter = param[0];
+                if (DateTime.TryParseExact(param[1], formats,
+                              new CultureInfo("en-US"),
+                              DateTimeStyles.None,
+                              out dateValue) && DateTime.TryParseExact(param[2],formats,
+                              new CultureInfo("en-US"),
+                              DateTimeStyles.None,
+                              out dateValue))
+                {
+                    DateTime dt1 = Convert.ToDateTime(param[1]);
+                    DateTime dt2 = Convert.ToDateTime(param[2]);
+                    DateTimeOffset from = dt1;
+                    DateTimeOffset to = dt2;
+
+                    tickets = Context.Tickets.ToList().Where(i => i.TicketStatus.ToString() == filter && i.CreatedDate > from && i.CreatedDate < to).GroupBy(i => i.AssignedTo).ToList();
+                }
+                else
+                {
+                    tickets = Context.Tickets.ToList().Where(i => i.TicketStatus.ToString() == filter).GroupBy(i => i.AssignedTo).ToList();
+                }
+                }
+
+            else
+            {
+               tickets = Context.Tickets.ToList().GroupBy(i => i.AssignedTo).ToList();
+
+            }
+            List<SummaryTicket> model = new List<SummaryTicket>();
+            foreach (var group in tickets)
+            {
+                SummaryTicket summaryTicket = new SummaryTicket();
+                summaryTicket.TotalWorkingHours = 0;
+                summaryTicket.TicketsNumber = 0;
+                foreach (Ticket item in group)
+                {
+                    summaryTicket.AssignedTo = item.GetAssignedToInfo().DisplayName;
+                    summaryTicket.TotalWorkingHours += item.WorkingHours;
+                    summaryTicket.TicketsNumber++;
+                    summaryTicket.Status = item.TicketStatus.ToString();
+                }
+                model.Add(summaryTicket);
+            }
+            if (Request.IsAjaxRequest())
+            {
+
+                return PartialView("SummaryTicketList", model);
+            }
+                return View(model);
         }
 
         [Route("pageList/{listName=mytickets}/{page:int?}")]

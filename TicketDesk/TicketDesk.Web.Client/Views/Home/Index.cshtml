@@ -13,15 +13,47 @@
     provided to the recipient.
 *@
 @using TicketDesk.Localization.Views.Home
-
+@using TicketDesk.Web.Client;
+@using TicketDesk.Domain.Model;
+@model IEnumerable<Ticket>
 @section title{ TicketDesk }
 @section customHeader{}
 @section scripts{}
+@{ 
 
+}
+@if (Model != null)
+{
 <main role="main" class="row">
     <article class="col-md-12">
         <div class="container-responsive text-center">
-            <h2></h2>
-        </div>
+            <h2>Raporte</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Titulli</th>
+                        <th>Detajet</th>
+                        <th>Tipi</th>
+                        <th>Kategoria</th>
+                        <th>Krijuar nga</th>
+                        <th>Caktuar per</th>
+                        <th>Statusi</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(model => item.Title)</td>
+                        <td>@Html.TextAreaFor(model => item.Details)</td>
+                        <td>@Html.DisplayFor(model => item.TicketType)</td>
+                        <td>@Html.DisplayFor(model => item.Category)</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>@Html.DisplayFor(model => item.TicketStatus)</td>
+                    </tr>
+                }
+            </table>
+            </div>
     </article>
 </main>
+}

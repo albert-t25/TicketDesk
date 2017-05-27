@@ -1,0 +1,59 @@
+﻿
+@using TicketDesk.Localization.Views.TicketCenter
+@using TicketDesk.Domain.Model;
+@model  List<SummaryTicket>
+@{
+    ViewBag.Title = "SummaryTicketList";
+}
+<div id="ticketList" class="panel panel-default">
+   
+    <div class="panel-body" style="padding: 0;">
+        <div class="table-responsive">
+            <table class="table table-hover table-condensed" id="ReportList">
+                <thead>
+                    <tr>
+                        <th>
+                           Tekniku
+                        </th>
+                        <th>
+                           Statusi
+                        </th>
+                        <th>
+                           Numri i kerkesave
+                        </th>
+                        <th>
+                          Oret e punes
+                        </th>
+                        </tr>
+                </thead>
+                <tbody class="ticketItems">
+
+                    @foreach (var item in Model)
+                    {
+                        <tr class="clickable">
+                            <td>
+                              
+                                @Html.DisplayFor(modelItem => item.AssignedTo)
+                               
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                         
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketsNumber)
+                            </td>
+                            
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalWorkingHours)
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+
+            </table>
+        </div>
+
+</div>
+</div>

@@ -15,7 +15,7 @@
 @using TicketDesk.Localization.Views.TicketCenter
 
 @using TicketDesk.Domain.Model
-@model IEnumerable<UserTicketListSetting>
+@model IOrderedEnumerable<UserTicketListSetting>
 @{
     var currentListSettings = (UserTicketListSetting)ViewBag.CurrentListSettings;
 }
