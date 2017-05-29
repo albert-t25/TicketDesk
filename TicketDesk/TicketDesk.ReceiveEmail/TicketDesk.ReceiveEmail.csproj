@@ -42,7 +42,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="OpenPop">
-      <HintPath>..\..\..\..\..\Desktop\OpenPop.dll</HintPath>
+      <HintPath>lib\OpenPop.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
