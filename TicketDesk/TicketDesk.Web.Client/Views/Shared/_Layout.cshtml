@@ -12,6 +12,10 @@
     attribution must remain intact, and a copy of the license must be
     provided to the recipient.
 *@
+@{ 
+    bool isAdmin = Context.User.IsInRole("TdAdministrators");
+    bool isHelpDeskStaff = Context.User.IsInRole("TdHelpDeskUsers");
+}
 @using TicketDesk.Localization.Views.Shared
 <!DOCTYPE html>
 <html>
@@ -88,9 +92,13 @@
                     <li class="@Html.IsActiveRoute("Index", "TicketCenter")">
                         <a href="@Url.Action("Index", "TicketCenter", new {area = ""})"><i class="fa fa-ticket"></i> @_Layout_sq.TicketCenter</a>
                     </li>
-                    <li class="@Html.IsActiveRoute("Summary", "TicketCenter")">
-                        <a href="@Url.Action("Summary", "TicketCenter", new {area = ""})"><i class="fa fa-ticket"></i> @_Layout_sq.Summary</a>
-                    </li>
+                    @if (isAdmin || isHelpDeskStaff)
+                    {
+                        <li class="@Html.IsActiveRoute("Summary", "TicketCenter")">
+                            <a href="@Url.Action("Summary", "TicketCenter", new {area = ""})"><i class="fa fa-ticket"></i> @_Layout_sq.Summary</a>
+                        </li>
+
+                    }
                     <li class="@Html.IsActiveRoute("New", "Ticket")">
                         <a href="@Url.Action("New", "Ticket", new {area = ""})"><i class="fa fa-plus"></i> @_Layout_sq.NewTicket</a>
                     </li>

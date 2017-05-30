@@ -63,21 +63,14 @@ namespace TicketDesk.Web.Client.Controllers
             List<IGrouping<string, Ticket>> tickets = new List<IGrouping<string, Ticket>>();
             if (filters != null)
             {
-                string[] formats = {"M/d/yyyy h:mm:ss tt", "M/d/yyyy h:mm tt",
-                   "MM/dd/yyyy hh:mm:ss", "M/d/yyyy h:mm:ss",
-                   "M/d/yyyy hh:mm tt", "M/d/yyyy hh tt",
-                   "M/d/yyyy h:mm", "M/d/yyyy h:mm",
-                   "MM/dd/yyyy hh:mm", "M/dd/yyyy hh:mm"};
-                DateTime dateValue;
+                string[] formats = { "dd/MM/yyyy", "dd/M/yyyy", "d/M/yyyy", "d/MM/yyyy",
+                    "dd/MM/yy", "dd/M/yy", "d/M/yy", "d/MM/yy"};
+                DateTime dateValue1;
+                DateTime dateValue2;
                 string[] param = filters.Split(';');
                 string filter = param[0];
-                if (DateTime.TryParseExact(param[1], formats,
-                              new CultureInfo("en-US"),
-                              DateTimeStyles.None,
-                              out dateValue) && DateTime.TryParseExact(param[2],formats,
-                              new CultureInfo("en-US"),
-                              DateTimeStyles.None,
-                              out dateValue))
+                if (DateTime.TryParse(param[1], out dateValue1) && DateTime.TryParse(param[2],
+                              out dateValue2))
                 {
                     DateTime dt1 = Convert.ToDateTime(param[1]);
                     DateTime dt2 = Convert.ToDateTime(param[2]);
