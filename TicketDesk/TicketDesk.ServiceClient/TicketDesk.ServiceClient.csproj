@@ -113,11 +113,12 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="SubmitTicket.ascx" />
-    <Content Include="Web References\Ticket\Reference.map">
+    <None Include="Web References\Ticket\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\Ticket\SubmitTicket.disco" />
+    <Content Include="Test.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +134,13 @@
     </Compile>
     <Compile Include="SubmitTicket.ascx.designer.cs">
       <DependentUpon>SubmitTicket.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\Ticket\Reference.cs">
       <AutoGen>True</AutoGen>

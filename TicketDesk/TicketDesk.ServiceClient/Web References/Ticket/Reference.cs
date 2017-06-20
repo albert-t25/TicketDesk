@@ -31,6 +31,8 @@ namespace TicketDesk.ServiceClient.Ticket {
         
         private System.Threading.SendOrPostCallback AddNewTicketOperationCompleted;
         
+        private System.Threading.SendOrPostCallback EmailAddTicketOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -71,6 +73,9 @@ namespace TicketDesk.ServiceClient.Ticket {
         
         /// <remarks/>
         public event AddNewTicketCompletedEventHandler AddNewTicketCompleted;
+        
+        /// <remarks/>
+        public event EmailAddTicketCompletedEventHandler EmailAddTicketCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://pragmatic.al/webservices/AddNewTicket", RequestNamespace="http://pragmatic.al/webservices", ResponseNamespace="http://pragmatic.al/webservices", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -120,6 +125,47 @@ namespace TicketDesk.ServiceClient.Ticket {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://pragmatic.al/webservices/EmailAddTicket", RequestNamespace="http://pragmatic.al/webservices", ResponseNamespace="http://pragmatic.al/webservices", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool EmailAddTicket(string ticketType, string category, string title, string details, string priority, bool affectedCostumer, System.DateTime date) {
+            object[] results = this.Invoke("EmailAddTicket", new object[] {
+                        ticketType,
+                        category,
+                        title,
+                        details,
+                        priority,
+                        affectedCostumer,
+                        date});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void EmailAddTicketAsync(string ticketType, string category, string title, string details, string priority, bool affectedCostumer, System.DateTime date) {
+            this.EmailAddTicketAsync(ticketType, category, title, details, priority, affectedCostumer, date, null);
+        }
+        
+        /// <remarks/>
+        public void EmailAddTicketAsync(string ticketType, string category, string title, string details, string priority, bool affectedCostumer, System.DateTime date, object userState) {
+            if ((this.EmailAddTicketOperationCompleted == null)) {
+                this.EmailAddTicketOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEmailAddTicketOperationCompleted);
+            }
+            this.InvokeAsync("EmailAddTicket", new object[] {
+                        ticketType,
+                        category,
+                        title,
+                        details,
+                        priority,
+                        affectedCostumer,
+                        date}, this.EmailAddTicketOperationCompleted, userState);
+        }
+        
+        private void OnEmailAddTicketOperationCompleted(object arg) {
+            if ((this.EmailAddTicketCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.EmailAddTicketCompleted(this, new EmailAddTicketCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -151,6 +197,32 @@ namespace TicketDesk.ServiceClient.Ticket {
         private object[] results;
         
         internal AddNewTicketCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void EmailAddTicketCompletedEventHandler(object sender, EmailAddTicketCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class EmailAddTicketCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal EmailAddTicketCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
