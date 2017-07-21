@@ -1,4 +1,5 @@
 ﻿using System;
+using TicketDesk.Web.Identity.Model;
 
 namespace TicketDesk.ServiceClient
 {
@@ -21,6 +22,19 @@ namespace TicketDesk.ServiceClient
             {
                 this.lblMessage.Text = "Kerkesa u rregjistrua me sukses!";
                 this.lblMessage.ForeColor = System.Drawing.Color.Green;
+
+                //send to email the new ticket from afranet.al
+                EmailHelper sendEmail = new EmailHelper();
+
+                string kaDifekt = chkAffCos.Checked ? "Po" : "Jo";
+
+                string body = "Nje kerkese e re u rregjistrua ne sistemin e ticket desk nga faqja www.arfanet.al\n\n" +
+                    "Emri: " + txtFullName.Text + "\nEmail: " + txtClientEmail.Text + "\nTel: " + txtClientPhone.Text +
+                    "\nAdresa: " + txtAddress.Text + "\nTipi kerkeses: " + ddlTicketType.SelectedItem.Text + "\nKategoria: " + ddlCategory.SelectedItem.Text +
+                    "\nEmri kerkeses: " + txtTicketName.Text + "\nPriotiteti: " + ddlPriority.SelectedItem.Text + "\nKa difekt: " + kaDifekt +
+                    "\nDetajet e kerkeses: " + txtTicketDetails.Text;
+
+                sendEmail.SendEmail(Properties.Settings.Default.ReceiverEmail, "Nje kerkese e re", body);
             }
             else
             {

@@ -5,5 +5,8 @@
     <Setting Name="TicketDesk_ServiceClient_Ticket_SubmitTicket" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:5425/SubmitTicket.asmx</Value>
     </Setting>
+    <Setting Name="ReceiverEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">eduart.lushka@gmail.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

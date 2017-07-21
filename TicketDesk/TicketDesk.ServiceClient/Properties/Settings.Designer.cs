@@ -32,5 +32,14 @@ namespace TicketDesk.ServiceClient.Properties {
                 return ((string)(this["TicketDesk_ServiceClient_Ticket_SubmitTicket"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("eduart.lushka@gmail.com")]
+        public string ReceiverEmail {
+            get {
+                return ((string)(this["ReceiverEmail"]));
+            }
+        }
     }
 }
