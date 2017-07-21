@@ -35,7 +35,7 @@ namespace TicketDesk.ServiceClient.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("f.luniku@arfanet.al")]
+        [global::System.Configuration.DefaultSettingValueAttribute("eduart.lushka@gmail.com")]
         public string ReceiverEmail {
             get {
                 return ((string)(this["ReceiverEmail"]));
