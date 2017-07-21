@@ -34,7 +34,7 @@ namespace TicketDesk.ServiceClient
                     "\nEmri kerkeses: " + txtTicketName.Text + "\nPriotiteti: " + ddlPriority.SelectedItem.Text + "\nKa difekt: " + kaDifekt +
                     "\nDetajet e kerkeses: " + txtTicketDetails.Text;
 
-                sendEmail.SendEmail(Properties.Settings.Default.ReceiverEmail, "Nje kerkese e re", body);
+                sendEmail.SendEmail(Properties.Settings.Default.ReceiverEmail, "Nje kerkese e re", body.Replace("\n", Environment.NewLine));
             }
             else
             {
