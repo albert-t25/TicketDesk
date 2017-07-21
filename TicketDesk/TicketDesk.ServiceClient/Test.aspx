@@ -8,9 +8,9 @@
 </head>
 <body>
     <div>
-        <asp:Panel runat="server" ID="pnl">
+        <%--<asp:Panel runat="server" ID="pnl">
             <ctr:ucrCtrl runat="server" ID="usrCtrl"/>
-        </asp:Panel>
+        </asp:Panel>--%>
     </div>
 </body>
 </html>

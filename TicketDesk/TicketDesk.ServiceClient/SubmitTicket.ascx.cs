@@ -28,13 +28,19 @@ namespace TicketDesk.ServiceClient
 
                 string kaDifekt = chkAffCos.Checked ? "Po" : "Jo";
 
-                string body = "Nje kerkese e re u rregjistrua ne sistemin e ticket desk nga faqja www.arfanet.al\n\n" +
-                    "Emri: " + txtFullName.Text + "\nEmail: " + txtClientEmail.Text + "\nTel: " + txtClientPhone.Text +
-                    "\nAdresa: " + txtAddress.Text + "\nTipi kerkeses: " + ddlTicketType.SelectedItem.Text + "\nKategoria: " + ddlCategory.SelectedItem.Text +
-                    "\nEmri kerkeses: " + txtTicketName.Text + "\nPriotiteti: " + ddlPriority.SelectedItem.Text + "\nKa difekt: " + kaDifekt +
-                    "\nDetajet e kerkeses: " + txtTicketDetails.Text;
+                string body = "Nje kerkese e re u rregjistrua ne sistemin e ticket desk nga faqja www.arfanet.al<br/>" +
+                    "Emri: <strong>" + txtFullName.Text +
+                    "</strong><br/>Email: <strong>" + txtClientEmail.Text +
+                    "</strong><br/>Tel: <strong>" + txtClientPhone.Text +
+                    "</strong><br/>Adresa: <strong>" + txtAddress.Text +
+                    "</strong><br/>Tipi kerkeses: <strong>" + ddlTicketType.SelectedItem.Text +
+                    "</strong><br/>Kategoria: <strong>" + ddlCategory.SelectedItem.Text +
+                    "</strong><br/>Emri kerkeses: <strong>" + txtTicketName.Text +
+                    "</strong><br/>Priotiteti: <strong>" + ddlPriority.SelectedItem.Text +
+                    "</strong><br/>Ka difekt: <strong>" + kaDifekt +
+                    "</strong><br/>Detajet e kerkeses: <strong>" + txtTicketDetails.Text + "</strong>";
 
-                sendEmail.SendEmail(Properties.Settings.Default.ReceiverEmail, "Nje kerkese e re", body.Replace("\n", Environment.NewLine));
+                sendEmail.SendEmail(Properties.Settings.Default.ReceiverEmail, "Nje kerkese e re", body);
             }
             else
             {

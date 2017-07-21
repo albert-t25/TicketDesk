@@ -11,23 +11,5 @@ namespace TicketDesk.ServiceClient {
     
     
     public partial class Test {
-        
-        /// <summary>
-        /// pnl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl;
-        
-        /// <summary>
-        /// usrCtrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::TicketDesk.ServiceClient.SubmitTicket usrCtrl;
     }
 }
