@@ -64,6 +64,7 @@
     <Compile Include="Migrations\DemoIdentityDataManager.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\EmailHelper.cs" />
+    <Compile Include="Model\SmsHelper.cs" />
     <Compile Include="Model\TicketDeskRole.cs" />
     <Compile Include="Model\TicketDeskUser.cs" />
     <Compile Include="Model\UserDisplayInfoCache.cs" />
