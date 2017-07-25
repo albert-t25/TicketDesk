@@ -65,7 +65,7 @@ namespace TicketDesk.Web.Client.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new TicketDeskUser { UserName = model.Email, Email = model.Email, DisplayName = model.DisplayName };
+                var user = new TicketDeskUser { UserName = model.Email, Email = model.Email, DisplayName = model.DisplayName, PhoneNumber = model.Phone };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
