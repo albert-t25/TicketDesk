@@ -113,6 +113,70 @@ namespace TicketDesk.Web.Client.Controllers
                 return View(model);
         }
 
+        public ActionResult SummaryForTechnicals(int? page, string listName, string filters)//string from, string to)
+        {
+
+
+            List<IGrouping<string, Ticket>> tickets = new List<IGrouping<string, Ticket>>();
+            if (filters != null)
+            {
+                string[] formats = { "dd/MM/yyyy", "dd/M/yyyy", "d/M/yyyy", "d/MM/yyyy",
+                    "dd/MM/yy", "dd/M/yy", "d/M/yy", "d/MM/yy"};
+                DateTime dateValue1;
+                DateTime dateValue2;
+                string[] param = filters.Split(';');
+                string filter = param[0];
+                if (DateTime.TryParse(param[1], out dateValue1) && DateTime.TryParse(param[2],
+                              out dateValue2))
+                {
+                    DateTime dt1 = Convert.ToDateTime(param[1]);
+                    DateTime dt2 = Convert.ToDateTime(param[2]);
+                    DateTimeOffset from = dt1;
+                    DateTimeOffset to = dt2;
+
+                    tickets = Context.Tickets.ToList().Where(i => i.TicketStatus.ToString() == filter && i.CreatedDate > from && i.CreatedDate < to).GroupBy(i => i.AssignedTo).ToList();
+                }
+                else
+                {
+                    tickets = Context.Tickets.ToList().Where(i => i.TicketStatus.ToString() == filter).GroupBy(i => i.AssignedTo).ToList();
+                }
+            }
+
+            else
+            {
+                tickets = Context.Tickets.ToList().GroupBy(i => i.AssignedTo).ToList();
+
+            }
+            List<SummaryTechnical> model = new List<SummaryTechnical>();
+            foreach (var group in tickets)
+            {
+                SummaryTechnical summaryTicket = new SummaryTechnical();
+                summaryTicket.TotalWorkingHours = 0;
+                summaryTicket.TotalWorkingDays = 0;
+
+                summaryTicket.TicketsNumber = 0;
+                foreach (Ticket item in group)
+                {
+                    summaryTicket.AssignedTo = item.GetAssignedToInfo().DisplayName;
+                    summaryTicket.TotalWorkingHours += item.WorkingHours;
+                    summaryTicket.TotalWorkingDays += item.WorkingDays;
+                    summaryTicket.LastOwner = item.Owner.ToString();
+                    summaryTicket.LastWorkDate = item.LastUpdateDate;
+                    summaryTicket.WithSupport = item.WithSupport;
+                    summaryTicket.WithPersonalAuto = item.WithPersonalAuto;
+                    summaryTicket.WithArfaNetAuto = item.WithArfaNetAuto;
+                    summaryTicket.TicketsNumber++;
+                    
+                }
+                model.Add(summaryTicket);
+            }
+            if (Request.IsAjaxRequest())
+            {
+
+                return PartialView("SummaryTechnicalList", model);
+            }
+            return View(model);
+        }
         [Route("pageList/{listName=mytickets}/{page:int?}")]
         public async Task<ActionResult> PageList(int? page, string listName)
         {

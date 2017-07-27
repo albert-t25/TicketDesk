@@ -117,7 +117,7 @@ namespace TicketDesk.Web.Client.Controllers
                             });
 
                            EmailHelper sendEmail = new EmailHelper();
-                           sendEmail.SendEmail(userInfo.Email, "Një detyre e re për ju.", body);
+                           sendEmail.SendEmail("indrit.kello@pragmatic.al", "Një detyre e re për ju.", body);
 
                             //send sms to the person that the ticket is assigned
                             SmsHelper sendSms = new SmsHelper();

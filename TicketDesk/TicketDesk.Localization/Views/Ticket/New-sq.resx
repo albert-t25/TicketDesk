@@ -156,6 +156,18 @@
   <data name="UnableCreateTicket" xml:space="preserve">
     <value>Nuk mund ta krijojme këtë kërkesë. Ju lutem kontrrolloni gabimet më poshtë</value>
   </data>
+  <data name="WithArfaNetAuto" xml:space="preserve">
+    <value>Me mjetin e ArfaNet</value>
+  </data>
+  <data name="WithPersonalAuto" xml:space="preserve">
+    <value>Me mjet personal</value>
+  </data>
+  <data name="WithSupport" xml:space="preserve">
+    <value>Me ndihmes teknik</value>
+  </data>
+  <data name="WorkingDays_Placeholder" xml:space="preserve">
+    <value>Ditët e punës</value>
+  </data>
   <data name="WorkingHours_Placeholder" xml:space="preserve">
     <value>Orët e punës</value>
   </data>

@@ -10,8 +10,8 @@ namespace TicketDesk.Web.Identity.Model
         public void SendSms(string toNumber, string projectName)
         {
             bool connected;
-
-            TcpClient smsServer = OpenConnection("109.69.4.163", 5039, out connected);
+            
+            TcpClient smsServer = OpenConnection(Properties.Settings.Default.IpTCP, Properties.Settings.Default.PortTCP, out connected);
 
             if (connected)
             {

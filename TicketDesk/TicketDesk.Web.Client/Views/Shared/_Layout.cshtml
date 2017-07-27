@@ -76,6 +76,11 @@
                    data-placement="bottom"
                    title="@_Layout_sq.Summary"
                    class="@Html.IsActiveRoute("Summary", "TicketCenter") btn btn-default navbar-btn hidden-sm hidden-md hidden-lg"><i class="fa fa-ticket"></i></a>
+                <a href="@Url.Action("SummaryForTechnicals", "TicketCenter", new {area = ""})"
+                   data-toggle="tooltip"
+                   data-placement="bottom"
+                   title="@_Layout_sq.SummaryForTechnicals"
+                   class="@Html.IsActiveRoute("SummaryForTechnicals", "TicketCenter") btn btn-default navbar-btn hidden-sm hidden-md hidden-lg"><i class="fa fa-ticket"></i></a>
                 <a href="@Url.Action("New", "Ticket", new {area = ""})"
                    data-toggle="tooltip"
                    data-placement="bottom"
@@ -99,6 +104,9 @@
                     {
                         <li class="@Html.IsActiveRoute("Summary", "TicketCenter")">
                             <a href="@Url.Action("Summary", "TicketCenter", new {area = ""})"><i class="fa fa-ticket"></i> @_Layout_sq.Summary</a>
+                        </li>
+                        <li class="@Html.IsActiveRoute("SummaryForTechnicals", "TicketCenter")">
+                            <a href="@Url.Action("SummaryForTechnicals", "TicketCenter", new {area = ""})"><i class="fa fa-ticket"></i> @_Layout_sq.SummaryForTechnicals</a>
                         </li>
 
                     }

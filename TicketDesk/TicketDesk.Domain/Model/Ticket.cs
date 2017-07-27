@@ -66,6 +66,11 @@ namespace TicketDesk.Domain.Model
         [Display(ResourceType = typeof(Strings_sq), Name = "WorkingHours", ShortName = "WorkingHoursShort")]
         public int WorkingHours { get; set; }
 
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+
+        [Display(ResourceType = typeof(Strings_sq), Name = "WorkingDays", ShortName = "WorkingDaysShort")]
+        public int WorkingDays { get; set; }
+
         [Display(ResourceType = typeof(Strings_sq), Name = "TicketIsHtml", ShortName = "TicketIsHtmlShort")]
         public bool IsHtml { get; set; }
 
@@ -145,6 +150,12 @@ namespace TicketDesk.Domain.Model
         [Display(ResourceType = typeof(Strings_sq), Name = "TicketAffectsCustomer", ShortName = "TicketAffectsCustomerShort")]
         public bool AffectsCustomer { get; set; }
 
+        [Display(ResourceType = typeof(Strings_sq), Name = "WithSupport", ShortName = "WithSupportShort")]
+        public bool WithSupport { get; set; }
+        [Display(ResourceType = typeof(Strings_sq), Name = "WithPersonalAuto", ShortName = "WithPersonalAutoShort")]
+        public bool WithPersonalAuto { get; set; }
+        [Display(ResourceType = typeof(Strings_sq), Name = "WithArfaNetAuto", ShortName = "WithArfaNetAutoShort")]
+        public bool WithArfaNetAuto { get; set; }
         [Column(TypeName = "timestamp")]
         [MaxLength(8)]
         [Timestamp]

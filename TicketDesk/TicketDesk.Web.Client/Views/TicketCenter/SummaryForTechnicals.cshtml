@@ -1,0 +1,64 @@
+﻿
+@using TicketDesk.Localization.Views.TicketCenter
+@using TicketDesk.Domain.Model;
+@model  List<SummaryTechnical>
+
+
+
+@section title{ "SummaryForTechnicals" }
+
+<main style="display: none;">
+    @*<span class="dz-message">Status </span>&nbsp;
+    <select id="interval" style="position:relative; max-width:10%; display:inline-block" class="selectpicker form-control dropdown" title="Choose the number of latest results">
+        <option title="Active">Active</option>
+        <option title="MoreInfo">MoreInfo</option>
+        <option title="Resolved">Resolved</option>
+        <option title="Closed">Closed</option>
+
+    </select>*@
+    &nbsp;
+
+    <span class="dz-message" style="position:relative"> From </span> <input class="datefield" data-val="true" data-val-required="Date is required"
+                                                                            id="date1" name="ReleaseDate" type="date" value="1/11/1989" style="display:inline-block" />&nbsp; <span class="dz-message">To </span>
+    <input class="datefield" data-val="true" data-val-required="Date is required"
+           id="date2" name="ReleaseDate" type="date" value="1/11/1989" />
+    &nbsp;
+    <button class="tn btn-primary btn-sm" onclick="filterResults()">Filter</button>
+
+    <br />
+
+    @*@Html.Partial("_ListMenu", Model.UserListSettings, new ViewDataDictionary
+        {
+            { "CurrentListSettings", Model.CurrentListSetting }
+        })*@
+    <table class="table table-striped table-condensed " id="partialTable">
+        @Html.Partial("SummaryTechnicalList", Model)
+    </table>
+
+
+</main>
+
+@section scripts{
+    @Scripts.Render("~/bundles/ticketcenter")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('main').show();
+            $.ajaxSetup({ cache: false });
+            $('.datefield').datepicker();
+        });
+        function filterResults() {
+            var params = "";
+           // var param = interval.options[interval.selectedIndex].text;
+            //params += param;
+            var from = document.getElementById('date1').value;
+            params += ';' + from;
+            var to = document.getElementById('date2').value;
+            params += ';' + to;
+            $('#ticketList').remove();
+            $('#ReportList').remove();
+            $("#partialTable").load('@Url.Action("Summary", "TicketCenter")?filters=' + params)// + ";"+date1+";"date2 );
+        }
+    </script>
+}
