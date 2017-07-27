@@ -11,6 +11,7 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -20,6 +21,9 @@ using System.Web.Mvc;
 using TicketDesk.Domain;
 using TicketDesk.Domain.Model;
 using TicketDesk.Web.Client.Models;
+using TicketDesk.Web.Identity;
+using TicketDesk.Web.Identity.Model;
+using ClosedXML.Excel;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -33,7 +37,16 @@ namespace TicketDesk.Web.Client.Controllers
         {
             Context = context;
         }
-
+        private string getUserName(string id)
+        {
+            var context = new TdIdentityContext();
+            foreach (var user in context.Users)
+            {
+                if (user.Id == id)
+                    return user.Email + "--" + user.DisplayName;
+            }
+            return "noemail";
+        }
         [Route("reset-user-lists")]
         public async Task<ActionResult> ResetUserLists()
         {
@@ -54,69 +67,9 @@ namespace TicketDesk.Web.Client.Controllers
 
             return View(viewModel);
         }
-        // GET: TicketCenter
-        // [Route("{listName?}/{page:int?}")]
-        public ActionResult Summary(int? page, string listName, string filters)//string from, string to)
+
+        private List<IGrouping<string, Ticket>> getTicketForReport(string filters)
         {
-            
-          
-            List<IGrouping<string, Ticket>> tickets = new List<IGrouping<string, Ticket>>();
-            if (filters != null)
-            {
-                string[] formats = { "dd/MM/yyyy", "dd/M/yyyy", "d/M/yyyy", "d/MM/yyyy",
-                    "dd/MM/yy", "dd/M/yy", "d/M/yy", "d/MM/yy"};
-                DateTime dateValue1;
-                DateTime dateValue2;
-                string[] param = filters.Split(';');
-                string filter = param[0];
-                if (DateTime.TryParse(param[1], out dateValue1) && DateTime.TryParse(param[2],
-                              out dateValue2))
-                {
-                    DateTime dt1 = Convert.ToDateTime(param[1]);
-                    DateTime dt2 = Convert.ToDateTime(param[2]);
-                    DateTimeOffset from = dt1;
-                    DateTimeOffset to = dt2;
-
-                    tickets = Context.Tickets.ToList().Where(i => i.TicketStatus.ToString() == filter && i.CreatedDate > from && i.CreatedDate < to).GroupBy(i => i.AssignedTo).ToList();
-                }
-                else
-                {
-                    tickets = Context.Tickets.ToList().Where(i => i.TicketStatus.ToString() == filter).GroupBy(i => i.AssignedTo).ToList();
-                }
-                }
-
-            else
-            {
-               tickets = Context.Tickets.ToList().GroupBy(i => i.AssignedTo).ToList();
-
-            }
-            List<SummaryTicket> model = new List<SummaryTicket>();
-            foreach (var group in tickets)
-            {
-                SummaryTicket summaryTicket = new SummaryTicket();
-                summaryTicket.TotalWorkingHours = 0;
-                summaryTicket.TicketsNumber = 0;
-                foreach (Ticket item in group)
-                {
-                    summaryTicket.AssignedTo = item.GetAssignedToInfo().DisplayName;
-                    summaryTicket.TotalWorkingHours += item.WorkingHours;
-                    summaryTicket.TicketsNumber++;
-                    summaryTicket.Status = item.TicketStatus.ToString();
-                }
-                model.Add(summaryTicket);
-            }
-            if (Request.IsAjaxRequest())
-            {
-
-                return PartialView("SummaryTicketList", model);
-            }
-                return View(model);
-        }
-
-        public ActionResult SummaryForTechnicals(int? page, string listName, string filters)//string from, string to)
-        {
-
-
             List<IGrouping<string, Ticket>> tickets = new List<IGrouping<string, Ticket>>();
             if (filters != null)
             {
@@ -147,6 +100,40 @@ namespace TicketDesk.Web.Client.Controllers
                 tickets = Context.Tickets.ToList().GroupBy(i => i.AssignedTo).ToList();
 
             }
+            return tickets;
+        }
+        // GET: TicketCenter
+        // [Route("{listName?}/{page:int?}")]
+        public ActionResult Summary(int? page, string listName, string filters)//string from, string to)
+        {
+            
+          
+            List<IGrouping<string, Ticket>> tickets = getTicketForReport(filters);
+           
+            List<SummaryTicket> model = new List<SummaryTicket>();
+            foreach (var group in tickets)
+            {
+                SummaryTicket summaryTicket = new SummaryTicket();
+                summaryTicket.TotalWorkingHours = 0;
+                summaryTicket.TicketsNumber = 0;
+                foreach (Ticket item in group)
+                {
+                    summaryTicket.AssignedTo = item.GetAssignedToInfo().DisplayName;
+                    summaryTicket.TotalWorkingHours += item.WorkingHours;
+                    summaryTicket.TicketsNumber++;
+                    summaryTicket.Status = item.TicketStatus.ToString();
+                }
+                model.Add(summaryTicket);
+            }
+            if (Request.IsAjaxRequest())
+            {
+
+                return PartialView("SummaryTicketList", model);
+            }
+                return View(model);
+        }
+        private List<SummaryTechnical> getSummaryTechnicalModel(List<IGrouping<string, Ticket>> tickets)
+        {
             List<SummaryTechnical> model = new List<SummaryTechnical>();
             foreach (var group in tickets)
             {
@@ -160,22 +147,130 @@ namespace TicketDesk.Web.Client.Controllers
                     summaryTicket.AssignedTo = item.GetAssignedToInfo().DisplayName;
                     summaryTicket.TotalWorkingHours += item.WorkingHours;
                     summaryTicket.TotalWorkingDays += item.WorkingDays;
-                    summaryTicket.LastOwner = item.Owner.ToString();
+
+                    summaryTicket.LastOwner = getUserName(item.Owner.ToString());
                     summaryTicket.LastWorkDate = item.LastUpdateDate;
                     summaryTicket.WithSupport = item.WithSupport;
                     summaryTicket.WithPersonalAuto = item.WithPersonalAuto;
                     summaryTicket.WithArfaNetAuto = item.WithArfaNetAuto;
                     summaryTicket.TicketsNumber++;
-                    
+
                 }
                 model.Add(summaryTicket);
             }
+            return model;
+        }
+        public ActionResult SummaryForTechnicals() { 
+
+
+            List<IGrouping<string, Ticket>> tickets = getTicketForReport(null);
+
+
+
+            List<SummaryTechnical> model = getSummaryTechnicalModel(tickets);
+           
             if (Request.IsAjaxRequest())
             {
 
                 return PartialView("SummaryTechnicalList", model);
             }
             return View(model);
+        }
+        private void Download(string fileName)
+        {
+            try
+            {
+                Response.Clear();
+
+                Response.ClearHeaders();
+
+                Response.ClearContent();
+                Response.ContentType = "application/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
+
+                Response.Flush();
+
+                Response.TransmitFile(Server.MapPath("~/upload/" + fileName));
+
+                Response.End();
+            }
+            catch (Exception e)
+            {
+                string error = e.Message;
+            }
+        }
+        public ActionResult ExcelReportTechnical()
+        {
+
+            List<IGrouping<string, Ticket>> tickets = getTicketForReport(null);
+
+
+
+            List<SummaryTechnical> model = getSummaryTechnicalModel(tickets);
+
+            string fileName = $"{Guid.NewGuid().ToString()}.xlsx";
+            string filePath = $"~/upload/{fileName}";
+
+            XLWorkbook wb = new XLWorkbook();
+            IXLWorksheet ws = wb.Worksheets.Add("Raporti_per_teknikun_e_jashtem");
+            int index = 2; ;
+            int positionOfCol = 1;
+            foreach (SummaryTechnical item in model)
+            {
+                ws.Cell(index, positionOfCol).Value = item.TicketsNumber.ToString();
+                positionOfCol++;
+                ws.Cell(index, positionOfCol).Value = item.LastWorkDate.ToString();
+                positionOfCol++;
+                ws.Cell(index, positionOfCol).Value = item.AssignedTo==null?"Asnje": item.AssignedTo;
+                positionOfCol++;
+                ws.Cell(index, positionOfCol).Value = item.LastOwner.ToString();
+                positionOfCol++;
+                ws.Cell(index, positionOfCol).Value = item.TotalWorkingDays;
+                positionOfCol++;
+                ws.Cell(index, positionOfCol).Value = item.TotalWorkingHours;
+                positionOfCol++;
+                ws.Cell(index, positionOfCol).Value = item.WithSupport == true ? "Po" : "Jo";
+                positionOfCol++;
+                ws.Cell(index, positionOfCol).Value = item.WithPersonalAuto == true ? "Po" : "Jo";
+                positionOfCol++;
+                ws.Cell(index, positionOfCol).Value = item.WithArfaNetAuto == true ? "Po" : "Jo";
+                positionOfCol++;
+                positionOfCol = 1;
+                index++;
+
+            }
+            int j = 1;
+            ws.Cell(1, j).Value = "Nr";
+            ws.Cell(1, j).Style.Font.Bold = true;
+            j++;
+            ws.Cell(1, j).Value = "Data";
+            ws.Cell(1, j).Style.Font.Bold = true;
+            j++;
+            ws.Cell(1, j).Value = "Tekniku";
+            ws.Cell(1, j).Style.Font.Bold = true;
+            j++;
+            ws.Cell(1, j).Value = "Klienti ku ka punuar";
+            ws.Cell(1, j).Style.Font.Bold = true;
+            j++;
+            ws.Cell(1, j).Value = "Dite pune";
+            ws.Cell(1, j).Style.Font.Bold = true;
+            j++;
+            ws.Cell(1, j).Value = "Ore pune";
+            ws.Cell(1, j).Style.Font.Bold = true;
+            j++;
+            ws.Cell(1, j).Value = "Me ndihmes-teknik ose jo";
+            ws.Cell(1, j).Style.Font.Bold = true;
+
+            j++;
+            ws.Cell(1, j).Value = "Me mjet personal";
+            ws.Cell(1, j).Style.Font.Bold = true;
+            j++;
+            ws.Cell(1, j).Value = "Me mjetin e ArfaNet";
+            ws.Cell(1, j).Style.Font.Bold = true;
+            wb.SaveAs(Server.MapPath(filePath));
+            Download(fileName);
+            return null;
+
         }
         [Route("pageList/{listName=mytickets}/{page:int?}")]
         public async Task<ActionResult> PageList(int? page, string listName)

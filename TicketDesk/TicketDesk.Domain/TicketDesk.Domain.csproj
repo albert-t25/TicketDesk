@@ -279,6 +279,10 @@
       <Project>{F8C97321-F0CC-4AF9-86E6-95E0E4840430}</Project>
       <Name>TicketDesk.Search.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TicketDesk.Web.Identity\TicketDesk.Web.Identity.csproj">
+      <Project>{BD3617C2-A91E-40F3-A441-B085D2491399}</Project>
+      <Name>TicketDesk.Web.Identity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

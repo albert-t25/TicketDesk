@@ -15,16 +15,18 @@
         <option title="Resolved">Resolved</option>
         <option title="Closed">Closed</option>
 
-    </select>*@
+    </select>
     &nbsp;
 
-    <span class="dz-message" style="position:relative"> From </span> <input class="datefield" data-val="true" data-val-required="Date is required"
-                                                                            id="date1" name="ReleaseDate" type="date" value="1/11/1989" style="display:inline-block" />&nbsp; <span class="dz-message">To </span>
+    <span class="dz-message" style="position:relative"> Nga </span> <input class="datefield" data-val="true" data-val-required="Date is required"
+                                                                            id="date1" name="ReleaseDate" type="date" value="1/11/1989" style="display:inline-block" />&nbsp; <span class="dz-message"> Deri ne </span>
     <input class="datefield" data-val="true" data-val-required="Date is required"
            id="date2" name="ReleaseDate" type="date" value="1/11/1989" />
     &nbsp;
     <button class="tn btn-primary btn-sm" onclick="filterResults()">Filter</button>
-
+    *@
+    &nbsp;
+    <button id="btnShkarko" class="tn btn-success btn-sm" onclick="downloadReport()">Shkarko</button>
     <br />
 
     @*@Html.Partial("_ListMenu", Model.UserListSettings, new ViewDataDictionary
@@ -58,7 +60,15 @@
             params += ';' + to;
             $('#ticketList').remove();
             $('#ReportList').remove();
-            $("#partialTable").load('@Url.Action("Summary", "TicketCenter")?filters=' + params)// + ";"+date1+";"date2 );
+            $("#partialTable").load('@Url.Action("SummaryForTechnicals", "TicketCenter")?filters=' + params)// + ";"+date1+";"date2 );
         }
+        function downloadReport(){
+         
+            window.location = '@Url.Action("ExcelReportTechnical", "TicketCenter")'
+        };
+        function DisableButton() {
+            document.getElementById("btnShkarko").disabled = true;
+            document.getElementById("btnShkarko").textContent = "Po shkarkohet...";
+        } window.onbeforeunload = DisableButton;
     </script>
 }
