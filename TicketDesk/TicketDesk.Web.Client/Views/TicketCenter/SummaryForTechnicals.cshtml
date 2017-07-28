@@ -15,7 +15,7 @@
         <option title="Resolved">Resolved</option>
         <option title="Closed">Closed</option>
 
-    </select>
+    </select> *@
     &nbsp;
 
     <span class="dz-message" style="position:relative"> Nga </span> <input class="datefield" data-val="true" data-val-required="Date is required"
@@ -23,8 +23,8 @@
     <input class="datefield" data-val="true" data-val-required="Date is required"
            id="date2" name="ReleaseDate" type="date" value="1/11/1989" />
     &nbsp;
-    <button class="tn btn-primary btn-sm" onclick="filterResults()">Filter</button>
-    *@
+    <button class="tn btn-primary btn-sm" onclick="filterResults()">Filtro</button>
+   
     &nbsp;
     <button id="btnShkarko" class="tn btn-success btn-sm" onclick="downloadReport()">Shkarko</button>
     <br />
@@ -55,7 +55,7 @@
            // var param = interval.options[interval.selectedIndex].text;
             //params += param;
             var from = document.getElementById('date1').value;
-            params += ';' + from;
+            params += from;
             var to = document.getElementById('date2').value;
             params += ';' + to;
             $('#ticketList').remove();
@@ -63,8 +63,14 @@
             $("#partialTable").load('@Url.Action("SummaryForTechnicals", "TicketCenter")?filters=' + params)// + ";"+date1+";"date2 );
         }
         function downloadReport(){
-         
-            window.location = '@Url.Action("ExcelReportTechnical", "TicketCenter")'
+            var params = "";
+            // var param = interval.options[interval.selectedIndex].text;
+            //params += param;
+            var from = document.getElementById('date1').value;
+            params += from;
+            var to = document.getElementById('date2').value;
+            params += ';' + to;
+            window.location = '@Url.Action("ExcelReportTechnical", "TicketCenter")?filters=' + params
         };
         function DisableButton() {
             document.getElementById("btnShkarko").disabled = true;

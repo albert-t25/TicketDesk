@@ -78,20 +78,20 @@ namespace TicketDesk.Web.Client.Controllers
                 DateTime dateValue1;
                 DateTime dateValue2;
                 string[] param = filters.Split(';');
-                string filter = param[0];
-                if (DateTime.TryParse(param[1], out dateValue1) && DateTime.TryParse(param[2],
+               // string filter = param[0];
+                if (DateTime.TryParse(param[0], out dateValue1) && DateTime.TryParse(param[1],
                               out dateValue2))
                 {
-                    DateTime dt1 = Convert.ToDateTime(param[1]);
-                    DateTime dt2 = Convert.ToDateTime(param[2]);
+                    DateTime dt1 = Convert.ToDateTime(param[0]);
+                    DateTime dt2 = Convert.ToDateTime(param[1]);
                     DateTimeOffset from = dt1;
                     DateTimeOffset to = dt2;
 
-                    tickets = Context.Tickets.ToList().Where(i => i.TicketStatus.ToString() == filter && i.CreatedDate > from && i.CreatedDate < to).GroupBy(i => i.AssignedTo).ToList();
+                    tickets = Context.Tickets.ToList().Where(i=>i.CreatedDate > from && i.CreatedDate < to).GroupBy(i => i.AssignedTo).ToList();
                 }
                 else
                 {
-                    tickets = Context.Tickets.ToList().Where(i => i.TicketStatus.ToString() == filter).GroupBy(i => i.AssignedTo).ToList();
+                   // tickets = Context.Tickets.ToList().Where(i => i.TicketStatus.ToString() == filter).GroupBy(i => i.AssignedTo).ToList();
                 }
             }
 
@@ -160,10 +160,10 @@ namespace TicketDesk.Web.Client.Controllers
             }
             return model;
         }
-        public ActionResult SummaryForTechnicals() { 
+        public ActionResult SummaryForTechnicals(string filters) { 
 
 
-            List<IGrouping<string, Ticket>> tickets = getTicketForReport(null);
+            List<IGrouping<string, Ticket>> tickets = getTicketForReport(filters);
 
 
 
@@ -199,10 +199,10 @@ namespace TicketDesk.Web.Client.Controllers
                 string error = e.Message;
             }
         }
-        public ActionResult ExcelReportTechnical()
+        public ActionResult ExcelReportTechnical(string filters)
         {
 
-            List<IGrouping<string, Ticket>> tickets = getTicketForReport(null);
+            List<IGrouping<string, Ticket>> tickets = getTicketForReport(filters);
 
 
 
