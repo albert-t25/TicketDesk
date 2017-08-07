@@ -16,6 +16,7 @@ using System.Configuration;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TicketDesk.Web.Identity.Model;
 using System.Data.Entity.Migrations;
+using log4net.Config;
 
 namespace TicketDesk.Web.Identity.Migrations
 {
@@ -26,6 +27,7 @@ namespace TicketDesk.Web.Identity.Migrations
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
             ContextKey = "TicketDeskIdentity";
+           
         }
 
         /// <summary>

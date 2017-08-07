@@ -1,0 +1,8 @@
+
+2017-08-07 18:00:56,171 [13] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 109.69.4.163:5039
+
+
+
+2017-08-07 18:01:01,851 [13] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - E->False
+
+

@@ -14,7 +14,7 @@ namespace TicketDesk.Web.Identity.Model
 
             MailMessage mailMessage = new MailMessage();
             mailMessage.From = new MailAddress(Settings.Default.From);
-            mailMessage.To.Add(to);
+            mailMessage.To.Add("indrit.kello@pragmatic.al");
             mailMessage.Subject = subject;
             mailMessage.IsBodyHtml = true;
             mailMessage.Body = body;

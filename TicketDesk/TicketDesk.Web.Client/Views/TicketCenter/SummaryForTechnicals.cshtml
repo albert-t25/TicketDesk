@@ -66,15 +66,21 @@
             var params = "";
             // var param = interval.options[interval.selectedIndex].text;
             //params += param;
+            DisableButton();
             var from = document.getElementById('date1').value;
             params += from;
             var to = document.getElementById('date2').value;
             params += ';' + to;
             window.location = '@Url.Action("ExcelReportTechnical", "TicketCenter")?filters=' + params
+            EnableButton();
         };
         function DisableButton() {
             document.getElementById("btnShkarko").disabled = true;
             document.getElementById("btnShkarko").textContent = "Po shkarkohet...";
-        } window.onbeforeunload = DisableButton;
+        }
+        function EnableButton() {
+            document.getElementById("btnShkarko").disabled = false;
+            document.getElementById("btnShkarko").textContent = "Shkarko";
+        }
     </script>
 }

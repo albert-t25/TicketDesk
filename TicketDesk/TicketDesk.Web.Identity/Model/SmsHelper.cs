@@ -1,18 +1,21 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.IO;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 
 namespace TicketDesk.Web.Identity.Model
 {
     public class SmsHelper
     {
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public void SendSms(string toNumber, string projectName)
         {
             bool connected;
             
             TcpClient smsServer = OpenConnection(Properties.Settings.Default.IpTCP, Properties.Settings.Default.PortTCP, out connected);
-
+            log.Error("E->" + connected);
             if (connected)
             {
                 string sms = "Keni një detyrë për klientin: " + projectName + ", për më shumë informacion kontaktoni me Fatjonin.";
@@ -24,6 +27,7 @@ namespace TicketDesk.Web.Identity.Model
 
         protected static TcpClient OpenConnection(string ip, int port, out bool connected)
         {
+
             string response = string.Empty;
             string message = string.Empty;
 
@@ -79,6 +83,7 @@ namespace TicketDesk.Web.Identity.Model
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                log.Error(ex.Message);
             }
 
             connected = false;
