@@ -1,0 +1,92 @@
+﻿
+@using TicketDesk.Localization.Views.TicketCenter
+@using TicketDesk.Domain.Model;
+@model  List<SummaryTechnical>
+@{
+    ViewBag.Title = "SummaryTechnicalList";
+}
+<br />
+
+
+<div class="panel-body" style="padding: 0;">
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed" id="ReportList">
+            <thead>
+                <tr>
+                    <th>
+                        Nr
+                    </th>
+                    <th>
+                        Data
+                    </th>
+                    <th>
+                        Tekniku
+                    </th>
+                    <th>
+                        Klienti ku ka punuar
+                    </th>
+                    <th>
+                        Dite pune
+                    </th>
+                    <th>
+                        Ore pune
+                    </th>
+                    <th>
+                        Me ndihmes teknik ose jo
+                    </th>
+                    <th>
+                        Me mjet personal
+                    </th>
+                    <th>
+                        Me mjetin e ArfaNet
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="ticketItems">
+
+                @foreach (var item in Model)
+                {
+                    <tr class="clickable">
+                        <td>
+
+                            @Html.DisplayFor(modelItem => item.TicketsNumber)
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastWorkDate)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssignedTo)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastOwner)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalWorkingDays)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalWorkingHours)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WithSupport)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WithPersonalAuto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WithArfaNetAuto)
+                        </td>
+
+                    </tr>
+
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

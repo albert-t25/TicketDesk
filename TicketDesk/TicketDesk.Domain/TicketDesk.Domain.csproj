@@ -139,6 +139,10 @@
     <Compile Include="Migrations\201705111319039_PropertiesToTicket.Designer.cs">
       <DependentUpon>201705111319039_PropertiesToTicket.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707260746133_NewPropertiesToTicketForRaport.cs" />
+    <Compile Include="Migrations\201707260746133_NewPropertiesToTicketForRaport.Designer.cs">
+      <DependentUpon>201707260746133_NewPropertiesToTicketForRaport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DemoDataManager.cs" />
     <Compile Include="Infrastructure\PropertyUtility.cs" />
     <Compile Include="Infrastructure\TdDomainSecurityProviderBase.cs" />
@@ -169,6 +173,7 @@
     <Compile Include="Model\Extensions\UserTicketListFilterColumnExtensions.cs" />
     <Compile Include="Model\Extensions\UserTicketListSettingsCollectionExtensions.cs" />
     <Compile Include="Model\Project.cs" />
+    <Compile Include="Model\SummaryTechnical.cs" />
     <Compile Include="Model\SummaryTicket.cs" />
     <Compile Include="Model\TicketEventNotification.cs" />
     <Compile Include="Model\TicketSubscriber.cs" />
@@ -261,6 +266,9 @@
     <EmbeddedResource Include="Migrations\201705111319039_PropertiesToTicket.resx">
       <DependentUpon>201705111319039_PropertiesToTicket.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707260746133_NewPropertiesToTicketForRaport.resx">
+      <DependentUpon>201707260746133_NewPropertiesToTicketForRaport.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TicketDesk.Localization\TicketDesk.Localization.csproj">
@@ -270,6 +278,10 @@
     <ProjectReference Include="..\TicketDesk.Search.Common\TicketDesk.Search.Common.csproj">
       <Project>{F8C97321-F0CC-4AF9-86E6-95E0E4840430}</Project>
       <Name>TicketDesk.Search.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TicketDesk.Web.Identity\TicketDesk.Web.Identity.csproj">
+      <Project>{BD3617C2-A91E-40F3-A441-B085D2491399}</Project>
+      <Name>TicketDesk.Web.Identity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

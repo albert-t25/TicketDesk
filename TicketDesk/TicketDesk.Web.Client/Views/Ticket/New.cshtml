@@ -194,101 +194,131 @@
                                     @New_sq.AffectsCustomer
                                 </label>
                             </div>
-                            @if (Model.AllowEditTags())
-                            {
+                            <div class="col-md-2 col-md-offset-2 col-sm-3 col-sm-offset-1">
+                                <label class="checkbox-inline" for="affectsCustomer">
+                                    <input class="" type="checkbox" name="withSupport" id="withSupport" value="true" tabindex="5" />
+                                    @New_sq.WithSupport
+                                </label>
+                            </div>
+                            </div>
+                        <div class="form-group">
+                            <div class="col-md-2 col-md-offset-2 col-sm-3 col-sm-offset-1">
+                                <label class="checkbox-inline" for="affectsCustomer">
+                                    <input class="" type="checkbox" name="withPersonalAuto" id="withPersonalAuto" value="true" tabindex="5" />
+                                    @New_sq.WithPersonalAuto
+                                </label>
+                            </div>
+                            <div class="col-md-2 col-md-offset-2 col-sm-3 col-sm-offset-1">
+                                <label class="checkbox-inline" for="affectsCustomer">
+                                    <input class="" type="checkbox" name="withArfaNetAuto" id="withArfaNetAuto" value="true" tabindex="5" />
+                                    @New_sq.WithArfaNetAuto
+                                </label>
+                            </div>
+                        </div>
+                      
+    @if (Model.AllowEditTags())
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.TagList, new { @class = "col-md-2 col-sm-1 control-label focus" })
+            <div class="col-md-5 col-sm-5">
+                @Html.TextBoxFor(m => m.TagList, new { id = "ticketTags", @class = "form-control input-sm", tabindex = 6 })
+            </div>
+        </div>
+    }
+                            
 
-                                @Html.LabelFor(model => model.TagList, new { @class = "col-md-1 col-sm-1 control-label" })
-                                <div class="col-md-5 col-sm-5">
-                                    @Html.TextBoxFor(m => m.TagList, new { id = "ticketTags", @class = "form-control input-sm", tabindex = 6 })
+                            @if (Model.IsHtml)//TODO: Refactor into a partial or mvc editorfor view
+                            {
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-1 control-label text-right" for="summernote">@New_sq.Details</label>
+                                    <div class="col-md-8 col-sm-11">
+                                        <textarea id="wmd-input-ticketDetails" name="Details" data-val-required="" data-val="true">@Model.Details</textarea>
+                                        @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
                             }
-
-                        </div>
-                        @if (Model.IsHtml)//TODO: Refactor into a partial or mvc editorfor view
-                        {
-                            <div class="form-group">
-                                <label class="col-md-2 col-sm-1 control-label text-right" for="summernote">@New_sq.Details</label>
-                                <div class="col-md-8 col-sm-11">
-                                    <textarea id="wmd-input-ticketDetails" name="Details" data-val-required="" data-val="true">@Model.Details</textarea>
-                                    @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="form-group">
-                                <label class="col-md-2 col-sm-1 control-label text-right" for="wmd-input-ticketDetails">@New_sq.Details</label>
-                                <div class="col-md-8 col-sm-11 wmd-panel">
-                                    <div class="tabbable tabs-below">
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade in active" id="tab1">
-                                                <div id="wmd-button-bar-ticketDetails" class="" style="display: inline-block"></div>
-                                                @Html.TextAreaFor(model => model.Details, new { id = "wmd-input-ticketDetails", @class = "wmd-input form-control", data_val_required = "", data_val = "true", cols = "92", rows = "15", style = "height:200px", tabindex = 7 })
-
-                                            </div>
-                                            <div class="tab-pane fade" id="tab2">
-                                                <div class="row" style="min-height: 35px;"></div>
-
-                                                <div id="wmd-preview-ticketDetails" class="wmd-panel wmd-preview form-control">
+                            else
+                            {
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-1 control-label text-right" for="wmd-input-ticketDetails">@New_sq.Details</label>
+                                    <div class="col-md-8 col-sm-11 wmd-panel">
+                                        <div class="tabbable tabs-below">
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade in active" id="tab1">
+                                                    <div id="wmd-button-bar-ticketDetails" class="" style="display: inline-block"></div>
+                                                    @Html.TextAreaFor(model => model.Details, new { id = "wmd-input-ticketDetails", @class = "wmd-input form-control", data_val_required = "", data_val = "true", cols = "92", rows = "15", style = "height:200px", tabindex = 7 })
 
                                                 </div>
+                                                <div class="tab-pane fade" id="tab2">
+                                                    <div class="row" style="min-height: 35px;"></div>
+
+                                                    <div id="wmd-preview-ticketDetails" class="wmd-panel wmd-preview form-control">
+
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <ul class="nav nav-tabs navbar-right">
+                                                <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-edit"></i>&nbsp;@New_sq.EditOption</a></li>
+                                                <li><a href="#tab2" data-toggle="tab"><i class="fa fa-eye"></i>&nbsp;@New_sq.PreviewOption</a></li>
+                                            </ul>
                                         </div>
-                                        <ul class="nav nav-tabs navbar-right">
-                                            <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-edit"></i>&nbsp;@New_sq.EditOption</a></li>
-                                            <li><a href="#tab2" data-toggle="tab"><i class="fa fa-eye"></i>&nbsp;@New_sq.PreviewOption</a></li>
-                                        </ul>
+                                        @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
                                     </div>
-                                    @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
                                 </div>
+                            }
+                            <div class="form-group">
+                                @if (Model.AllowSetOwner())
+                            {
+                            @Html.LabelFor(model => model.Owner, new { @class = "col-md-2 col-sm-1 control-label" })
+                            <div class="col-md-3 col-sm-5">
+                                @Html.DropDownListFor(model => model.Owner, Model.GetOwnersList(), new { @class = "form-control input-sm", tabindex = 8 })
+                                @Html.ValidationMessageFor(model => model.Owner, "", new { @class = "text-danger" })
                             </div>
-                        }
-                        <div class="form-group">
-                            @if (Model.AllowSetOwner())
-                            {
-                                @Html.LabelFor(model => model.Owner, new { @class = "col-md-2 col-sm-1 control-label" })
-                                <div class="col-md-3 col-sm-5">
-                                    @Html.DropDownListFor(model => model.Owner, Model.GetOwnersList(), new { @class = "form-control input-sm", tabindex = 8 })
-                                    @Html.ValidationMessageFor(model => model.Owner, "", new { @class = "text-danger" })
-                                </div>
                             }
-                            @if (Model.AllowSetAssigned())
+                                @if (Model.AllowSetAssigned())
                             {
-                                @Html.LabelFor(model => model.AssignedTo, new {@class = "col-md-2 col-sm-2 control-label"})
-                                <div class="col-md-3 col-sm-4">
-                                    @Html.DropDownListFor(model => model.AssignedTo, Model.GetAssignedToList(), new {@class = "form-control input-sm", tabindex = 9})
-                                    @Html.ValidationMessageFor(model => model.AssignedTo, "", new {@class = "text-danger"})
-                                </div>
+                            @Html.LabelFor(model => model.AssignedTo, new {@class = "col-md-2 col-sm-2 control-label"})
+                            <div class="col-md-3 col-sm-4">
+                                @Html.DropDownListFor(model => model.AssignedTo, Model.GetAssignedToList(), new {@class = "form-control input-sm", tabindex = 9})
+                                @Html.ValidationMessageFor(model => model.AssignedTo, "", new {@class = "text-danger"})
+                            </div>
                             }
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-2 col-sm-1 control-label">@New_sq.Files</label>
-                            <div class="col-md-8 col-sm-11">
-                                @{
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-1 control-label">@New_sq.Files</label>
+                                <div class="col-md-8 col-sm-11">
+                                    @{
                                     var demoMode = ConfigurationManager.AppSettings["ticketdesk:DemoModeEnabled"] ?? "false";
                                     if (demoMode.Equals("true", StringComparison.InvariantCultureIgnoreCase))
                                     {
-                                        <div class="alert alert-warning">
-                                            @Html.Raw(New_sq.Attachment_Demo_Alert)
-                                        </div>
+                                <div class="alert alert-warning">
+                                    @Html.Raw(New_sq.Attachment_Demo_Alert)
+                                </div>
                                     }
                                     else
                                     {
-                                        <div class="dropzone" style="min-height: 40px;" id="attachmentsDropZone">
-                                            <div class="dz-message" data-dz-message><i class="fa fa-download "></i> @New_sq.Attachment_Instructions</div>
-                                            <div class="dropzone-previews" id="dz-preview"></div>
-                                        </div>
+                                <div class="dropzone" style="min-height: 40px;" id="attachmentsDropZone">
+                                    <div class="dz-message" data-dz-message><i class="fa fa-download "></i> @New_sq.Attachment_Instructions</div>
+                                    <div class="dropzone-previews" id="dz-preview"></div>
+                                </div>
                                     }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.WorkingHours, new { @class = "col-md-2 col-sm-1 control-label focus" })
+                                <div class="col-md-8 col-sm-11">
+                                    @Html.TextBoxFor(model => model.WorkingHours, new { @class = "form-control input-sm", placeholder = New_sq.WorkingHours_Placeholder, tabindex = 1, autofocus = string.Empty })
+                                    @Html.ValidationMessageFor(model => model.WorkingHours, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.WorkingDays, new { @class = "col-md-2 col-sm-1 control-label focus" })
+                                <div class="col-md-8 col-sm-11">
+                                    @Html.TextBoxFor(model => model.WorkingDays, new { @class = "form-control input-sm", placeholder = New_sq.WorkingDays_Placeholder, tabindex = 1, autofocus = string.Empty })
+                                    @Html.ValidationMessageFor(model => model.WorkingDays, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.WorkingHours, new { @class = "col-md-2 col-sm-1 control-label focus" })
-                            <div class="col-md-8 col-sm-11">
-                                @Html.TextBoxFor(model => model.WorkingHours, new { @class = "form-control input-sm", placeholder = New_sq.WorkingHours_Placeholder, tabindex = 1, autofocus = string.Empty })
-                                @Html.ValidationMessageFor(model => model.WorkingHours, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
                     <div class="panel-footer">
                         <div class="">
                             <button type="submit" class="btn btn-success" tabindex="10">@New_sq.SaveOption</button>&nbsp;&nbsp;

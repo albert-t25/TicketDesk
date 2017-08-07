@@ -21,6 +21,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TicketDesk.Domain.Model;
 using TicketDesk.Localization.Domain;
+using TicketDesk.Web.Identity.Model;
 
 namespace TicketDesk.Domain
 {
@@ -92,7 +93,9 @@ namespace TicketDesk.Domain
             //      As I understand it, if the factory exists EF will use it instead of looking for a public ctor with no params
 
         }
-
+       
+            
+   
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
@@ -122,7 +125,7 @@ namespace TicketDesk.Domain
             modelBuilder.ComplexType<ClientSetting>()
                .Property(p => p.Serialized)
                .HasColumnName("ClientSettingsJson");
-
+          
 
         }
 

@@ -192,4 +192,7 @@
   <data name="TicketStatus_Resolved" xml:space="preserve">
     <value>U zgjidh</value>
   </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Numri i telefonit</value>
+  </data>
 </root>

@@ -214,6 +214,15 @@ namespace TicketDesk.Localization.Models {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Numri i telefonit.
+        /// </summary>
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Më mbaj mend?.
         /// </summary>
         public static string RememberMe {

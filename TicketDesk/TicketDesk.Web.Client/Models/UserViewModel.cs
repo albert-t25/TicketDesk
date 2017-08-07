@@ -30,6 +30,10 @@ namespace TicketDesk.Web.Client.Models
         public string DisplayName { get; set; }
 
         [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(Name = "Phone", ResourceType = typeof(Strings_sq))]
+        public string Phone { get; set; }
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
         [StringLength(100, ErrorMessageResourceName = "FieldMinimumLength", ErrorMessageResourceType = typeof(Validation_sq), MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password", ResourceType = typeof(Strings_sq))]

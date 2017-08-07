@@ -117,67 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>Rreth nesh</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="Account" xml:space="preserve">
-    <value>Llogaria</value>
-  </data>
-  <data name="ApplicationSettings" xml:space="preserve">
-    <value>Cilësimet e sistemit</value>
-  </data>
-  <data name="DemoDataManagement" xml:space="preserve">
-    <value>Menaxhimi i të dhënave demo</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Faqja kryesore</value>
-  </data>
-  <data name="Language" xml:space="preserve">
-    <value>Gjuhët</value>
-  </data>
-  <data name="LogOff" xml:space="preserve">
-    <value>Dil</value>
-  </data>
-  <data name="ManageProjects" xml:space="preserve">
-    <value>Menaxho klientët</value>
-  </data>
-  <data name="ManageUsers" xml:space="preserve">
-    <value>Menaxho përdoruesit</value>
-  </data>
-  <data name="MyAccount" xml:space="preserve">
-    <value>Llogaria ime</value>
-  </data>
-  <data name="NewTicket" xml:space="preserve">
-    <value>Kërkesë e re</value>
-  </data>
-  <data name="PushNotificationSettings" xml:space="preserve">
-    <value>Cilësimet për njoftimet push</value>
-  </data>
-  <data name="Register" xml:space="preserve">
-    <value>Rregjistrohu</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Kërko</value>
-  </data>
-  <data name="SearchManagement" xml:space="preserve">
-    <value>Menaxhimi i kërkimeve</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Cilësimet</value>
-  </data>
-  <data name="SignIn" xml:space="preserve">
-    <value>Hyr</value>
-  </data>
-  <data name="Summary" xml:space="preserve">
-    <value>Raporti Permbledhes</value>
-  </data>
-  <data name="SummaryForTechnicals" xml:space="preserve">
-    <value>Raporti per tekniket</value>
-  </data>
-  <data name="TicketCenter" xml:space="preserve">
-    <value>Qëndra e kërkesave</value>
-  </data>
-  <data name="Toggle" xml:space="preserve">
-    <value>Toggle navigation</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

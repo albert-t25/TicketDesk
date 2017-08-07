@@ -107,6 +107,8 @@ namespace TicketDesk.Web.Client.Controllers
                             UserDisplayInfo userInfo = ticket.GetAssignedToInfo();
                             var root = Context.TicketDeskSettings.ClientSettings.GetDefaultSiteRootUrl();
 
+                            var project = Context.Projects.Find(ticket.ProjectId);
+
                             string body = this.RenderViewToString(ControllerContext, "~/Views/Emails/Ticket.Html.cshtml", new TicketEmail()
                             {
                                 Ticket = ticket,
@@ -114,8 +116,12 @@ namespace TicketDesk.Web.Client.Controllers
                                 IsMultiProject = false
                             });
 
-                            EmailHelper sendEmail = new EmailHelper();
-                            sendEmail.SendEmail(userInfo.Email, "Një detyre e re për ju.", body);
+                           EmailHelper sendEmail = new EmailHelper();
+                           sendEmail.SendEmail(userInfo.Email, "Një detyre e re për ju.", body);
+
+                            //send sms to the person that the ticket is assigned
+                            SmsHelper sendSms = new SmsHelper();
+                            sendSms.SendSms(userInfo.Phone, project.ProjectName);
                         }
 
                         return RedirectToAction("Index", new { id = ticket.TicketId });

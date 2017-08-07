@@ -85,5 +85,32 @@ namespace TicketDesk.Web.Identity.Properties {
                 return ((bool)(this["EnableSSL"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0675329846")]
+        public string FromNumber {
+            get {
+                return ((string)(this["FromNumber"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("109.69.4.163")]
+        public string IpTCP {
+            get {
+                return ((string)(this["IpTCP"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5039")]
+        public int PortTCP {
+            get {
+                return ((int)(this["PortTCP"]));
+            }
+        }
     }
 }

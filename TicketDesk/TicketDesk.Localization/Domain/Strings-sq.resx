@@ -423,4 +423,16 @@
   <data name="WorkingHours" xml:space="preserve">
     <value>Orët e punës</value>
   </data>
+  <data name="WorkingDays" xml:space="preserve">
+    <value>Ditët e punës</value>
+  </data>
+  <data name="WithArfaNetAuto" xml:space="preserve">
+    <value>Me mjetin e ArfaNet</value>
+  </data>
+  <data name="WithPersonalAuto" xml:space="preserve">
+    <value>Me mjet personal</value>
+  </data>
+  <data name="WithSupport" xml:space="preserve">
+    <value>Me ndihmes teknik</value>
+  </data>
 </root>

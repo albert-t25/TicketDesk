@@ -178,6 +178,42 @@ namespace TicketDesk.Localization.Views.Ticket {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Me mjetin e ArfaNet.
+        /// </summary>
+        public static string WithArfaNetAuto {
+            get {
+                return ResourceManager.GetString("WithArfaNetAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Me mjet personal.
+        /// </summary>
+        public static string WithPersonalAuto {
+            get {
+                return ResourceManager.GetString("WithPersonalAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Me ndihmes teknik.
+        /// </summary>
+        public static string WithSupport {
+            get {
+                return ResourceManager.GetString("WithSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ditët e punës.
+        /// </summary>
+        public static string WorkingDays_Placeholder {
+            get {
+                return ResourceManager.GetString("WorkingDays_Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Orët e punës.
         /// </summary>
         public static string WorkingHours_Placeholder {

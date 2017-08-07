@@ -51,7 +51,8 @@ namespace TicketDesk.Web.Identity.Model
                 {
                     Id = u.Id,
                     Email = u.Email,
-                    DisplayName = u.DisplayName
+                    DisplayName = u.DisplayName,
+                    Phone = u.PhoneNumber
                 }).ToList();
                 cache.Add(key, cacheCollection, policy);
             }
@@ -65,7 +66,7 @@ namespace TicketDesk.Web.Identity.Model
         public string Id { get; set; }
         public string Email { get; set; }
         public string DisplayName { get; set; }
-
+        public string Phone { get; set; }
 
     }
 }
