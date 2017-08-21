@@ -15,7 +15,7 @@ namespace TicketDesk.Web.Identity.Model
             bool connected;
             
             TcpClient smsServer = OpenConnection(Properties.Settings.Default.IpTCP, Properties.Settings.Default.PortTCP, out connected);
-            log.Error("E->" + connected);
+            log.Error("Connected->" + connected);
             if (connected)
             {
                 string sms = "Keni një detyrë për klientin: " + projectName + ", për më shumë informacion kontaktoni me Fatjonin.";
@@ -23,6 +23,7 @@ namespace TicketDesk.Web.Identity.Model
                 SendSmsToClient(smsServer, Properties.Settings.Default.FromNumber, toNumber, sms);
 
             }
+            CloseConnection(smsServer);
         }
 
         protected static TcpClient OpenConnection(string ip, int port, out bool connected)
@@ -92,8 +93,15 @@ namespace TicketDesk.Web.Identity.Model
 
         protected static void CloseConnection(TcpClient client)
         {
-            client.Close();
-            Console.WriteLine("Connection Closed process terminated...");
+            try
+            {
+                client.Close();
+                Console.WriteLine("Connection Closed process terminated...");
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.InnerException.Message);
+            }
         }
 
 
