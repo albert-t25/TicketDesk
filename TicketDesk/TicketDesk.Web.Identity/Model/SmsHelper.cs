@@ -102,46 +102,54 @@ namespace TicketDesk.Web.Identity.Model
             string response = string.Empty;
             string message = string.Empty;
             string eventMsg = string.Empty;
-
-            ASCIIEncoding asen = new ASCIIEncoding();
-            Stream stm = client.GetStream();
-
-            string smsSend = string.Format("action: smscommand\r\ncommand: gsm send sms {0} {1} \r\n\r\n", fromNumber, toNumber);
-
-            byte[] smsCmd = asen.GetBytes(smsSend);
-
-            stm.Write(smsCmd, 0, smsCmd.Length);
-            stm.Flush();
-
-            byte[] smsResp = new byte[1000];
-            stm.Read(smsResp, 0, 1000);
-            response = asen.GetString(smsResp);
-
-            if (!String.IsNullOrEmpty(response))
+            try
             {
-                stm.Read(smsResp, 0, 1000);
-                message = asen.GetString(smsResp);
+                ASCIIEncoding asen = new ASCIIEncoding();
+                Stream stm = client.GetStream();
 
-                if (!String.IsNullOrEmpty(message))
+                string smsSend = string.Format("action: smscommand\r\ncommand: gsm send sms {0} {1} \r\n\r\n", fromNumber, toNumber);
+
+                byte[] smsCmd = asen.GetBytes(smsSend);
+
+                stm.Write(smsCmd, 0, smsCmd.Length);
+                stm.Flush();
+
+                byte[] smsResp = new byte[1000];
+                stm.Read(smsResp, 0, 1000);
+                response = asen.GetString(smsResp);
+
+                if (!String.IsNullOrEmpty(response))
                 {
                     stm.Read(smsResp, 0, 1000);
+                    message = asen.GetString(smsResp);
 
-                    eventMsg = asen.GetString(smsResp);
-
-                    if (!String.IsNullOrEmpty(eventMsg))
+                    if (!String.IsNullOrEmpty(message))
                     {
-                        String[] list = eventMsg.Split('\n');
+                        stm.Read(smsResp, 0, 1000);
 
-                        foreach (string value in list)
+                        eventMsg = asen.GetString(smsResp);
+
+                        if (!String.IsNullOrEmpty(eventMsg))
                         {
-                            if (value.StartsWith("--END"))
+                            String[] list = eventMsg.Split('\n');
+
+                            foreach (string value in list)
                             {
-                                stm.Flush();
+                                if (value.StartsWith("--END"))
+                                {
+                                    stm.Flush();
+                                }
                             }
                         }
                     }
                 }
             }
-        }
+            catch(Exception e)
+            {
+                log.Error(e.InnerException.Message);
+            }
+}
+
+
     }
 }
