@@ -18,7 +18,7 @@ namespace TicketDesk.Web.Identity.Model
             log.Error("Connected->" + connected + "->"+smsServer.Client.AddressFamily.ToString());
             if (connected)
             {
-                string sms = "Keni një detyrë për klientin: " + projectName + ", për më shumë informacion kontaktoni me Fatjonin.";
+                string sms = "Keni nje detyre per klientin: " + projectName.Replace('ë', 'e').ToString() + ", per me shume informacion kontaktoni me Fatjonin.";
 
                 SendSmsToClient(smsServer, Properties.Settings.Default.FromNumber, toNumber, sms);
 
@@ -125,18 +125,18 @@ namespace TicketDesk.Web.Identity.Model
                 byte[] smsResp = new byte[1000];
                 stm.Read(smsResp, 0, 1000);
                 response = asen.GetString(smsResp);
-                log.Error(response);
+                log.Error("Response"+response);
                 if (!String.IsNullOrEmpty(response))
                 {
                     stm.Read(smsResp, 0, 1000);
                     message = asen.GetString(smsResp);
-                    log.Error(message);
+                    log.Error("smsResp"+message);
                     if (!String.IsNullOrEmpty(message))
                     {
                         stm.Read(smsResp, 0, 1000);
 
                         eventMsg = asen.GetString(smsResp);
-                        log.Error(eventMsg);
+                        log.Error("eventMsg"+eventMsg);
                         if (!String.IsNullOrEmpty(eventMsg))
                         {
                             String[] list = eventMsg.Split('\n');
