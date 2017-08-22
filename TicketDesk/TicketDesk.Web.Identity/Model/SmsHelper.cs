@@ -15,7 +15,7 @@ namespace TicketDesk.Web.Identity.Model
             bool connected;
             
             TcpClient smsServer = OpenConnection(Properties.Settings.Default.IpTCP, Properties.Settings.Default.PortTCP, out connected);
-            log.Error("Connected->" + connected);
+            log.Error("Connected->" + connected + "->"+smsServer.Client.AddressFamily.ToString());
             if (connected)
             {
                 string sms = "Keni një detyrë për klientin: " + projectName + ", për më shumë informacion kontaktoni me Fatjonin.";
@@ -115,7 +115,7 @@ namespace TicketDesk.Web.Identity.Model
                 ASCIIEncoding asen = new ASCIIEncoding();
                 Stream stm = client.GetStream();
 
-                string smsSend = string.Format("action: smscommand\r\ncommand: gsm send sms {0} {1} \r\n\r\n", fromNumber, toNumber);
+                string smsSend = string.Format("action: smscommand\r\ncommand: gsm send sms {0} {1} \"{2}\" \r\n\r\n", fromNumber, toNumber, smsBody);
 
                 byte[] smsCmd = asen.GetBytes(smsSend);
 
@@ -125,27 +125,33 @@ namespace TicketDesk.Web.Identity.Model
                 byte[] smsResp = new byte[1000];
                 stm.Read(smsResp, 0, 1000);
                 response = asen.GetString(smsResp);
-
+                log.Error(response);
                 if (!String.IsNullOrEmpty(response))
                 {
                     stm.Read(smsResp, 0, 1000);
                     message = asen.GetString(smsResp);
-
+                    log.Error(message);
                     if (!String.IsNullOrEmpty(message))
                     {
                         stm.Read(smsResp, 0, 1000);
 
                         eventMsg = asen.GetString(smsResp);
-
+                        log.Error(eventMsg);
                         if (!String.IsNullOrEmpty(eventMsg))
                         {
                             String[] list = eventMsg.Split('\n');
 
                             foreach (string value in list)
                             {
+
+                               
                                 if (value.StartsWith("--END"))
                                 {
                                     stm.Flush();
+                                }
+                                else
+                                {
+                                    log.Error(value);
                                 }
                             }
                         }
