@@ -15,7 +15,7 @@ namespace TicketDesk.Web.Identity.Model
             bool connected;
             
             TcpClient smsServer = OpenConnection(Properties.Settings.Default.IpTCP, Properties.Settings.Default.PortTCP, out connected);
-            log.Error("Connected->" + connected + "->"+smsServer.Client.AddressFamily.ToString());
+            log.Error("Connected -> " + connected + "->"+smsServer.Client.AddressFamily.ToString());
             if (connected)
             {
                 string sms = "Keni nje detyre per klientin: " + projectName.Replace('ë', 'e').ToString() + ", per me shume informacion kontaktoni me Fatjonin.";
