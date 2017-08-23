@@ -13,17 +13,32 @@ namespace TicketDesk.Web.Identity.Model
         public void SendSms(string toNumber, string projectName)
         {
             bool connected;
-            
-            TcpClient smsServer = OpenConnection(Properties.Settings.Default.IpTCP, Properties.Settings.Default.PortTCP, out connected);
-            log.Error("Connected -> " + connected + "->"+smsServer.Client.AddressFamily.ToString());
-            if (connected)
+
+            TcpClient smsServer = null;
+
+            try
             {
-                string sms = "Keni nje detyre per klientin: " + projectName.Replace('ë', 'e').ToString() + ", per me shume informacion kontaktoni me Fatjonin.";
+                smsServer = OpenConnection(Properties.Settings.Default.IpTCP, Properties.Settings.Default.PortTCP, out connected);
+                if (connected)
+                {
+                    log.Info("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
+                }
+                else
+                {
+                    log.Error("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
+                }
+                if (connected)
+                {
+                    string sms = String.Format(Properties.Settings.Default.SmsTemplateForNewTask, projectName.Replace('ë', 'e'));
 
-                SendSmsToClient(smsServer, Properties.Settings.Default.FromNumber, toNumber, sms);
+                    SendSmsToClient(smsServer, Properties.Settings.Default.FromNumber, toNumber, sms);
 
+                }
             }
-            CloseConnection(smsServer);
+            finally
+            {
+                CloseConnection(smsServer);
+            }
         }
 
         protected static TcpClient OpenConnection(string ip, int port, out bool connected)
@@ -50,7 +65,7 @@ namespace TicketDesk.Web.Identity.Model
                 if (!String.IsNullOrEmpty(connect))
                 {
                     //authenticating to smsServer
-                    string str = "action: login\r\nusername: pragmatic\r\nsecret: integration\r\n\r\n";
+                    string str = String.Format("action: login\r\nusername: {0}\r\nsecret: {1}\r\n\r\n", Properties.Settings.Default.SmsUsername, Properties.Settings.Default.SmsPassword);
 
                     byte[] ba = ascEn.GetBytes(str);
                     stream.Write(ba, 0, ba.Length);
@@ -65,13 +80,15 @@ namespace TicketDesk.Web.Identity.Model
                     if (response.Contains("Success") && message.Contains("Authentication accepted"))
                     {
                         Console.WriteLine("Authenticated");
+                        log.Info("Authenticated");
                         stream.Flush();
                         connected = true;
                         return tcpClient;
                     }
                     else
                     {
-                        Console.WriteLine("Credentials error Cant Authenticate");
+                        Console.WriteLine("Credentials error! Can't Authenticate");
+                        log.Error("Credentials error! Can't Authenticate");
                         tcpClient.Close();
                         connected = false;
                         return tcpClient;
@@ -84,7 +101,7 @@ namespace TicketDesk.Web.Identity.Model
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                log.Error(ex.Message);
+                log.Error("Error opening connection with SMS Server", ex);
             }
 
             connected = false;
@@ -93,6 +110,10 @@ namespace TicketDesk.Web.Identity.Model
 
         protected static void CloseConnection(TcpClient client)
         {
+            if(client == null)
+            {
+                return;
+            }
             try
             {
                 client.Close();
@@ -100,7 +121,7 @@ namespace TicketDesk.Web.Identity.Model
             }
             catch(Exception ex)
             {
-                log.Error(ex.InnerException.Message);
+                log.Error("Error closing connection", ex);
             }
         }
 

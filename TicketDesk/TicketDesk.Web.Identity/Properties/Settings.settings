@@ -24,13 +24,22 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="FromNumber" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">0675329846</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="IpTCP" Type="System.String" Scope="Application">
       <Value Profile="(Default)">109.69.4.163</Value>
     </Setting>
     <Setting Name="PortTCP" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">5039</Value>
+    </Setting>
+    <Setting Name="SmsTemplateForNewTask" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Keni nje detyre per klientin: {0}, per me shume informacion kontaktoni me Fatjonin.</Value>
+    </Setting>
+    <Setting Name="SmsUsername" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">pragmatic</Value>
+    </Setting>
+    <Setting Name="SmsPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">integration</Value>
     </Setting>
   </Settings>
 </SettingsFile>

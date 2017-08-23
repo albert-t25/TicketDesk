@@ -88,7 +88,7 @@ namespace TicketDesk.Web.Identity.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0675329846")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public string FromNumber {
             get {
                 return ((string)(this["FromNumber"]));
@@ -110,6 +110,34 @@ namespace TicketDesk.Web.Identity.Properties {
         public int PortTCP {
             get {
                 return ((int)(this["PortTCP"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Keni nje detyre per klientin: {0}, per me shume informacion kontaktoni me Fatjoni" +
+            "n.")]
+        public string SmsTemplateForNewTask {
+            get {
+                return ((string)(this["SmsTemplateForNewTask"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("pragmatic")]
+        public string SmsUsername {
+            get {
+                return ((string)(this["SmsUsername"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("integration")]
+        public string SmsPassword {
+            get {
+                return ((string)(this["SmsPassword"]));
             }
         }
     }
