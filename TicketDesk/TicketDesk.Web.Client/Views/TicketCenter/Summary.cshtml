@@ -51,14 +51,14 @@
         function filterResults() {
             var params = "";
             var param = interval.options[interval.selectedIndex].text;
-            params += param;
+            
             var from = document.getElementById('date1').value;
-            params += ';' + from;
+            params +=  from;
             var to = document.getElementById('date2').value;
             params += ';' + to;
             $('#ticketList').remove();
             $('#ReportList').remove();
-            $("#partialTable").load('@Url.Action("Summary", "TicketCenter")?filters=' + params)// + ";"+date1+";"date2 );
+            $("#partialTable").load('@Url.Action("Summary", "TicketCenter")?filters=' + params + '&listName=' + param)// + ";"+date1+";"date2 );
         }
     </script>
 }

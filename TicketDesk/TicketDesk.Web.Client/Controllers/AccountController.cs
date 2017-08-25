@@ -84,7 +84,9 @@ namespace TicketDesk.Web.Client.Controllers
         [Route("edit-profile")]
         public ActionResult EditProfile()
         {
-            var model = new AccountProfileViewModel { DisplayName = User.Identity.GetUserDisplayName(), Email = User.Identity.GetUserName() };
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            
+            var model = new AccountProfileViewModel { DisplayName = User.Identity.GetUserDisplayName(), Email = User.Identity.GetUserName(), Phone = user.PhoneNumber };
             return View(model);
         }
 
@@ -110,6 +112,7 @@ namespace TicketDesk.Web.Client.Controllers
                 user.UserName = model.Email;
                 user.Email = model.Email;
                 user.DisplayName = model.DisplayName;
+                user.PhoneNumber = model.Phone;
                 var result = await UserManager.UpdateAsync(user);
 
                 if (result.Succeeded)

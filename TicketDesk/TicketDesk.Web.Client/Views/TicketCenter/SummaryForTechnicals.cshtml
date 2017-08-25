@@ -26,7 +26,7 @@
     <button class="tn btn-primary btn-sm" onclick="filterResults()">Filtro</button>
    
     &nbsp;
-    <button id="btnShkarko" class="tn btn-success btn-sm" onclick="downloadReport()">Shkarko</button>
+    <button id="btnDownload" class="tn btn-success btn-sm" onclick="downloadReport()">Shkarko</button>
     <br />
 
     @*@Html.Partial("_ListMenu", Model.UserListSettings, new ViewDataDictionary
@@ -75,12 +75,12 @@
             EnableButton();
         };
         function DisableButton() {
-            document.getElementById("btnShkarko").disabled = true;
-            document.getElementById("btnShkarko").textContent = "Po shkarkohet...";
+            document.getElementById("btnDownload").disabled = true;
+            document.getElementById("btnDownload").textContent = "Po shkarkohet...";
         }
         function EnableButton() {
-            document.getElementById("btnShkarko").disabled = false;
-            document.getElementById("btnShkarko").textContent = "Shkarko";
+            document.getElementById("btnDownload").disabled = false;
+            document.getElementById("btnDownload").textContent = "Shkarko";
         }
     </script>
 }

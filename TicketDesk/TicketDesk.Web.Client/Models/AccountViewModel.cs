@@ -53,6 +53,10 @@ namespace TicketDesk.Web.Client.Models
         [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
         [Display(Name = "DisplayName", ResourceType = typeof(Strings_sq))]
         public string DisplayName { get; set; }
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Validation_sq))]
+        [StringLength(100, ErrorMessageResourceName = "FieldMaximumLength", ErrorMessageResourceType = typeof(Validation_sq))]
+        [Display(Name = "Phone", ResourceType = typeof(Strings_sq))]
+        public string Phone { get; set; }
     }
 
     public class UserAccountInfoViewModel

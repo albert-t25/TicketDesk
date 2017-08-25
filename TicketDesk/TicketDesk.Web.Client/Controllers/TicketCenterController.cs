@@ -91,7 +91,42 @@ namespace TicketDesk.Web.Client.Controllers
                 }
                 else
                 {
-                   // tickets = Context.Tickets.ToList().Where(i => i.TicketStatus.ToString() == filter).GroupBy(i => i.AssignedTo).ToList();
+                    tickets = Context.Tickets.ToList().GroupBy(i => i.AssignedTo).ToList();
+                }
+            }
+
+            else
+            {
+                tickets = Context.Tickets.ToList().GroupBy(i => i.AssignedTo).ToList();
+
+            }
+            return tickets;
+        }
+
+        private List<IGrouping<string, Ticket>> getSummaryTicketForReport(string filters, string listName)
+        {
+            List<IGrouping<string, Ticket>> tickets = new List<IGrouping<string, Ticket>>();
+            if (filters != null)
+            {
+                string[] formats = { "dd/MM/yyyy", "dd/M/yyyy", "d/M/yyyy", "d/MM/yyyy",
+                    "dd/MM/yy", "dd/M/yy", "d/M/yy", "d/MM/yy"};
+                DateTime dateValue1;
+                DateTime dateValue2;
+                string[] param = filters.Split(';');
+                // string filter = param[0];
+                if (DateTime.TryParse(param[0], out dateValue1) && DateTime.TryParse(param[1],
+                              out dateValue2))
+                {
+                    DateTime dt1 = Convert.ToDateTime(param[0]);
+                    DateTime dt2 = Convert.ToDateTime(param[1]);
+                    DateTimeOffset from = dt1;
+                    DateTimeOffset to = dt2;
+
+                    tickets = Context.Tickets.ToList().Where(i => i.CreatedDate > from && i.CreatedDate < to && i.TicketStatus.ToString() == listName).GroupBy(i => i.AssignedTo).ToList();
+                }
+                else
+                {
+                    tickets = Context.Tickets.ToList().Where(i => i.TicketStatus.ToString() == listName).GroupBy(i => i.AssignedTo).ToList();
                 }
             }
 
@@ -104,12 +139,12 @@ namespace TicketDesk.Web.Client.Controllers
         }
         // GET: TicketCenter
         // [Route("{listName?}/{page:int?}")]
-        public ActionResult Summary(int? page, string listName, string filters)//string from, string to)
+        public ActionResult Summary(int? page, string listName="", string filters=null)//string from, string to)
         {
             
           
-            List<IGrouping<string, Ticket>> tickets = getTicketForReport(filters);
-           
+            List<IGrouping<string, Ticket>> tickets = getSummaryTicketForReport(filters, listName);
+            
             List<SummaryTicket> model = new List<SummaryTicket>();
             foreach (var group in tickets)
             {

@@ -14,3 +14,11 @@
 2017-08-22 09:42:45,481 [28] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected->False->InterNetwork
 
 
+
+2017-08-22 11:51:13,139 [13] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - No connection could be made because the target machine actively refused it 109.69.4.163:5039
+
+
+
+2017-08-22 11:51:17,316 [13] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
