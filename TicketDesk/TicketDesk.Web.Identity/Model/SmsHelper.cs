@@ -146,18 +146,18 @@ namespace TicketDesk.Web.Identity.Model
                 byte[] smsResp = new byte[1000];
                 stm.Read(smsResp, 0, 1000);
                 response = asen.GetString(smsResp);
-                log.Error("Response"+response);
+                log.Error("Response "+response);
                 if (!String.IsNullOrEmpty(response))
                 {
                     stm.Read(smsResp, 0, 1000);
                     message = asen.GetString(smsResp);
-                    log.Error("smsResp"+message);
+                    log.Info("smsResp "+message);
                     if (!String.IsNullOrEmpty(message))
                     {
                         stm.Read(smsResp, 0, 1000);
 
                         eventMsg = asen.GetString(smsResp);
-                        log.Error("eventMsg"+eventMsg);
+                        log.Info("eventMsg "+ eventMsg);
                         if (!String.IsNullOrEmpty(eventMsg))
                         {
                             String[] list = eventMsg.Split('\n');
@@ -170,18 +170,15 @@ namespace TicketDesk.Web.Identity.Model
                                 {
                                     stm.Flush();
                                 }
-                                else
-                                {
-                                    log.Error(value);
-                                }
+                               
                             }
                         }
                     }
                 }
             }
-            catch(Exception e)
+            catch(Exception ex)
             {
-                log.Error(e.InnerException.Message);
+                log.Error("Error on sending SMS: ", ex);
             }
 }
 
