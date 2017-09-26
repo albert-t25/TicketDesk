@@ -122,11 +122,12 @@ namespace TicketDesk.Web.Client.Controllers
             string ticketType,
             string category,
             string owner,
-            string tagList)
+            string tagList,
+            bool affectsCustomer)
         {
             details = details.StripHtmlWhenEmpty();
             var projectName = await Context.Projects.Where(p => p.ProjectId == projectId).Select(s => s.ProjectName).FirstOrDefaultAsync();
-            var activityFn = Context.TicketActions.EditTicketInfo(comment, projectId, projectName, title, details, priority, ticketType, category, owner, tagList, Context.TicketDeskSettings);
+            var activityFn = Context.TicketActions.EditTicketInfo(comment, projectId, projectName, title, details, priority, ticketType, category, owner, tagList, Context.TicketDeskSettings, affectsCustomer);
             return await PerformTicketAction(ticketId, activityFn, TicketActivity.EditTicketInfo);
         }
 

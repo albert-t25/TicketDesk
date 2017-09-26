@@ -121,7 +121,8 @@ namespace TicketDesk.Domain
             string category,
             string owner,
             string tagList,
-            ApplicationSetting settings)
+            ApplicationSetting settings,
+            bool affectsCustomer)
         {
             const TicketActivity activity = TicketActivity.EditTicketInfo;
             return ticket =>
@@ -139,46 +140,52 @@ namespace TicketDesk.Domain
                     //TODO: resource these strings!
                     if (ticket.Title != title)
                     {
-                        sb.AppendLine(string.Format("<dd>    {0}</dd>", PropertyUtility.GetPropertyDisplayString<Ticket>(p => p.Title)));
+                        sb.AppendLine(string.Format("<dd>    {0}</dd>", "Tittle"));
                         ticket.Title = title;
                     }
                     if (ticket.ProjectId != projectId)
                     {
                         sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_To + "</dd>",
-                            PropertyUtility.GetPropertyDisplayString<Ticket>(p => p.ProjectId),
+                            "Project Id",
                             ticket.Project.ProjectName,
                             projectName));
                         ticket.ProjectId = projectId;
                     }
                     if (ticket.Details != details)
                     {
-                        sb.AppendLine(string.Format("<dd>    {0}</dd>", PropertyUtility.GetPropertyDisplayString<Ticket>(p => p.Details)));
+                        sb.AppendLine(string.Format("<dd>    {0}</dd>", "Details"));
                         ticket.Details = details;
                     }
                     if ((SecurityProvider.IsTdHelpDeskUser || settings.Permissions.AllowInternalUsersToEditTags) && ticket.TagList != tagList)
                     {
-                        sb.AppendLine(string.Format("<dd>    {0}</dd>", PropertyUtility.GetPropertyDisplayString<Ticket>(p => p.TagList)));
+                        sb.AppendLine(string.Format("<dd>    {0}</dd>", "Tag List"));
                         ticket.TagList = tagList;
                     }
                     if ((SecurityProvider.IsTdHelpDeskUser || settings.Permissions.AllowInternalUsersToEditPriority) && ticket.Priority != priority)
                     {
-                        sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_To + "</dd>", PropertyUtility.GetPropertyDisplayString<Ticket>(p => p.Priority), ticket.Priority, priority));
+                        sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_To + "</dd>","Priority", ticket.Priority, priority));
                         ticket.Priority = priority;
                     }
                     if (ticket.TicketType != ticketType)
                     {
-                        sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_To + "</dd>", PropertyUtility.GetPropertyDisplayString<Ticket>(p => p.TicketType), ticket.TicketType, ticketType));
+                        sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_To, "Ticket Type", ticket.TicketType, ticketType));
+                        sb.AppendLine(string.Format("</dd>"));
                         ticket.TicketType = ticketType;
                     }
                     if (ticket.Category != category)
                     {
-                        sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_To + "</dd>", PropertyUtility.GetPropertyDisplayString<Ticket>(p => p.Category), ticket.Category, category));
+                        sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_To + "</dd>", "Category", ticket.Category, category));
                         ticket.Category = category;
                     }
                     if (SecurityProvider.IsTdHelpDeskUser && ticket.Owner != owner)
                     {
-                        sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_To + "</dd>", PropertyUtility.GetPropertyDisplayString<Ticket>(p => p.Owner), SecurityProvider.GetUserDisplayName(ticket.Owner), SecurityProvider.GetUserDisplayName(owner)));
+                        sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_To + "</dd>", "Owner", SecurityProvider.GetUserDisplayName(ticket.Owner), SecurityProvider.GetUserDisplayName(owner)));
                         ticket.Owner = owner;
+                    }
+                    if (affectsCustomer)
+                    {
+                        sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_To + "</dd>", "Affects Customer", ticket.AffectsCustomer, affectsCustomer));
+                        ticket.AffectsCustomer = affectsCustomer;
                     }
                     sb.AppendLine("</dl>");
                     comment = sb.ToString();

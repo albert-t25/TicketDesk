@@ -65,8 +65,16 @@ else
 <div class="form-group">
     <div class="col-sm-2 col-sm-offset-2">
         <label class="checkbox-inline" for="affectsCustomer">
+            @Html.CheckBoxFor(m => m.AffectsCustomer)
+           @*@if (Model.AffectsCustomer) {
+            <input class="" type="checkbox" name="affectsCustomer" id="affectsCustomer" value="true" tabindex="5" checked />
+           }
+           else
+           {
             <input class="" type="checkbox" name="affectsCustomer" id="affectsCustomer" value="true" tabindex="5" />
-            @Strings_sq.AffectsCustomer_Label
+           }*@
+
+               @Strings_sq.AffectsCustomer_Label
         </label>
     </div>
     @if (Model.AllowEditTags())
