@@ -88,6 +88,22 @@ else
 </div>
 
 <div class="form-group">
+    @Html.LabelFor(model => model.OnlineSupport, new { @class = "col-md-2 col-sm-1 control-label focus" })
+    <div class="col-md-4 col-sm-3">
+        <label class="checkbox-inline support" for="onlineSupport">
+            <input class="" type="radio" name="onlineSupport" id="onlineSupport" value="true" tabindex="5" @if (Model.OnlineSupport) { <text> checked="checked" </text> } />
+            @Strings_sq.OnlineSupport
+        </label>
+    </div>
+    <div class="col-md-5 col-sm-5">
+        <label class="checkbox-inline support" for="onlineSupport">
+            <input class="" type="radio" name="onlineSupport" id="hardwareSupport" value="false" tabindex="5" @if (!Model.OnlineSupport) { <text> checked="checked" </text> } />
+            @Strings_sq.HardwareSupport
+        </label>
+    </div>
+</div>
+
+<div class="form-group">
     <label class="col-sm-2 control-label text-right" for="wmd-input-ticketDetails">@Strings_sq.Details_Label</label>
 
     @if (Model.IsHtml)

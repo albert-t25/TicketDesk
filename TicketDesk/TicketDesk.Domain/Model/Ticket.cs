@@ -156,6 +156,10 @@ namespace TicketDesk.Domain.Model
         public bool WithPersonalAuto { get; set; }
         [Display(ResourceType = typeof(Strings_sq), Name = "WithArfaNetAuto", ShortName = "WithArfaNetAutoShort")]
         public bool WithArfaNetAuto { get; set; }
+
+        [Display(ResourceType = typeof(Strings_sq), Name = "OnlineSupport", ShortName = "OnlineSupport")]
+        public bool OnlineSupport { get; set; }
+
         [Column(TypeName = "timestamp")]
         [MaxLength(8)]
         [Timestamp]

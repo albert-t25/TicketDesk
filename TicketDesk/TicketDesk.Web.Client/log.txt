@@ -22,3 +22,190 @@
 2017-08-22 11:51:17,316 [13] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
 
 
+
+2020-09-10 19:11:58,743 [6] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-10 19:12:00,089 [6] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-10 19:14:12,693 [41] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-10 19:14:13,979 [41] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-11 11:36:05,904 [79] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-11 11:36:07,136 [79] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-11 11:38:14,221 [38] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-11 11:38:15,372 [38] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-11 11:48:56,841 [16] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-11 11:48:57,984 [16] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-11 11:52:51,290 [95] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-11 11:52:52,491 [95] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-11 12:10:13,288 [25] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-11 12:10:14,433 [25] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-11 14:09:26,581 [5] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-11 14:09:27,913 [5] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-14 11:06:23,356 [25] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-14 11:06:25,820 [25] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-14 11:17:16,999 [14] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-14 11:17:19,938 [14] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-14 11:37:10,201 [6] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-14 11:37:13,450 [6] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-14 11:42:26,654 [20] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-14 11:42:29,409 [20] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-14 12:07:52,170 [40] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-14 12:07:54,411 [40] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-14 12:35:06,375 [7] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-14 12:35:07,786 [7] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-14 14:38:11,782 [11] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-14 14:38:14,137 [11] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-14 14:46:51,320 [42] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-14 14:46:53,410 [42] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+
+
+2020-09-14 15:08:23,344 [5] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\User\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 56
+
+2020-09-14 15:08:26,159 [5] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+

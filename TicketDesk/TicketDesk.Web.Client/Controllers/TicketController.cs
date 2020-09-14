@@ -56,7 +56,7 @@ namespace TicketDesk.Web.Client.Controllers
                 return RedirectToAction("Index", "TicketCenter");
             }
             ViewBag.IsEditorDefaultHtml = Context.TicketDeskSettings.ClientSettings.GetDefaultTextEditorType() == "summernote";
-
+           
             return View(model);
         }
 
@@ -116,8 +116,15 @@ namespace TicketDesk.Web.Client.Controllers
                                 IsMultiProject = false
                             });
 
-                           EmailHelper sendEmail = new EmailHelper();
-                           sendEmail.SendEmail(userInfo.Email, "Një detyre e re për ju.", body);
+                            try
+                            {
+                                EmailHelper sendEmail = new EmailHelper();
+                                sendEmail.SendEmail(userInfo.Email, "Një detyrë e re për ju.", body);
+                            }
+                            catch (Exception e)
+                            {
+                                //
+                            }
 
                             //send sms to the person that the ticket is assigned
                             SmsHelper sendSms = new SmsHelper();

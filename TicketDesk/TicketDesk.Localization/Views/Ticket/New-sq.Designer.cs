@@ -19,7 +19,7 @@ namespace TicketDesk.Localization.Views.Ticket {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class New_sq {
@@ -115,6 +115,15 @@ namespace TicketDesk.Localization.Views.Ticket {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E pazgjedhur.
+        /// </summary>
+        public static string False {
+            get {
+                return ResourceManager.GetString("False", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dokumentat.
         /// </summary>
         public static string Files {
@@ -124,11 +133,29 @@ namespace TicketDesk.Localization.Views.Ticket {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prezencë fizike.
+        /// </summary>
+        public static string HardwareSupport {
+            get {
+                return ResourceManager.GetString("HardwareSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Krijo një kërkesë të re.
         /// </summary>
         public static string Header {
             get {
                 return ResourceManager.GetString("Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Online.
+        /// </summary>
+        public static string OnlineSupport {
+            get {
+                return ResourceManager.GetString("OnlineSupport", resourceCulture);
             }
         }
         
@@ -151,6 +178,15 @@ namespace TicketDesk.Localization.Views.Ticket {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Support.
+        /// </summary>
+        public static string Support {
+            get {
+                return ResourceManager.GetString("Support", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Titulli i kërkesës.
         /// </summary>
         public static string TicketTitle_Placeholder {
@@ -165,6 +201,15 @@ namespace TicketDesk.Localization.Views.Ticket {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E zgjedhur.
+        /// </summary>
+        public static string True {
+            get {
+                return ResourceManager.GetString("True", resourceCulture);
             }
         }
         

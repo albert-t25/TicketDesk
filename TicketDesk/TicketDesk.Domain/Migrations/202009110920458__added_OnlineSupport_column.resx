@@ -117,50 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AffectsCustomer" xml:space="preserve">
-    <value>Afeta o Cliente</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="Attachment_Demo_Alert" xml:space="preserve">
-    <value>&lt;p&gt;TicketDesk está executando o modo de demonstração. Upload de anexos estão desativados.&lt;/p&gt;
-                                             &lt;p&gt;Para desativar o modo de demonstração, por favor altere a configuração nas configurações do aplicativo.&lt;/p&gt;</value>
-  </data>
-  <data name="Attachment_Instructions" xml:space="preserve">
-    <value>Solte os arquivos aqui ou clique para selecionar.</value>
-  </data>
-  <data name="BackOption" xml:space="preserve">
-    <value>Voltar para Lista</value>
-  </data>
-  <data name="Details" xml:space="preserve">
-    <value>Detalhes</value>
-  </data>
-  <data name="EditOption" xml:space="preserve">
-    <value>Alterar</value>
-  </data>
-  <data name="Files" xml:space="preserve">
-    <value>Arquivos</value>
-  </data>
-  <data name="Header" xml:space="preserve">
-    <value>Criar novo chamado</value>
-  </data>
-  <data name="PreviewOption" xml:space="preserve">
-    <value>Visualização</value>
-  </data>
-  <data name="SaveOption" xml:space="preserve">
-    <value>Criar</value>
-  </data>
-  <data name="TicketTitle_Placeholder" xml:space="preserve">
-    <value>Título do chamado</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Novo Chamado</value>
-  </data>
-  <data name="UnableCreateTicket" xml:space="preserve">
-    <value>Não foi possível criar o chamado, por favor, corrija os erros abaixo</value>
-  </data>
-<data name="OnlineSupport" xml:space="preserve">
-    <value>Online</value>
-  </data>
-  <data name="HardwareSupport" xml:space="preserve">
-      <value>Suporte de hardware</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

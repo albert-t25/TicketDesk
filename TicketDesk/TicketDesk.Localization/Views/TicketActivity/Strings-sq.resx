@@ -171,4 +171,10 @@
   <data name="SupplyMoreInfo_ReactivateTicket" xml:space="preserve">
     <value>Riaktivizo kërkesën</value>
   </data>
+  <data name="OnlineSupport" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="HardwareSupport" xml:space="preserve">
+    <value>Prezencë fizike</value>
+  </data>
 </root>

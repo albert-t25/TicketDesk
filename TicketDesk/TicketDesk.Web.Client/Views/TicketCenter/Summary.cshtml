@@ -1,11 +1,12 @@
 ﻿
 @using TicketDesk.Localization.Views.TicketCenter
 @using TicketDesk.Domain.Model;
+@using TicketDesk.Localization.Views.Shared
 @model  List<SummaryTicket>
 
 
 
-@section title{ "Summary" }
+@section title{ @_Layout_sq.Summary }
 
 <main style="display: none;">
     <span class="dz-message">Status </span>&nbsp; 

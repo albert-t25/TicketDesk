@@ -1,11 +1,12 @@
 ﻿
 @using TicketDesk.Localization.Views.TicketCenter
 @using TicketDesk.Domain.Model;
+@using TicketDesk.Localization.Views.Shared
 @model  List<SummaryTechnical>
 
 
 
-@section title{ "SummaryForTechnicals" }
+@section title{ @_Layout_sq.SummaryForTechnicals }
 
 <main style="display: none;">
     @*<span class="dz-message">Status </span>&nbsp;

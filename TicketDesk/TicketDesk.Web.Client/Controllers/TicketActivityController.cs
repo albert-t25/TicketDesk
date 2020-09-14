@@ -79,7 +79,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> AddComment(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment)
         {
             var activityFn = Context.TicketActions.AddComment(comment);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.AddComment);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.AddComment, "");
         }
 
         [HttpPost]
@@ -88,7 +88,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> Assign(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment, string assignedTo, string priority)
         {
             var activityFn = Context.TicketActions.Assign(comment, assignedTo, priority);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.Assign);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.Assign, "");
         }
 
         [HttpPost]
@@ -97,7 +97,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> CancelMoreInfo(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment)
         {
             var activityFn = Context.TicketActions.CancelMoreInfo(comment);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.CancelMoreInfo);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.CancelMoreInfo, "");
         }
 
         [HttpPost]
@@ -106,7 +106,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> Close(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment)
         {
             var activityFn = Context.TicketActions.Close(comment);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.Close);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.Close, "");
         }
 
         [HttpPost]
@@ -123,12 +123,13 @@ namespace TicketDesk.Web.Client.Controllers
             string category,
             string owner,
             string tagList,
-            bool affectsCustomer)
+            bool affectsCustomer,
+            bool onlineSupport)
         {
             details = details.StripHtmlWhenEmpty();
             var projectName = await Context.Projects.Where(p => p.ProjectId == projectId).Select(s => s.ProjectName).FirstOrDefaultAsync();
-            var activityFn = Context.TicketActions.EditTicketInfo(comment, projectId, projectName, title, details, priority, ticketType, category, owner, tagList, Context.TicketDeskSettings, affectsCustomer);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.EditTicketInfo);
+            var activityFn = Context.TicketActions.EditTicketInfo(comment, projectId, projectName, title, details, priority, ticketType, category, owner, tagList, Context.TicketDeskSettings, affectsCustomer, onlineSupport);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.EditTicketInfo, "");
         }
 
         [HttpPost]
@@ -137,7 +138,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> ForceClose(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment)
         {
             var activityFn = Context.TicketActions.ForceClose(comment);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.ForceClose);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.ForceClose, "");
         }
 
         [HttpPost]
@@ -146,7 +147,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> GiveUp(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment)
         {
             var activityFn = Context.TicketActions.GiveUp(comment);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.GiveUp);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.GiveUp, "");
         }
 
         [HttpPost]
@@ -202,7 +203,7 @@ namespace TicketDesk.Web.Client.Controllers
                domainActivityFn(ticket);
            };
 
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.ModifyAttachments);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.ModifyAttachments, "");
         }
 
         [HttpPost]
@@ -211,7 +212,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> Pass(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment, string assignedTo, string priority)
         {
             var activityFn = Context.TicketActions.Pass(comment, assignedTo, priority);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.Pass);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.Pass, "");
         }
 
         [HttpPost]
@@ -220,7 +221,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> ReAssign(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment, string assignedTo, string priority)
         {
             var activityFn = Context.TicketActions.ReAssign(comment, assignedTo, priority);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.ReAssign);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.ReAssign, "");
         }
 
         [HttpPost]
@@ -229,7 +230,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> RequestMoreInfo(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment)
         {
             var activityFn = Context.TicketActions.RequestMoreInfo(comment);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.RequestMoreInfo);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.RequestMoreInfo, "");
         }
 
         [HttpPost]
@@ -238,7 +239,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> ReOpen(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment, bool assignToMe = false)
         {
             var activityFn = Context.TicketActions.ReOpen(comment, assignToMe);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.ReOpen);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.ReOpen, "");
         }
 
         [HttpPost]
@@ -247,7 +248,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> Resolve(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment)
         {
             var activityFn = Context.TicketActions.Resolve(comment);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.ReOpen);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.ReOpen, comment);
         }
 
         [HttpPost]
@@ -256,7 +257,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> SupplyMoreInfo(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment, bool reactivate = false)
         {
             var activityFn = Context.TicketActions.SupplyMoreInfo(comment, reactivate);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.SupplyMoreInfo);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.SupplyMoreInfo, "");
         }
 
         [HttpPost]
@@ -268,11 +269,11 @@ namespace TicketDesk.Web.Client.Controllers
             string priority)
         {
             var activityFn = Context.TicketActions.TakeOver(comment, priority);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.TakeOver);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.TakeOver, "");
         }
 
 
-        private async Task<ActionResult> PerformTicketAction(int ticketId, Action<Ticket> activityFn, TicketActivity activity)
+        private async Task<ActionResult> PerformTicketAction(int ticketId, Action<Ticket> activityFn, TicketActivity activity, string comment)
         {
             var ticket = await Context.Tickets.FindAsync(ticketId);
             TryValidateModel(ticket);
@@ -286,19 +287,8 @@ namespace TicketDesk.Web.Client.Controllers
                     {
                         //EL: add logic to send email to client when a ticket is resolved
                         //var ticket = Context.Tickets.Include(t => t.TicketTags).First(t => t.TicketId == ticketId);
-
-                        var root = Context.TicketDeskSettings.ClientSettings.GetDefaultSiteRootUrl();
-
-                        string body = this.RenderViewToString(ControllerContext, "~/Views/Emails/Ticket.Html.cshtml", new TicketEmail()
-                        {
-                            Ticket = ticket,
-                            SiteRootUrl = root,
-                            IsMultiProject = false
-                        });
-
-                        EmailHelper sendEmail = new EmailHelper();
-
-                        sendEmail.SendEmail(ticket.Project.Email, "Kërkesa juaj: " + ticket.Title + " është zgjidhur.", body);
+                        //send email if assigned to email is not empty
+                       PrepareEmailForResolved(ticket,comment);
                     }
                 }
                 catch (SecurityException ex)
@@ -316,6 +306,44 @@ namespace TicketDesk.Web.Client.Controllers
             ViewBag.Activity = activity;
             ViewBag.IsEditorDefaultHtml = Context.TicketDeskSettings.ClientSettings.GetDefaultTextEditorType() == "summernote";
             return PartialView("_ActivityForm", ticket);
+        }
+
+        private void PrepareEmailForResolved(Ticket ticket, string comment)
+        {
+            
+            if (!String.IsNullOrWhiteSpace(ticket.Project.Email))
+            {
+                //var root = Context.TicketDeskSettings.ClientSettings.GetDefaultSiteRootUrl();
+
+                string body = "";
+                //this.RenderViewToString(ControllerContext, "~/Views/Emails/Ticket.Html.cshtml", new TicketEmail()
+                //{
+                //    Ticket = ticket,
+                //    SiteRootUrl = root,
+                //    IsMultiProject = false
+                //});
+                var support = ticket.OnlineSupport ? "Online" : "Hardware Support";
+                body = "I nderuar Klient."
+                               + "<br/>Kerkesa e krijuar nga ju per " + "<b>" + ticket.Project.ProjectName + "</b>" + " eshte mbyllur."
+                               + "<br/><br/>Subjekti: " + ticket.Title
+                               + "<br/>Pershkrimi i Problemit: " + HtmlHelperExtensions.HtmlToPlainText(ticket.Details)
+                               + "<br/><br/>Specialisti qe asistoi: " + ticket.GetAssignedToInfo().DisplayName
+                               + "<br/>Lloji i Asistences: " + support.ToString()
+                               + "<br/>Pershkrimi i Sherbimit te kryer: " + HtmlHelperExtensions.HtmlToPlainText(comment).Trim();
+
+                try
+                {
+                    EmailHelper sendEmail = new EmailHelper();
+                    sendEmail.SendEmail(ticket.Project.Email, "Kërkesa juaj: " + ticket.Title + " është zgjidhur.",
+                        body);
+                }
+
+                catch(Exception e)
+                {
+                    //
+                }
+            }
+
         }
     }
 }

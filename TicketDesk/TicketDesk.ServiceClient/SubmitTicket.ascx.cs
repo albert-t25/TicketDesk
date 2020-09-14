@@ -40,7 +40,15 @@ namespace TicketDesk.ServiceClient
                     "</strong><br/>Ka difekt: <strong>" + kaDifekt +
                     "</strong><br/>Detajet e kerkeses: <strong>" + txtTicketDetails.Text + "</strong>";
 
-                sendEmail.SendEmail(Properties.Settings.Default.ReceiverEmail, "Nje kerkese e re", body);
+                try
+                {
+                    sendEmail.SendEmail(Properties.Settings.Default.ReceiverEmail, "Nje kerkese e re", body);
+                }
+                catch (Exception ex)
+                {
+                    //
+                }
+                
             }
             else
             {

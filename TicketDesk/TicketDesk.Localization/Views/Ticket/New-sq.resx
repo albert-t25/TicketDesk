@@ -171,4 +171,19 @@
   <data name="WorkingHours_Placeholder" xml:space="preserve">
     <value>Orët e punës</value>
   </data>
+  <data name="Support" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="OnlineSupport" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="HardwareSupport" xml:space="preserve">
+    <value>Prezencë fizike</value>
+  </data>
+   <data name="True" xml:space="preserve">
+    <value>E zgjedhur</value>
+  </data>
+   <data name="False" xml:space="preserve">
+    <value>E pazgjedhur</value>
+  </data>
 </root>

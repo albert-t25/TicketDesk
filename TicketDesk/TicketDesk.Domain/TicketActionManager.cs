@@ -16,6 +16,7 @@ using System.Security;
 using System.Text;
 using TicketDesk.Domain.Model;
 using TicketDesk.Localization.Domain;
+using TicketDesk.Localization.Views.Ticket;
 
 namespace TicketDesk.Domain
 {
@@ -122,7 +123,8 @@ namespace TicketDesk.Domain
             string owner,
             string tagList,
             ApplicationSetting settings,
-            bool affectsCustomer)
+            bool affectsCustomer,
+            bool onlineSupport)
         {
             const TicketActivity activity = TicketActivity.EditTicketInfo;
             return ticket =>
@@ -182,11 +184,19 @@ namespace TicketDesk.Domain
                         sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_To + "</dd>", "Owner", SecurityProvider.GetUserDisplayName(ticket.Owner), SecurityProvider.GetUserDisplayName(owner)));
                         ticket.Owner = owner;
                     }
-                    if (affectsCustomer)
+                    if (ticket.AffectsCustomer != affectsCustomer)
                     {
-                        sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_To + "</dd>", "Affects Customer", ticket.AffectsCustomer, affectsCustomer));
+                        sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_In + "</dd>", New_sq.AffectsCustomer, ticket.AffectsCustomer ? New_sq.True : New_sq.False, affectsCustomer ? New_sq.True : New_sq.False));
                         ticket.AffectsCustomer = affectsCustomer;
                     }
+
+                    if (ticket.OnlineSupport != onlineSupport)
+                    {
+                        sb.AppendLine(string.Format("<dd>    " + Strings_sq.Changes_From_In + "</dd>", Strings_sq.OnlineSupport, ticket.OnlineSupport ? New_sq.OnlineSupport : New_sq.HardwareSupport, onlineSupport ? New_sq.OnlineSupport : New_sq.HardwareSupport));
+                        ticket.OnlineSupport = onlineSupport;
+                    }
+                    
+                    
                     sb.AppendLine("</dl>");
                     comment = sb.ToString();
                     ticket.TicketEvents.AddActivityEvent(SecurityProvider.CurrentUserId, activity, comment);

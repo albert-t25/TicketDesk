@@ -13,6 +13,7 @@
     provided to the recipient.
 *@
 @using TicketDesk.Localization.Views.Ticket
+@using TicketDesk.Localization.Domain
 @using TicketDesk.Domain
 @using TicketDesk.Domain.Model
 @model Ticket
@@ -73,10 +74,12 @@
                     <div>
                         <div>
                             @Html.Raw(string.Format(Index_sq.Priority + ": {0}", Model.Priority))
-                            <br/>
+                            <br />
                             @Html.Raw(string.Format("Kategoria: {0}", Model.Category))
                             <br />
                             @Html.Raw(string.Format("Tipi: {0}", Model.TicketType))
+                            <br />
+                            @Html.Raw(string.Format(Strings_sq.OnlineSupport + ": {0}", Model.OnlineSupport? New_sq.OnlineSupport : New_sq.HardwareSupport ))
                         </div>
 
                         <div>
@@ -93,7 +96,7 @@
             </div>
             <div class="" style="margin: 0; padding: 0;">
                 <div class="" id="detailsText" style="height: 200px; overflow: auto; margin: 0; padding: 5px;">
-                    @Model.HtmlDetails()
+                   @Html.Raw(Model.HtmlDetails()) 
                 </div>
                 <div id="detailTextExpander" class="expanderButton" style="height: 20px; display: none;">
                     <i id="expandersymbol" class="fa fa-chevron-down text-center"></i>
