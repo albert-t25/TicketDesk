@@ -140,5 +140,14 @@ namespace TicketDesk.Web.Identity.Properties {
                 return ((string)(this["SmsPassword"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("enrustani@gmail.com")]
+        public string AfraEmail {
+            get {
+                return ((string)(this["AfraEmail"]));
+            }
+        }
     }
 }

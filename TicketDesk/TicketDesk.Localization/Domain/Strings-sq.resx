@@ -181,7 +181,7 @@
     <value>Tipet e kërkesës</value>
   </data>
   <data name="TicketActivityAddComment" xml:space="preserve">
-    <value>shtoni koment</value>
+    <value>shtoji koment</value>
   </data>
   <data name="TicketActivityAssign" xml:space="preserve">
     <value>caktoni kërkesën tek {0}</value>

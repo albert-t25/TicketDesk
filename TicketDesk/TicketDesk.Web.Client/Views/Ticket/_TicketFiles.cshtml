@@ -22,7 +22,7 @@
     {
         <div class="panel panel-info" style="padding-top: 0; padding-bottom: 0;">
             <div class="panel-heading panel-title" style="padding: 3px 5px;">
-                @Index.Files
+                @Index_sq.Files
             </div>
             <div class="panel-body" style="">
                 <ul class="list-unstyled list-inline">
@@ -31,6 +31,7 @@
                         <li>
                             <a href="@Url.RouteUrl("GetAttachedFile", new {Id = ViewBag.TicketId, FileName = file.Name})"><i class="fa fa-file fa-align-left"></i> @file.Name</a>
                         </li>
+                        <br />
                     }
                 </ul>
             </div>

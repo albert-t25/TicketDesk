@@ -41,5 +41,8 @@
     <Setting Name="SmsPassword" Type="System.String" Scope="Application">
       <Value Profile="(Default)">integration</Value>
     </Setting>
+    <Setting Name="AfraEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">enxhela.rustani@pragmatic.al</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

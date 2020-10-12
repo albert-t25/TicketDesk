@@ -615,6 +615,7 @@
     <EmbeddedResource Include="Controllers\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\Strings-sq.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -645,6 +646,7 @@
     <EmbeddedResource Include="PushNotifications\Strings-sq.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings-sq.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Validation-sq.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -931,6 +933,7 @@
     <EmbeddedResource Include="Views\Shared\_Layout-sq.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>_Layout-sq.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\_Layout.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -943,6 +946,7 @@
     <EmbeddedResource Include="Views\TicketActivity\Strings-sq.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings-sq.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TicketActivity\Strings.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -976,6 +980,7 @@
     <EmbeddedResource Include="Views\Ticket\Index.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Ticket\New-sq.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -214,6 +214,15 @@ namespace TicketDesk.Localization.Views.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Raport for Arfa.
+        /// </summary>
+        public static string SummaryForAfra {
+            get {
+                return ResourceManager.GetString("SummaryForAfra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ticket Center.
         /// </summary>
         public static string TicketCenter {

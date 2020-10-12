@@ -11,6 +11,7 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
+using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Configuration;
 using System.Data.Entity;
@@ -25,7 +26,11 @@ using TicketDesk.Domain.Model;
 using TicketDesk.IO;
 using TicketDesk.Localization.Controllers;
 using TicketDesk.Web.Client.Models;
+using TicketDesk.Web.Identity;
 using TicketDesk.Web.Identity.Model;
+using TicketDesk.Web.Identity.Properties;
+using System.Net;
+using System.Net.Mail;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -79,7 +84,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> AddComment(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment)
         {
             var activityFn = Context.TicketActions.AddComment(comment);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.AddComment, "");
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.AddComment, comment);
         }
 
         [HttpPost]
@@ -170,7 +175,7 @@ namespace TicketDesk.Web.Client.Controllers
                {
                    sb.AppendLine();
                    sb.AppendLine("<dl><dt>");
-                   sb.AppendLine(Strings.RemovedFiles);
+                   sb.AppendLine(Strings_sq.RemovedFiles);
                    sb.AppendLine("</dt>");
 
 
@@ -187,7 +192,7 @@ namespace TicketDesk.Web.Client.Controllers
                {
                    sb.AppendLine();
                    sb.AppendLine("<dl><dt>");
-                   sb.AppendLine(Strings.NewFiles);
+                   sb.AppendLine(Strings_sq.NewFiles);
                    sb.AppendLine("</dt>");
 
                    foreach (var file in filesAdded)
@@ -290,6 +295,13 @@ namespace TicketDesk.Web.Client.Controllers
                         //send email if assigned to email is not empty
                        PrepareEmailForResolved(ticket,comment);
                     }
+                    if (activity.ToString().ToLower() == "addcomment".ToLower())
+                    {
+                        //EL: add logic to send email to client when a ticket is resolved
+                        //var ticket = Context.Tickets.Include(t => t.TicketTags).First(t => t.TicketId == ticketId);
+                        //send email if assigned to email is not empty
+                        PrepareEmailForAddComment(ticket, comment);
+                    }
                 }
                 catch (SecurityException ex)
                 {
@@ -306,6 +318,31 @@ namespace TicketDesk.Web.Client.Controllers
             ViewBag.Activity = activity;
             ViewBag.IsEditorDefaultHtml = Context.TicketDeskSettings.ClientSettings.GetDefaultTextEditorType() == "summernote";
             return PartialView("_ActivityForm", ticket);
+        }
+
+        private void PrepareEmailForAddComment(Ticket ticket, string comment)
+        {
+            if (!String.IsNullOrWhiteSpace(comment))
+            {
+                var user = ticket.GetLastUpdatedByInfo();
+                string body = "Përshëndetje,"
+                       + "<br/> <br/>Një koment është shtuar në kërkesen:  \"<b>" + ticket.Title + "</b>\""
+                       + "<br/>Përmbajtja e komentit: <br/>" + HtmlHelperExtensions.HtmlToPlainText(comment).Trim()
+                       + "<br/><br/>Komenti u shtua nga: " + user.DisplayName + "(" + user.Email + ")";
+
+                try
+                {
+                    EmailHelper sendEmail = new EmailHelper();
+                   
+                    sendEmail.SendEmailToArfa("Koment i ri në kërkesen: \"" + ticket.Title + "\"", body);
+                }
+
+                catch (Exception e)
+                {
+                    //
+                }
+            }
+
         }
 
         private void PrepareEmailForResolved(Ticket ticket, string comment)

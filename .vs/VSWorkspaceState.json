@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\TicketDesk",
+    "\\TicketDesk\\TicketDesk.Web.Client",
+    "\\TicketDesk\\TicketDesk.Web.Client\\Controllers"
   ],
+  "SelectedNode": "\\TicketDesk\\TicketDesk.PushNotifications.Job",
   "PreviewInSolutionExplorer": false
 }
