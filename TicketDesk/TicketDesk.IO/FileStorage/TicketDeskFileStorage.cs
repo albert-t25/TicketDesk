@@ -17,11 +17,14 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AzureBlobFileSystem;
+using log4net;
 
 namespace TicketDesk.IO
 {
     public static class TicketDeskFileStore
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(TicketDeskFileStore));
+
         private static IStorageProvider _currentProvider;
         internal static IStorageProvider Current
         {
@@ -74,7 +77,10 @@ namespace TicketDesk.IO
 
         public static Stream GetFile(string fileName,string containerId, bool isPending)
         {
+            string filePath = GetFilePath(fileName, containerId, isPending);
+            log.Info($"Trying to read file from path '{filePath}'. File store is {Current.GetType().FullName}");
             var f = Current.GetFile(GetFilePath(fileName, containerId, isPending));
+            log.Info($"Get file returned {f?.GetPath()}");
             return f.OpenRead();
         }
 

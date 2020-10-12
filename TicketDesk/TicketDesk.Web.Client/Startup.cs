@@ -26,6 +26,7 @@ namespace TicketDesk.Web.Client
         public void Configuration(IAppBuilder app)
         {
             log4net.Config.XmlConfigurator.Configure();
+
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             RegisterBundles(BundleTable.Bundles);

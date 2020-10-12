@@ -11,6 +11,7 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
+using log4net;
 using System;
 using System.Configuration;
 using System.Diagnostics;
@@ -27,6 +28,8 @@ namespace TicketDesk.Web.Client.Controllers
     [TdAuthorize(Roles = "TdInternalUsers,TdHelpDeskUsers,TdAdministrators")]
     public class FileController : Controller
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(FileController));
+
         [HttpPost]
         [Route("upload")]
         public async Task<ActionResult> Upload(Guid tempId)
@@ -60,6 +63,7 @@ namespace TicketDesk.Web.Client.Controllers
         [Route("{id}/{fileName}", Name = "GetAttachedFile")]
         public ActionResult GetFile(string id, string fileName)
         {
+            log.Info($"Download file '{fileName}' in folder {id}");
             return FetchFile(fileName, id, IsFilePending(id));
         }
 
@@ -104,6 +108,10 @@ namespace TicketDesk.Web.Client.Controllers
         private ActionResult FetchFile(string fileName, string container, bool isPending)
         {
             var fstream = TicketDeskFileStore.GetFile(fileName, container, isPending);
+            if(fstream == null)
+            {
+                log.Warn($"Could not read file '{fileName}' from container '{container}'");
+            }
             return new FileStreamResult(fstream, "application/octet-stream");//always send it back as octet-stream so client browser actually downloads it, instead of displaying it on-screen
         }
     }
