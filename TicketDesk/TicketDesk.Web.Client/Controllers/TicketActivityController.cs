@@ -291,7 +291,7 @@ namespace TicketDesk.Web.Client.Controllers
                     if (ticket.TicketStatus.ToString().ToLower() == "Resolved".ToLower())
                     {
                         //EL: add logic to send email to client when a ticket is resolved
-                        PrepareEmailForResolved(ticket, comment);
+                        //PrepareEmailForResolved(ticket, comment);
                     }
 
                     if (activity.ToString().ToLower() == "addcomment".ToLower())
