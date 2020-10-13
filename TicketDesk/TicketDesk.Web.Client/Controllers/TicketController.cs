@@ -128,7 +128,7 @@ namespace TicketDesk.Web.Client.Controllers
 
                             //send sms to the person that the ticket is assigned
                             SmsHelper sendSms = new SmsHelper();
-                            sendSms.SendSms(userInfo.Phone, project.ProjectName);
+                            //sendSms.SendSms(userInfo.Phone, project.ProjectName);
                         }
 
                         return RedirectToAction("Index", new { id = ticket.TicketId });
