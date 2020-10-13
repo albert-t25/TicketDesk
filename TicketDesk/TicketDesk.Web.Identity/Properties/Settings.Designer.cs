@@ -143,7 +143,7 @@ namespace TicketDesk.Web.Identity.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("enrustani@gmail.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("enxhela.rustani@pragmatic.al")]
         public string AfraEmail {
             get {
                 return ((string)(this["AfraEmail"]));

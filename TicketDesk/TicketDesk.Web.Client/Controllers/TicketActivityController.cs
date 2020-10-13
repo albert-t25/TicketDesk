@@ -291,16 +291,13 @@ namespace TicketDesk.Web.Client.Controllers
                     if (ticket.TicketStatus.ToString().ToLower() == "Resolved".ToLower())
                     {
                         //EL: add logic to send email to client when a ticket is resolved
-                        //var ticket = Context.Tickets.Include(t => t.TicketTags).First(t => t.TicketId == ticketId);
-                        //send email if assigned to email is not empty
-                       PrepareEmailForResolved(ticket,comment);
+                        PrepareEmailForResolved(ticket, comment);
                     }
+
                     if (activity.ToString().ToLower() == "addcomment".ToLower())
                     {
-                        //EL: add logic to send email to client when a ticket is resolved
-                        //var ticket = Context.Tickets.Include(t => t.TicketTags).First(t => t.TicketId == ticketId);
-                        //send email if assigned to email is not empty
-                        PrepareEmailForAddComment(ticket, comment);
+                        //send email if when a new comment is added
+                        PrepareEmailAddComment(ticket, comment);
                     }
                 }
                 catch (SecurityException ex)
@@ -320,20 +317,25 @@ namespace TicketDesk.Web.Client.Controllers
             return PartialView("_ActivityForm", ticket);
         }
 
-        private void PrepareEmailForAddComment(Ticket ticket, string comment)
+        /// <summary>
+        /// Sends mail to Arfa Net when a new comment is added to an existing ticket. 
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="comment"></param>
+        private void PrepareEmailAddComment(Ticket ticket, string comment)
         {
             if (!String.IsNullOrWhiteSpace(comment))
             {
                 var user = ticket.GetLastUpdatedByInfo();
                 string body = "Përshëndetje,"
-                       + "<br/> <br/>Një koment është shtuar në kërkesen:  \"<b>" + ticket.Title + "</b>\""
-                       + "<br/>Përmbajtja e komentit: <br/>" + HtmlHelperExtensions.HtmlToPlainText(comment).Trim()
+                       + "<br/>Një koment është shtuar në kërkesen:  \"<b>" + ticket.Title + "</b>\""
+                       + "<br/><br/>Përmbajtja e komentit: <br/>" + HtmlHelperExtensions.HtmlToPlainText(comment).Trim()
                        + "<br/><br/>Komenti u shtua nga: " + user.DisplayName + "(" + user.Email + ")";
 
+                //send mail to Arfa
                 try
                 {
                     EmailHelper sendEmail = new EmailHelper();
-                   
                     sendEmail.SendEmailToArfa("Koment i ri në kërkesen: \"" + ticket.Title + "\"", body);
                 }
 
@@ -345,29 +347,26 @@ namespace TicketDesk.Web.Client.Controllers
 
         }
 
+        /// <summary>
+        /// Sends mail to Client when ticket is marked as Resolved.
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="comment"></param>
         private void PrepareEmailForResolved(Ticket ticket, string comment)
         {
-            
             if (!String.IsNullOrWhiteSpace(ticket.Project.Email))
             {
-                //var root = Context.TicketDeskSettings.ClientSettings.GetDefaultSiteRootUrl();
-
-                string body = "";
-                //this.RenderViewToString(ControllerContext, "~/Views/Emails/Ticket.Html.cshtml", new TicketEmail()
-                //{
-                //    Ticket = ticket,
-                //    SiteRootUrl = root,
-                //    IsMultiProject = false
-                //});
+                var assignedToInfo = ticket.GetAssignedToInfo();
                 var support = ticket.OnlineSupport ? "Online" : "Hardware Support";
-                body = "I nderuar Klient."
-                               + "<br/>Kerkesa e krijuar nga ju per " + "<b>" + ticket.Project.ProjectName + "</b>" + " eshte mbyllur."
+                var body = "I nderuar Klient."
+                               + "<br/>Kërkesa e krijuar nga ju për " + "<b>" + ticket.Project.ProjectName + "</b>" + " është mbyllur."
                                + "<br/><br/>Subjekti: " + ticket.Title
-                               + "<br/>Pershkrimi i Problemit: " + HtmlHelperExtensions.HtmlToPlainText(ticket.Details)
-                               + "<br/><br/>Specialisti qe asistoi: " + ticket.GetAssignedToInfo().DisplayName
-                               + "<br/>Lloji i Asistences: " + support.ToString()
-                               + "<br/>Pershkrimi i Sherbimit te kryer: " + HtmlHelperExtensions.HtmlToPlainText(comment).Trim();
+                               + "<br/>Përshkrimi i problemit: " + HtmlHelperExtensions.HtmlToPlainText(ticket.Details)
+                               + "<br/><br/>Specialisti që asistoi: " + assignedToInfo.DisplayName + "(" + assignedToInfo.Email + ")"
+                               + "<br/>Lloji i asistencës: " + support.ToString()
+                               + "<br/>Përshkrimi i shërbimit të kryer: " + HtmlHelperExtensions.HtmlToPlainText(comment).Trim();
 
+                //send mail to client
                 try
                 {
                     EmailHelper sendEmail = new EmailHelper();
@@ -375,7 +374,7 @@ namespace TicketDesk.Web.Client.Controllers
                         body);
                 }
 
-                catch(Exception e)
+                catch (Exception e)
                 {
                     //
                 }
