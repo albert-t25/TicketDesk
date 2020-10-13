@@ -2,20 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TicketDesk.Web.Identity.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Host" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">mail.pragmatic.al</Value>
-    </Setting>
-    <Setting Name="UserName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">notifications@pragmatic.al</Value>
-    </Setting>
-    <Setting Name="Password" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Pr@gmatic14</Value>
-    </Setting>
     <Setting Name="From" Type="System.String" Scope="Application">
       <Value Profile="(Default)">notifications@pragmatic.al</Value>
-    </Setting>
-    <Setting Name="Port" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">2525</Value>
     </Setting>
     <Setting Name="Subject" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Nje task i ri eshte shtuar per ju.</Value>
@@ -43,6 +31,18 @@
     </Setting>
     <Setting Name="AfraEmail" Type="System.String" Scope="Application">
       <Value Profile="(Default)">enxhela.rustani@pragmatic.al</Value>
+    </Setting>
+    <Setting Name="Host" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">smtp.sendgrid.net</Value>
+    </Setting>
+    <Setting Name="UserName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">apikey</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">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</Value>
+    </Setting>
+    <Setting Name="Port" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">587</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -25,46 +25,10 @@ namespace TicketDesk.Web.Identity.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("mail.pragmatic.al")]
-        public string Host {
-            get {
-                return ((string)(this["Host"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("notifications@pragmatic.al")]
-        public string UserName {
-            get {
-                return ((string)(this["UserName"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Pr@gmatic14")]
-        public string Password {
-            get {
-                return ((string)(this["Password"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("notifications@pragmatic.al")]
         public string From {
             get {
                 return ((string)(this["From"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2525")]
-        public int Port {
-            get {
-                return ((int)(this["Port"]));
             }
         }
         
@@ -147,6 +111,42 @@ namespace TicketDesk.Web.Identity.Properties {
         public string AfraEmail {
             get {
                 return ((string)(this["AfraEmail"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("smtp.sendgrid.net")]
+        public string Host {
+            get {
+                return ((string)(this["Host"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("apikey")]
+        public string UserName {
+            get {
+                return ((string)(this["UserName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("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")]
+        public string Password {
+            get {
+                return ((string)(this["Password"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("587")]
+        public int Port {
+            get {
+                return ((int)(this["Port"]));
             }
         }
     }

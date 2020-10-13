@@ -31,6 +31,7 @@ using TicketDesk.Web.Identity.Model;
 using TicketDesk.Web.Identity.Properties;
 using System.Net;
 using System.Net.Mail;
+using log4net;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -40,6 +41,8 @@ namespace TicketDesk.Web.Client.Controllers
     [ValidateInput(false)]
     public class TicketActivityController : BaseController
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(TicketActivityController));
+
         private TdDomainContext Context { get; set; }
         public TicketActivityController(TdDomainContext context)
         {
@@ -291,7 +294,7 @@ namespace TicketDesk.Web.Client.Controllers
                     if (ticket.TicketStatus.ToString().ToLower() == "Resolved".ToLower())
                     {
                         //EL: add logic to send email to client when a ticket is resolved
-                        //PrepareEmailForResolved(ticket, comment);
+                        PrepareEmailForResolved(ticket, comment);
                     }
 
                     if (activity.ToString().ToLower() == "addcomment".ToLower())
@@ -302,6 +305,7 @@ namespace TicketDesk.Web.Client.Controllers
                 }
                 catch (SecurityException ex)
                 {
+                    log.Error("Could not perform ticket activity!", ex);
                     ModelState.AddModelError("Security", ex);
                 }
                 var result = await Context.SaveChangesAsync(); //save changes catches lastupdatedby and date automatically
@@ -326,6 +330,7 @@ namespace TicketDesk.Web.Client.Controllers
         {
             if (!String.IsNullOrWhiteSpace(comment))
             {
+                log.Info($"Sending email to arfa manager. Comment {comment}");
                 var user = ticket.GetLastUpdatedByInfo();
                 string body = "Përshëndetje,"
                        + "<br/>Një koment është shtuar në kërkesen:  \"<b>" + ticket.Title + "</b>\""
@@ -335,13 +340,12 @@ namespace TicketDesk.Web.Client.Controllers
                 //send mail to Arfa
                 try
                 {
-                    EmailHelper sendEmail = new EmailHelper();
-                    sendEmail.SendEmailToArfa("Koment i ri në kërkesen: \"" + ticket.Title + "\"", body);
+                    EmailHelper.SendEmail("Koment i ri në kërkesen: \"" + ticket.Title + "\"", body);
                 }
 
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    //
+                    log.Error("Could not send email to arfa manager!", ex);
                 }
             }
 
@@ -356,6 +360,7 @@ namespace TicketDesk.Web.Client.Controllers
         {
             if (!String.IsNullOrWhiteSpace(ticket.Project.Email))
             {
+                log.Info($"Sending email to client {ticket.Project.Email}");
                 var assignedToInfo = ticket.GetAssignedToInfo();
                 var support = ticket.OnlineSupport ? "Online" : "Hardware Support";
                 var body = "I nderuar Klient."
@@ -369,14 +374,12 @@ namespace TicketDesk.Web.Client.Controllers
                 //send mail to client
                 try
                 {
-                    EmailHelper sendEmail = new EmailHelper();
-                    sendEmail.SendEmail(ticket.Project.Email, "Kërkesa juaj: " + ticket.Title + " është zgjidhur.",
-                        body);
+                    EmailHelper.SendEmail(ticket.Project.Email, "Kërkesa juaj: " + ticket.Title + " është zgjidhur.", body);
                 }
 
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    //
+                    log.Error($"Could not send email to client {ticket.Project.Email}", ex);
                 }
             }
 

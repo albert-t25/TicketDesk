@@ -25,7 +25,7 @@ using TicketDesk.IO;
 namespace TicketDesk.Web.Client.Controllers
 {
     [RoutePrefix("file")]
-    [TdAuthorize(Roles = "TdInternalUsers,TdHelpDeskUsers,TdAdministrators")]
+    // [TdAuthorize(Roles = "TdInternalUsers,TdHelpDeskUsers,TdAdministrators")]
     public class FileController : Controller
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(FileController));

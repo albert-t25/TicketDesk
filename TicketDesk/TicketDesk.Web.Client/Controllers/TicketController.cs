@@ -118,8 +118,7 @@ namespace TicketDesk.Web.Client.Controllers
 
                             try
                             {
-                                EmailHelper sendEmail = new EmailHelper();
-                                sendEmail.SendEmail(userInfo.Email, "Një detyrë e re për ju.", body);
+                                EmailHelper.SendEmail(userInfo.Email, "Një detyrë e re për ju.", body);
                             }
                             catch (Exception e)
                             {
