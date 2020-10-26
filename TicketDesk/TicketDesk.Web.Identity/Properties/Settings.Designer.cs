@@ -134,7 +134,7 @@ namespace TicketDesk.Web.Identity.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("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")]
+        [global::System.Configuration.DefaultSettingValueAttribute("test")]
         public string Password {
             get {
                 return ((string)(this["Password"]));

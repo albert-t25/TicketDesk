@@ -39,7 +39,7 @@
       <Value Profile="(Default)">apikey</Value>
     </Setting>
     <Setting Name="Password" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">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</Value>
+      <Value Profile="(Default)">test</Value>
     </Setting>
     <Setting Name="Port" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">587</Value>
