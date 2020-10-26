@@ -42,7 +42,7 @@ namespace TicketDesk.ServiceClient
 
                 try
                 {
-                    EmailHelper.SendEmail(Properties.Settings.Default.ReceiverEmail, "Nje kerkese e re", body);
+                    sendEmail.SendEmail(Properties.Settings.Default.ReceiverEmail, "Nje kerkese e re", body);
                 }
                 catch (Exception ex)
                 {

@@ -215,8 +215,7 @@ namespace TicketDesk.Web.Client.Controllers
 
         private async Task<bool> CreateTicketAsync(Ticket ticket, Guid tempId)
         {
-            ticket.CreatedDate = new DateTimeOffset();
-            //ticket.CreatedBy = User.Identity
+
             Context.Tickets.Add(ticket);
             await Context.SaveChangesAsync();
             ticket.CommitPendingAttachments(tempId);

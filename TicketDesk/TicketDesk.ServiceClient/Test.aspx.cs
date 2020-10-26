@@ -17,7 +17,7 @@ namespace TicketDesk.ServiceClient
                 "<br/>Emri kerkeses: " + "fffffffff" + "<br/>Priotiteti: " + "ggg" + "<br/>Ka difekt: " + kaDifekt +
                 "<br/>Detajet e kerkeses: " + "gdmbmxbmb";
 
-            EmailHelper.SendEmail("eduart.lushka@pragmatic.al", "Nje kerkese e re", body);
+            sendEmail.SendEmail("eduart.lushka@pragmatic.al", "Nje kerkese e re", body);
         }
     }
 }
