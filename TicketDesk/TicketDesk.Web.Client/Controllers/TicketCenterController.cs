@@ -24,6 +24,7 @@ using TicketDesk.Web.Client.Models;
 using TicketDesk.Web.Identity;
 using TicketDesk.Web.Identity.Model;
 using ClosedXML.Excel;
+using TicketDesk.Localization.Controllers;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -68,7 +69,7 @@ namespace TicketDesk.Web.Client.Controllers
             return View(viewModel);
         }
 
-        private List<IGrouping<string, Ticket>> getTicketForReport(string filters)
+        private List<IGrouping<string, Ticket>> GetTicketForReport(string filters)
         {
             List<IGrouping<string, Ticket>> tickets = new List<IGrouping<string, Ticket>>();
             if (filters != null)
@@ -78,7 +79,7 @@ namespace TicketDesk.Web.Client.Controllers
                 DateTime dateValue1;
                 DateTime dateValue2;
                 string[] param = filters.Split(';');
-               // string filter = param[0];
+                // string filter = param[0];
                 if (DateTime.TryParse(param[0], out dateValue1) && DateTime.TryParse(param[1],
                               out dateValue2))
                 {
@@ -87,7 +88,7 @@ namespace TicketDesk.Web.Client.Controllers
                     DateTimeOffset from = dt1;
                     DateTimeOffset to = dt2;
 
-                    tickets = Context.Tickets.ToList().Where(i=>i.CreatedDate > from && i.CreatedDate < to).GroupBy(i => i.AssignedTo).ToList();
+                    tickets = Context.Tickets.ToList().Where(i => i.CreatedDate > from && i.CreatedDate < to).GroupBy(i => i.AssignedTo).ToList();
                 }
                 else
                 {
@@ -103,7 +104,7 @@ namespace TicketDesk.Web.Client.Controllers
             return tickets;
         }
 
-        private List<IGrouping<string, Ticket>> getSummaryTicketForReport(string filters, string listName)
+        private List<IGrouping<string, Ticket>> GetSummaryTicketForReport(string filters, string listName)
         {
             List<IGrouping<string, Ticket>> tickets = new List<IGrouping<string, Ticket>>();
             if (filters != null)
@@ -139,12 +140,12 @@ namespace TicketDesk.Web.Client.Controllers
         }
         // GET: TicketCenter
         // [Route("{listName?}/{page:int?}")]
-        public ActionResult Summary(int? page, string listName="", string filters=null)//string from, string to)
+        public ActionResult Summary(int? page, string listName = "", string filters = null)//string from, string to)
         {
-            
-          
-            List<IGrouping<string, Ticket>> tickets = getSummaryTicketForReport(filters, listName);
-            
+
+
+            List<IGrouping<string, Ticket>> tickets = GetSummaryTicketForReport(filters, listName);
+
             List<SummaryTicket> model = new List<SummaryTicket>();
             foreach (var group in tickets)
             {
@@ -165,9 +166,11 @@ namespace TicketDesk.Web.Client.Controllers
 
                 return PartialView("SummaryTicketList", model);
             }
-                return View(model);
+            return View(model);
         }
-        private List<SummaryTechnical> getSummaryTechnicalModel(List<IGrouping<string, Ticket>> tickets)
+
+
+        private List<SummaryTechnical> GetSummaryTechnicalModel(List<IGrouping<string, Ticket>> tickets)
         {
             List<SummaryTechnical> model = new List<SummaryTechnical>();
             foreach (var group in tickets)
@@ -195,15 +198,16 @@ namespace TicketDesk.Web.Client.Controllers
             }
             return model;
         }
-        public ActionResult SummaryForTechnicals(string filters) { 
+        public ActionResult SummaryForTechnicals(string filters)
+        {
 
 
-            List<IGrouping<string, Ticket>> tickets = getTicketForReport(filters);
+            List<IGrouping<string, Ticket>> tickets = GetTicketForReport(filters);
 
 
 
-            List<SummaryTechnical> model = getSummaryTechnicalModel(tickets);
-           
+            List<SummaryTechnical> model = GetSummaryTechnicalModel(tickets);
+
             if (Request.IsAjaxRequest())
             {
 
@@ -211,6 +215,62 @@ namespace TicketDesk.Web.Client.Controllers
             }
             return View(model);
         }
+
+        /// <summary>
+        /// Raport for ArfaNet
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="listName"></param>
+        /// <param name="filters"></param>
+        /// <param name="client"></param>
+        /// <returns></returns>
+        public ActionResult SummaryForArfa(int? page, string listName = "", string from = null, string to = null, int client = 0)
+        {
+            var projects = Context.Projects.OrderBy(p => p.ProjectName).ToList();
+            projects.Insert(0, new Project { ProjectId = 0, ProjectName = Strings_sq.ModelProjects_DefaultOption, ProjectDescription = string.Empty });
+
+            SummeryForArfaViewModel model = new SummeryForArfaViewModel()
+            {
+                TicketList = GetTicketsForArfaRaport(from, to, client).OrderByDescending(t => t.CreatedDate).ToList(),
+                ProjectList = new SelectList(projects.ToSelectList(p => p.ProjectId.ToString(), p => p.ProjectName, false)
+                              .Where(x => x.Value != "").ToList(), "Value", "Text"),
+                From = from,
+                To = to,
+                Client = client
+            };
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Get all tickets for Arfa raport
+        /// </summary>
+        /// <param name="filters"></param>
+        /// <param name="client"></param>
+        /// <returns></returns>
+        private IList<Ticket> GetTicketsForArfaRaport(string from = "", string to = "", int client = 0)
+        {
+            IList<Ticket> tickets = Context.Tickets.ToList().ToList();
+
+            if (!string.IsNullOrWhiteSpace(from) && !string.IsNullOrWhiteSpace(to))
+            {
+                DateTime date;
+
+                if (DateTime.TryParse(from, out date) && DateTime.TryParse(to, out date))
+                {
+                    DateTimeOffset fromOffset = Convert.ToDateTime(from);
+                    DateTimeOffset toOffset = Convert.ToDateTime(to);
+                    tickets = tickets.Where(t => t.CreatedDate > fromOffset && t.CreatedDate < toOffset).ToList();
+                }
+            }
+            if (client > 0)
+            {
+                tickets = tickets.Where(t => t.ProjectId == client).ToList();
+            }
+            return tickets;
+        }
+
+
         private void Download(string fileName)
         {
             try
@@ -237,11 +297,11 @@ namespace TicketDesk.Web.Client.Controllers
         public ActionResult ExcelReportTechnical(string filters)
         {
 
-            List<IGrouping<string, Ticket>> tickets = getTicketForReport(filters);
+            List<IGrouping<string, Ticket>> tickets = GetTicketForReport(filters);
 
 
 
-            List<SummaryTechnical> model = getSummaryTechnicalModel(tickets);
+            List<SummaryTechnical> model = GetSummaryTechnicalModel(tickets);
 
             string fileName = $"{Guid.NewGuid().ToString()}.xlsx";
             string filePath = $"~/upload/{fileName}";
@@ -256,7 +316,7 @@ namespace TicketDesk.Web.Client.Controllers
                 positionOfCol++;
                 ws.Cell(index, positionOfCol).Value = item.LastWorkDate.ToString();
                 positionOfCol++;
-                ws.Cell(index, positionOfCol).Value = item.AssignedTo==null?"Asnje": item.AssignedTo;
+                ws.Cell(index, positionOfCol).Value = item.AssignedTo == null ? "Asnje" : item.AssignedTo;
                 positionOfCol++;
                 ws.Cell(index, positionOfCol).Value = item.LastOwner.ToString();
                 positionOfCol++;
@@ -328,7 +388,7 @@ namespace TicketDesk.Web.Client.Controllers
             var currentListSetting = userSetting.GetUserListSettingByName(listName);
 
             currentListSetting.ModifyFilterSettings(pageSize, ticketStatus, owner, assignedTo);
-            
+
             await Context.SaveChangesAsync();
 
             return await GetTicketListPartial(null, listName);
@@ -390,7 +450,7 @@ namespace TicketDesk.Web.Client.Controllers
             return PartialView("_TicketList", viewModel);
 
         }
+        
 
-       
     }
 }

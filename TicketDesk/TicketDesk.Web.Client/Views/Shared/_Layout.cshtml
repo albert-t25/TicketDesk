@@ -108,11 +108,15 @@
                         <li class="@Html.IsActiveRoute("SummaryForTechnicals", "TicketCenter")">
                             <a href="@Url.Action("SummaryForTechnicals", "TicketCenter", new {area = ""})"><i class="fa fa-ticket"></i> @_Layout_sq.SummaryForTechnicals</a>
                         </li>
-                        @*<li class="@Html.IsActiveRoute("su", "TicketCenter")">
-                            <a href="@Url.Action("SummaryForTechnicals", "TicketCenter", new {area = ""})"><i class="fa fa-ticket"></i> @_Layout_sq.SummaryForAfra</a>
-                        </li>*@
-
+                        
                     }
+                    @if (isAdmin)
+                    {
+                        <li class="@Html.IsActiveRoute("SummaryForArfa", "TicketCenter")">
+                            <a href="@Url.Action("SummaryForArfa", "TicketCenter", new {area = ""})"><i class="fa fa-ticket"></i> @_Layout_sq.SummaryForAfra</a>
+                        </li>
+                    }
+
                     <li class="@Html.IsActiveRoute("New", "Ticket")">
                         <a href="@Url.Action("New", "Ticket", new {area = ""})"><i class="fa fa-plus"></i> @_Layout_sq.NewTicket</a>
                     </li>
