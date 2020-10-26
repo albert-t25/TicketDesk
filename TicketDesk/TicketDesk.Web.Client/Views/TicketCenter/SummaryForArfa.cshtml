@@ -1,0 +1,170 @@
+﻿@using TicketDesk.Localization.Views.TicketCenter
+@using TicketDesk.Domain.Model;
+@using Microsoft.AspNet.Identity
+@using TicketDesk.Localization.Views.Shared
+@model  TicketDesk.Web.Client.Models.SummeryForArfaViewModel
+
+@section title{ @_Layout_sq.SummaryForAfra }
+
+<style>
+    .toshow {
+        display: none;
+    }
+</style>
+
+<main style="display: none;">
+
+    <span class="dz-message" style="position: relative"> Nga </span>
+    <input class="datefield" data-val="true" data-val-required="Date is required"
+           id="date1" name="ReleaseDate" type="date" value="1/11/1989" style="display: inline-block" />&nbsp; <span class="dz-message"> deri në </span>
+    <input class="datefield" data-val="true" data-val-required="Date is required"
+           id="date2" name="ReleaseDate" type="date" value="1/11/1989" />
+    &nbsp;
+
+    @Html.DropDownListFor(model => model.Client, Model.ProjectList , new { @id= "SelectedClientId" })
+    <button class="tn btn-primary btn-sm" onclick="filterResults()">Filtro</button>
+    <button class="tn btn-primary btn-sm" onclick="removeFilters()">Hiq Filtrat</button>
+
+    <br />
+
+    <div class="panel-body">
+        <div class="table-responsive">
+
+            <table class="table table-hover table-condensed" id="ReportList">
+                <thead>
+                    <tr>
+                        <th>
+                            Numri i kërkesës
+                        </th>
+                        <th>
+                            Titulli i kërkesës
+                        </th>
+                        <th>
+                            Data e krijimit
+                        </th>
+                        <th>
+                            Krijuar nga
+                        </th>
+                        <th>
+                            Statusi
+                        </th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody class="ticketItems">
+                    @if (Model.TicketList.Any())
+                    {
+                        foreach (var ticket in Model.TicketList)
+                        {
+                            <tr>
+                                <td>
+                                    @ticket.TicketId
+                                </td>
+                                <td>
+                                    @ticket.Title
+                                </td>
+                                <td>
+                                    @ticket.CreatedDate.ToString("dd'/'MM'/'yyyy") @ticket.CreatedDate.ToString("HH:mm")
+                                </td>
+                                <td>
+                                    @ticket.GetCreatedByInfo().DisplayName
+                                </td>
+                                <td>
+                                    @ticket.TicketStatus
+                                </td>
+                                <td>
+                                    <button id="@ticket.TicketId" onclick="buttonShowClicked(@ticket.TicketId)"> Shfaq aktivitetin</button>
+                                </td>
+                                <td>
+                                    <button id="@ticket.TicketId" onclick="buttonHideClicked(@ticket.TicketId)">  Fsheh aktivitetin</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <div class="toshow" id="@(ticket.TicketId + "value")" style="border-bottom-color: black;">
+                                        @foreach (var evt in ticket.TicketEvents.OrderByDescending(c => c.EventDate))
+                                        {
+                                            var userId = User.Identity.GetUserId();
+                                            var pnlType = (evt.EventBy == userId) ? "panel-success" : "panel-default";
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" style="padding: 5px;">
+                                                    <div><strong>@evt.GetEventByInfo().DisplayName</strong> @evt.EventDescription</div>
+
+                                                    <div class="text-muted small" style="text-indent: 1em;">
+                                                        @evt.EventDate.ToString("dd'/'MM'/'yyyy")
+                                                        @evt.EventDate.ToString("HH:mm")
+                                                    </div>
+                                                </div>
+                                                @{
+                                                    var cmt = evt.HtmlComment();
+                                                    if (!string.IsNullOrEmpty(cmt.ToString()))
+                                                    {
+                                                        <div class="panel-body" style="padding: 5px;">@cmt</div>
+                                                    }
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                      <tr>
+                          <td colspan="7" style="text-align:center"> No data</td>
+                      </tr>                                
+                     }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</main>
+
+@section scripts{
+    @Scripts.Render("~/bundles/ticketcenter")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            debugger;
+            document.getElementById('date1').value = "@Model.From";
+            document.getElementById('date2').value = "@Model.To";
+            $('main').show();
+            $.ajaxSetup({ cache: false });
+            $('.datefield').datepicker();
+        });
+
+        function filterResults() {
+            var from = document.getElementById('date1').value;
+            var to = document.getElementById('date2').value;
+            var client = $("#SelectedClientId option:selected").val();
+
+            window.location.href = '@Url.Action("SummaryForArfa", "TicketCenter")?from=' + from + '&to=' + to + '&client=' + client;
+        }
+
+        function buttonShowClicked(divId) {
+            $('.toshow').hide();
+            var divToShow = '#' + divId + 'value';
+            $(divToShow).show("slow", function () {
+                // Animation complete.
+            });
+        }
+
+        function buttonHideClicked(divId) {
+            var divToHide = '#' + divId + 'value';
+            $(divToHide).hide();
+        }
+
+        function removeFilters(){
+            window.location.href = '@Url.Action("SummaryForArfa", "TicketCenter")';
+        }
+
+
+    </script>
+}
+

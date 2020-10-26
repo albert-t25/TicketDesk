@@ -1,0 +1,59 @@
+﻿
+@using Microsoft.AspNet.Identity
+@using TicketDesk.Localization.Views.TicketCenter
+@using TicketDesk.Domain.Model;
+@using TicketDesk.Domain.Model
+
+@{
+    ViewBag.Title = "SummaryTicketList";
+}
+
+
+
+<div class="panel-body" >
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed" id="ReportList">
+            <thead>
+                <tr>
+                    <th>
+                        Numri i kerkeses
+                    </th>
+                    <th>
+                        Titulli i kerkeses
+                    </th>
+                    <th>
+                        Data e krijimit
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="ticketItems">
+
+                @foreach (var ticket in Model.TicketList)
+            {
+                    <tr>
+                        <td>
+                            @ticket.TicketId
+                        </td>
+                        <td>
+                            @ticket.Title
+                        </td>
+                        <td>
+                            @ticket.CreatedDate.ToString().Replace("+02:00", "")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            @*@Html.Action("TicketEvents", "Ticket", new { ticketId = ticket.TicketId })*@
+                            @*@Html.Partial("_TicketEvents", ticket.TicketEvents.AsEnumerable())*@
+                            @*@Html.Partial("SummeryForArfaList", Model)*@
+                        </td>
+                       
+                    </tr>
+                }
+            </tbody>
+
+
+        </table>
+    </div>
+
+</div>

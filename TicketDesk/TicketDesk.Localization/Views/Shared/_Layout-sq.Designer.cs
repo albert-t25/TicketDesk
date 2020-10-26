@@ -223,7 +223,7 @@ namespace TicketDesk.Localization.Views.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Raporti për Arfën.
+        ///   Looks up a localized string similar to Raporti për ArfaNet.
         /// </summary>
         public static string SummaryForAfra {
             get {
