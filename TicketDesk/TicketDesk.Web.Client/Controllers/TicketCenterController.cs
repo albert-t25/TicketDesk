@@ -228,9 +228,7 @@ namespace TicketDesk.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult SummaryForArfa(int? page, string listName = "", string from = null, string to = null, int client = 0)
         {
-            //added for testing purposes, will delete
-            SendMonthlyRaportToArfaNetClients();
-            SendMonthlyRaportToArfaNet();
+            
             var projects = Context.Projects.OrderBy(p => p.ProjectName).ToList();
             projects.Insert(0, new Project { ProjectId = 0, ProjectName = Strings_sq.ModelProjects_DefaultOption, ProjectDescription = string.Empty });
 
@@ -481,16 +479,17 @@ namespace TicketDesk.Web.Client.Controllers
             if (tickets.Any())
             {
                 //get ticket activity html
-                string body = "";
+                string body = "Raporti për muajin " + date.Month + "/" + date.Year + "<br/><br/>";
                 foreach (var t in tickets)
                 {
+                    body = body + "Aktiviteti për kërkesën: " + t.Title + "<br/>";
                     body = body + this.RenderViewToString(ControllerContext, "~/Views/Emails/Ticket.Html.cshtml", new TicketEmail()
                     {
                         Ticket = tickets.FirstOrDefault(),
                         SiteRootUrl = root,
                         IsMultiProject = false
                     });
-                    body = body + "<br/><br/><br/>";
+                    body = body + "<br/><br/><br/><hr>";
                 }
                 //send mail to Arfa
                 try
@@ -539,7 +538,7 @@ namespace TicketDesk.Web.Client.Controllers
                     {
                         //table head
                         Row r = table.AddHeaderRow();
-                        r.AddCell("Raport për: " + c.ProjectName + ". Periudha kohore: " + date.Month + "/" + date.Year);
+                        r.AddCell("Raport për: " + c.ProjectName + ".<br/> Periudha kohore: " + date.Month + "/" + date.Year);
                         r.Dispose();
 
                         table.StartTableBody();
