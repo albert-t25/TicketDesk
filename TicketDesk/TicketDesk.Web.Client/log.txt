@@ -209,3 +209,49 @@ System.Net.Sockets.SocketException (0x80004005): No connection could be made bec
 2020-09-14 15:08:26,159 [5] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
 
 
+
+2020-10-26 20:27:18,156 [45] INFO  TicketDesk.Web.Client.Controllers.TicketActivityController [(null)] - Sending email to arfa manager. Comment test
+
+
+
+2020-10-26 20:27:20,994 [45] ERROR TicketDesk.Web.Client.Controllers.TicketActivityController [(null)] - Could not send email to arfa manager!
+
+
+System.Net.Mail.SmtpException: Failure sending mail. ---> System.IO.IOException: Unable to read data from the transport connection: net_io_connectionclosed.
+   at System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   at System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String to, String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 27
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 10
+   at TicketDesk.Web.Client.Controllers.TicketActivityController.PrepareEmailAddComment(Ticket ticket, String comment) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Client\Controllers\TicketActivityController.cs:line 343
+
+2020-10-26 20:28:27,450 [40] INFO  TicketDesk.Web.Client.Controllers.TicketActivityController [(null)] - Sending email to arfa manager. Comment test test
+
+
+
+2020-10-26 20:39:47,344 [31] INFO  TicketDesk.Web.Client.Controllers.TicketActivityController [(null)] - Sending email to arfa manager. Comment koment
+
+
+
+2020-10-26 20:44:53,741 [31] ERROR TicketDesk.Web.Client.Controllers.TicketActivityController [(null)] - Could not send email to arfa manager!
+
+
+System.Net.Mail.SmtpException: Failure sending mail. ---> System.IO.IOException: Unable to read data from the transport connection: net_io_connectionclosed.
+   at System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   at System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String to, String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 27
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 10
+   at TicketDesk.Web.Client.Controllers.TicketActivityController.PrepareEmailAddComment(Ticket ticket, String comment) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Client\Controllers\TicketActivityController.cs:line 343

@@ -25,13 +25,15 @@ using TicketDesk.Web.Identity;
 using TicketDesk.Web.Identity.Model;
 using ClosedXML.Excel;
 using TicketDesk.Localization.Controllers;
+using System.Text;
+using TicketDesk.Web.Client.Infrastructure.Helpers;
 
 namespace TicketDesk.Web.Client.Controllers
 {
     [RoutePrefix("tickets")]
     [Route("{action=index}")]
     [TdAuthorize(Roles = "TdInternalUsers,TdHelpDeskUsers,TdAdministrators")]
-    public class TicketCenterController : Controller
+    public class TicketCenterController : BaseController
     {
         private TdDomainContext Context { get; set; }
         public TicketCenterController(TdDomainContext context)
@@ -226,6 +228,9 @@ namespace TicketDesk.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult SummaryForArfa(int? page, string listName = "", string from = null, string to = null, int client = 0)
         {
+            //added for testing purposes, will delete
+            SendMonthlyRaportToArfaNetClients();
+            SendMonthlyRaportToArfaNet();
             var projects = Context.Projects.OrderBy(p => p.ProjectName).ToList();
             projects.Insert(0, new Project { ProjectId = 0, ProjectName = Strings_sq.ModelProjects_DefaultOption, ProjectDescription = string.Empty });
 
@@ -250,7 +255,7 @@ namespace TicketDesk.Web.Client.Controllers
         /// <returns></returns>
         private IList<Ticket> GetTicketsForArfaRaport(string from = "", string to = "", int client = 0)
         {
-            IList<Ticket> tickets = Context.Tickets.ToList().ToList();
+            IList<Ticket> tickets = Context.Tickets.ToList();
 
             if (!string.IsNullOrWhiteSpace(from) && !string.IsNullOrWhiteSpace(to))
             {
@@ -310,7 +315,7 @@ namespace TicketDesk.Web.Client.Controllers
             IXLWorksheet ws = wb.Worksheets.Add("Raporti_per_teknikun_e_jashtem");
             int index = 2; ;
             int positionOfCol = 1;
-            foreach (SummaryTechnical item in model)
+            foreach (SummaryTechnical item in model.OrderBy(t => t.TicketsNumber))
             {
                 ws.Cell(index, positionOfCol).Value = item.TicketsNumber.ToString();
                 positionOfCol++;
@@ -362,6 +367,7 @@ namespace TicketDesk.Web.Client.Controllers
             j++;
             ws.Cell(1, j).Value = "Me mjetin e ArfaNet";
             ws.Cell(1, j).Style.Font.Bold = true;
+            ws.Columns("A", "Z").AdjustToContents();
             wb.SaveAs(Server.MapPath(filePath));
             Download(fileName);
             return null;
@@ -450,7 +456,143 @@ namespace TicketDesk.Web.Client.Controllers
             return PartialView("_TicketList", viewModel);
 
         }
-        
 
+        #region Monthly Raports
+        
+        /// <summary>
+        /// Sends an email to ArfaNet containing a report of the tickets that are created/modified this month
+        /// </summary>
+        private void SendMonthlyRaportToArfaNet()
+        {
+            var date = DateTime.Now;
+            //get all tickets that contain events for this month
+            var query = from q in Context.Tickets
+                        join e in Context.TicketEvents
+                        on q.TicketId equals e.TicketId
+                        where e.EventDate.Month == date.Month && e.EventDate.Year == date.Year
+                        select q;
+            var tickets = query.Distinct().ToList();
+
+            //remove ticket events that are not done this month
+            tickets.ForEach(t => t.TicketEvents = t.TicketEvents.Where(te => te.EventDate.Month == date.Month && te.EventDate.Year == date.Year).Select(te => te).ToList());
+            var root = Context.TicketDeskSettings.ClientSettings.GetDefaultSiteRootUrl();
+
+            //check if there is any activity this month
+            if (tickets.Any())
+            {
+                //get ticket activity html
+                string body = "";
+                foreach (var t in tickets)
+                {
+                    body = body + this.RenderViewToString(ControllerContext, "~/Views/Emails/Ticket.Html.cshtml", new TicketEmail()
+                    {
+                        Ticket = tickets.FirstOrDefault(),
+                        SiteRootUrl = root,
+                        IsMultiProject = false
+                    });
+                    body = body + "<br/><br/><br/>";
+                }
+                //send mail to Arfa
+                try
+                {
+                    EmailHelper.SendEmail("enrustani@gmail.com","Raporti për muajin " + date.Month + "/" + date.Year, body);
+                }
+
+                catch (Exception ex)
+                {
+                    //
+                }
+            }
+           
+        }
+
+        /// <summary>
+        /// Sends an email to ArfaNet Clients containing a report of the tickets that are created/modified this month
+        /// </summary>
+        private void SendMonthlyRaportToArfaNetClients()
+        {
+            var date = DateTime.Now;
+            //get all tickets that contain events for this month
+            var query = from q in Context.Tickets
+                        join e in Context.TicketEvents
+                        on q.TicketId equals e.TicketId
+                        where e.EventDate.Month == date.Month && e.EventDate.Year == date.Year && (e.EventDescription != "shtoji koment" && e.EventDescription != "ka marrë kërkesën"
+                        && !e.EventDescription.Contains("kaloi kërkesën tek"))
+                        select q;
+            var tickets = query.Distinct().ToList();
+
+            //remove ticket events that are not done this month or are not important for the Client
+            tickets.ForEach(t => t.TicketEvents = t.TicketEvents.Where(te => te.EventDate.Month == date.Month && te.EventDate.Year == date.Year && (te.EventDescription != "shtoji koment" && te.EventDescription != "ka marrë kërkesën"
+                        && !te.EventDescription.Contains("kaloi kërkesën tek"))).Select(te => te).ToList());
+            //get clients with tickets
+            var clients = Context.Projects.Where(c => c.Tickets.Any()).ToList();
+
+            foreach (var c in clients.Take(2))
+            {
+                var clientsTickets = tickets.Where(t => t.ProjectId == c.ProjectId).OrderBy(t => t.CreatedDate).ToList();
+                if (clientsTickets.Any())
+                {
+                    StringBuilder sb = new StringBuilder();
+
+                    //create raport table
+                    using (Table table = new Table(sb))
+                    {
+                        //table head
+                        Row r = table.AddHeaderRow();
+                        r.AddCell("Raport për: " + c.ProjectName + ". Periudha kohore: " + date.Month + "/" + date.Year);
+                        r.Dispose();
+
+                        table.StartTableBody();
+                        r = table.AddRow();
+                        r.AddCell("Numri i kërkesës");
+                        r.AddCell("Statusi i kërkesës");
+                        r.AddCell("Titulli i kërkesës");
+                        r.AddCell("Prioriteti i kërkesës");
+                        r.AddCell("Krijuar nga");
+                        r.AddCell("Krijuar më");
+                        r.AddCell("Përshkrimi i aktivitetit");
+                        r.AddCell("Data e aktivitetit");
+                        r.AddCell("Kryer nga");
+                        r.AddCell("Koment");
+                        r.Dispose();
+                        // create filled table
+                        foreach (var tc in clientsTickets.OrderBy(tct => tct.TicketId))
+                        {
+                            foreach (var ev in tc.TicketEvents)
+                            {
+                                r = table.AddRow();
+                                r.AddCell(tc.TicketId.ToString());
+                                r.AddCell(tc.TicketStatus.ToString());
+                                r.AddCell(tc.Title);
+                                r.AddCell(tc.Priority);
+                                r.AddCell(tc.GetCreatedByInfo().DisplayName);
+                                r.AddCell(tc.CreatedDate.ToString("dd/mm/yyyy"));
+                                r.AddCell(ev.EventDescription);
+                                r.AddCell(ev.EventDate.ToString("dd/mm/yyyy"));
+                                r.AddCell(ev.GetEventByInfo().DisplayName);
+                                r.AddCell(!string.IsNullOrWhiteSpace(ev.Comment)? HtmlHelperExtensions.HtmlToPlainText(ev.Comment).Trim() : "");
+                                r.Dispose();
+                            }
+                        }
+                        table.EndTableBody();
+                    }
+                    
+                    string finishedTable = sb.ToString();
+
+                    //send mail to Client
+                    try
+                    {
+                        EmailHelper.SendEmail("enrustani@gmail.com", "Raporti për muajin " + date.Month + "/" + date.Year, finishedTable);
+                    }
+
+                    catch (Exception ex)
+                    {
+                        //
+                    }
+                }
+            }
+        }
+
+        #endregion
     }
 }

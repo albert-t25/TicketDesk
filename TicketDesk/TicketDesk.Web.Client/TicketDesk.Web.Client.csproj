@@ -277,6 +277,7 @@
     <Compile Include="Infrastructure\Helpers\MimeTypeMap.cs" />
     <Compile Include="Infrastructure\Helpers\PromptForHelper.cs" />
     <Compile Include="Infrastructure\Helpers\SortableColumnHeaderHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\Table.cs" />
     <Compile Include="Infrastructure\Identity\FakeAuthenticationManager.cs" />
     <Compile Include="Infrastructure\Identity\TicketDeskContextSecurityProvider.cs" />
     <Compile Include="Infrastructure\Identity\TicketDeskSignInManager.cs" />

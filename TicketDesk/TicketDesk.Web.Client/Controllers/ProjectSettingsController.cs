@@ -25,7 +25,7 @@ namespace TicketDesk.Web.Client.Controllers
         [Route("projects")]
         public async Task<ActionResult> Index()
         {
-            var model = Context.Projects.Select(p => new ProjectListViewModelItem { Project = p, NumberOfTickets = p.Tickets.Count()});
+            var model = Context.Projects.Select(p => new ProjectListViewModelItem { Project = p, NumberOfTickets = p.Tickets.Count()}).OrderBy(p => p.Project.ProjectName);
             await model.LoadAsync();
             return View(model);
         }
