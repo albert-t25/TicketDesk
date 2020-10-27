@@ -130,7 +130,7 @@
     <value>Solicitante: {0}</value>
   </data>
   <data name="Priority" xml:space="preserve">
-    <value>Prioridade {0}</value>
+    <value>Prioridade: {0}</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Projeto: {0}</value>

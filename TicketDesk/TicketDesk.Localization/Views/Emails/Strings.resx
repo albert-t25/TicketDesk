@@ -130,7 +130,7 @@
     <value>Owner: {0}</value>
   </data>
   <data name="Priority" xml:space="preserve">
-    <value>{0} Priority</value>
+    <value>Priority {0}</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Project: {0}</value>

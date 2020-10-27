@@ -228,7 +228,8 @@ namespace TicketDesk.Web.Client.Controllers
         /// <returns></returns>
         public ActionResult SummaryForArfa(int? page, string listName = "", string from = null, string to = null, int client = 0)
         {
-            
+            //SendMonthlyRaportToArfaNetClients();
+            //SendMonthlyRaportToArfaNet();
             var projects = Context.Projects.OrderBy(p => p.ProjectName).ToList();
             projects.Insert(0, new Project { ProjectId = 0, ProjectName = Strings_sq.ModelProjects_DefaultOption, ProjectDescription = string.Empty });
 
@@ -478,18 +479,21 @@ namespace TicketDesk.Web.Client.Controllers
             //check if there is any activity this month
             if (tickets.Any())
             {
+                var index = 1;
                 //get ticket activity html
-                string body = "Raporti për muajin " + date.Month + "/" + date.Year + "<br/><br/>";
-                foreach (var t in tickets)
+                string body = "Raporti për muajin " + date.Month + "/" + date.Year + ". Kërkesat që janë krijuar ose modifikuar gjatë këtij muaji! <br/> <br/> <br/>";
+
+                foreach (var t in tickets.OrderByDescending(tc => tc.CreatedDate))
                 {
-                    body = body + "Aktiviteti për kërkesën: " + t.Title + "<br/>";
+                    body = body + "<strong> " + index + ". Kerkesa: " + t.Title + "</strong>";
                     body = body + this.RenderViewToString(ControllerContext, "~/Views/Emails/Ticket.Html.cshtml", new TicketEmail()
                     {
-                        Ticket = tickets.FirstOrDefault(),
+                        Ticket = t,
                         SiteRootUrl = root,
                         IsMultiProject = false
                     });
-                    body = body + "<br/><br/><br/><hr>";
+                    body = body + "<br/><hr><hr><br/>";
+                    index++;
                 }
                 //send mail to Arfa
                 try
@@ -525,8 +529,9 @@ namespace TicketDesk.Web.Client.Controllers
                         && !te.EventDescription.Contains("kaloi kërkesën tek"))).Select(te => te).ToList());
             //get clients with tickets
             var clients = Context.Projects.Where(c => c.Tickets.Any()).ToList();
+            var newLine = "<br/>";
 
-            foreach (var c in clients.Take(2))
+            foreach (var c in clients)
             {
                 var clientsTickets = tickets.Where(t => t.ProjectId == c.ProjectId).OrderBy(t => t.CreatedDate).ToList();
                 if (clientsTickets.Any())
@@ -538,11 +543,6 @@ namespace TicketDesk.Web.Client.Controllers
                     {
                         //table head
                         Row r = table.AddHeaderRow();
-                        r.AddCell("Raport për: " + c.ProjectName + ".<br/> Periudha kohore: " + date.Month + "/" + date.Year);
-                        r.Dispose();
-
-                        table.StartTableBody();
-                        r = table.AddRow();
                         r.AddCell("Numri i kërkesës");
                         r.AddCell("Statusi i kërkesës");
                         r.AddCell("Titulli i kërkesës");
@@ -554,6 +554,9 @@ namespace TicketDesk.Web.Client.Controllers
                         r.AddCell("Kryer nga");
                         r.AddCell("Koment");
                         r.Dispose();
+
+                        //table body
+                        table.StartTableBody();
                         // create filled table
                         foreach (var tc in clientsTickets.OrderBy(tct => tct.TicketId))
                         {
@@ -561,22 +564,23 @@ namespace TicketDesk.Web.Client.Controllers
                             {
                                 r = table.AddRow();
                                 r.AddCell(tc.TicketId.ToString());
-                                r.AddCell(tc.TicketStatus.ToString());
+                                r.AddCell(Status(tc.TicketStatus.ToString()));
                                 r.AddCell(tc.Title);
-                                r.AddCell(tc.Priority);
+                                r.AddCell(Priority(tc.Priority));
                                 r.AddCell(tc.GetCreatedByInfo().DisplayName);
-                                r.AddCell(tc.CreatedDate.ToString("dd/mm/yyyy"));
+                                r.AddCell(tc.CreatedDate.ToString("dd/mm/yyyy") + " " + tc.CreatedDate.ToString("HH:mm"));
                                 r.AddCell(ev.EventDescription);
-                                r.AddCell(ev.EventDate.ToString("dd/mm/yyyy"));
+                                r.AddCell(ev.EventDate.ToString("dd/mm/yyyy") + " " + ev.EventDate.ToString("HH:mm"));
                                 r.AddCell(ev.GetEventByInfo().DisplayName);
-                                r.AddCell(!string.IsNullOrWhiteSpace(ev.Comment)? HtmlHelperExtensions.HtmlToPlainText(ev.Comment).Trim() : "");
+                                r.AddCell(!string.IsNullOrWhiteSpace(ev.Comment)? /*HtmlHelperExtensions.HtmlToPlainText(ev.Comment).Trim()*/ev.Comment : "");
                                 r.Dispose();
                             }
                         }
                         table.EndTableBody();
                     }
-                    
-                    string finishedTable = sb.ToString();
+
+                    string finishedTable = "<h3> <strong>Raport për: " + c.ProjectName + newLine + "</h3> </strong> "
+                           + "<h3> <strong> Periudha kohore: " + date.Month + " / " + date.Year + newLine + "</h3> </strong> <hr>"+ newLine + sb.ToString();
 
                     //send mail to Client
                     try
@@ -589,6 +593,47 @@ namespace TicketDesk.Web.Client.Controllers
                         //
                     }
                 }
+            }
+        }
+
+        private string Priority(string priority= "")
+        {
+            switch (priority)
+            {
+                case "High":
+                    return "I lartë";
+
+                case "Medium":
+                    return "I mesëm";
+
+                case "Low":
+                    return "I ulët";
+
+                default:
+                    return "";
+
+            }
+        }
+
+        private string Status(string status = "")
+        {
+            switch (status)
+            {
+                case "Active":
+                    return "Aktive";
+
+                case "MoreInfo":
+                    return "Më shumë info";
+
+                case "Resolved":
+                    return "E zgjidhur";
+
+                case "Closed":
+                    return "E mbyllur";
+
+                default:
+                    return "";
+
             }
         }
 

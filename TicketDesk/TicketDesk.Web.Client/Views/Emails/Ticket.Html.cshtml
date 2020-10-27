@@ -27,7 +27,7 @@
     <style type="text/css">
         * {
             font-family: Calibri, Tahoma, Verdana, Helvetica, Sans-Serif;
-            font-size: 10pt;
+            /*//font-size: 10pt;*/
         }
 
         p {
@@ -101,7 +101,7 @@
             }
             <tr>
                 <td>
-                    @(string.IsNullOrEmpty(Model.Ticket.Priority) ? string.Empty : string.Format(Strings_sq.Priority + ": {0}", Model.Ticket.Priority))
+                    @(string.IsNullOrEmpty(Model.Ticket.Priority) ? string.Empty : string.Format(Strings_sq.Priority , Model.Ticket.Priority))
                     <br />
                     @(string.IsNullOrEmpty(Model.Ticket.Category) ? string.Empty : string.Format("Kategoria: {0}", Model.Ticket.Category))
                     <br/>
@@ -163,8 +163,8 @@
                         </tr>
                         <tr>
                             <td style="text-indent: 1em; font-size: smaller">
-                                @evt.EventDate.Date.ToLongDateString()
-                                @evt.EventDate.Date.ToShortTimeString()
+                                @evt.EventDate.ToString("dd'/'MM'/'yyyy")
+                                @evt.EventDate.ToString("HH:mm")
                             </td>
                         </tr>
                     </table>

@@ -16,7 +16,7 @@ namespace TicketDesk.Web.Client.Infrastructure.Helpers
         public Table(StringBuilder sb, string id = "default", string classValue = "")
         {
             _sb = sb;
-            _sb.Append($"<table id=\"{id}\" class=\"{classValue}\">\n");
+            _sb.Append($"<table id=\"{id}\" style=\"border-collapse: collapse;width: 100%;\">\n");
         }
 
         public void Dispose()
@@ -57,15 +57,15 @@ namespace TicketDesk.Web.Client.Infrastructure.Helpers
             _isHeader = isHeader;
             if (_isHeader)
             {
-                _sb.Append("<thead>\n");
+                _sb.Append("<thead style=\"padding: 8px;text-align: left;border-bottom: 1px solid #ddd; font-weight: bold;\">\n");
             }
             _sb.Append("\t<tr>\n");
         }
 
         public void Dispose()
         {
-            _sb.Append("\t</tr>\n");
-            if (_isHeader)
+            _sb.Append("\t</tr style=\"border: 1px solid black;\">\n");
+            if (_isHeader) 
             {
                 _sb.Append("</thead>\n");
             }
@@ -73,7 +73,7 @@ namespace TicketDesk.Web.Client.Infrastructure.Helpers
 
         public void AddCell(string innerText)
         {
-            _sb.Append("\t\t<td>\n");
+            _sb.Append("\t\t<td style=\"padding: 8px;text-align: left;border-bottom: 1px solid #ddd;\">\n");
             _sb.Append("\t\t\t" + innerText);
             _sb.Append("\t\t</td>\n");
         }

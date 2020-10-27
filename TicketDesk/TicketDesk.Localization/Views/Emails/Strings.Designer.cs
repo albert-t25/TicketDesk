@@ -97,7 +97,7 @@ namespace TicketDesk.Localization.Views.Emails {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Priority.
+        ///   Looks up a localized string similar to Priority {0}.
         /// </summary>
         public static string Priority {
             get {

@@ -130,7 +130,7 @@
     <value>Zotërues: {0}</value>
   </data>
   <data name="Priority" xml:space="preserve">
-    <value>Prioriteti i {0}</value>
+    <value>Prioriteti: {0}</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Klienti: {0}</value>
