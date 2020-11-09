@@ -45,6 +45,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                @Html.LabelFor(m => m.User.PhoneNumber, new { @class = "col-sm-3 control-label" })
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(m => m.User.PhoneNumber, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 @Html.LabelFor(model => model.IsLocked, new { @class = "col-sm-3 control-label" })
                                 <div class="col-sm-9">
                                     <label class="checkbox-inline">

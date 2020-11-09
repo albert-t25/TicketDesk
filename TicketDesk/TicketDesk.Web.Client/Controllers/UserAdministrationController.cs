@@ -146,6 +146,7 @@ namespace TicketDesk.Web.Client.Controllers
             user.UserName = model.User.Email;
             user.Email = model.User.Email;
             user.DisplayName = model.User.DisplayName;
+            user.PhoneNumber = model.User.PhoneNumber;
             var result = await UserManager.UpdateAsync(user);
             if (!result.Succeeded)
             {
