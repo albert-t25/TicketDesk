@@ -53,7 +53,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketDesk.ServiceClient", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketDesk.ReceiveEmail", "TicketDesk.ReceiveEmail\TicketDesk.ReceiveEmail.csproj", "{099AD31F-920B-46B2-8806-ADC44983920D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaportConsole", "RaportConsole\RaportConsole.csproj", "{34DD93AA-1D68-42FD-974C-18033F0828F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportConsole", "RaportConsole\ReportConsole.csproj", "{34DD93AA-1D68-42FD-974C-18033F0828F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
