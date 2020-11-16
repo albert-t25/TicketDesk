@@ -642,7 +642,7 @@ namespace TicketDesk.Web.Client.Controllers
 
                     catch (Exception ex)
                     {
-                        //
+                        ///
                     }
                 }
             }
