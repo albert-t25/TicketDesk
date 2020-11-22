@@ -219,7 +219,7 @@ namespace TicketDesk.Web.Client.Controllers
         }
 
         /// <summary>
-        /// Raport for ArfaNet
+        /// Report for ArfaNet
         /// </summary>
         /// <param name="page"></param>
         /// <param name="listName"></param>
@@ -233,7 +233,7 @@ namespace TicketDesk.Web.Client.Controllers
 
             SummeryForArfaViewModel model = new SummeryForArfaViewModel()
             {
-                TicketList = GetTicketsForArfaRaport(from, to, client).OrderByDescending(t => t.CreatedDate).ToList(),
+                TicketList = GetTicketsForArfaReport(from, to, client).OrderByDescending(t => t.CreatedDate).ToList(),
                 ProjectList = new SelectList(projects.ToSelectList(p => p.ProjectId.ToString(), p => p.ProjectName, false)
                               .Where(x => x.Value != "").ToList(), "Value", "Text"),
                 From = from,
@@ -245,12 +245,12 @@ namespace TicketDesk.Web.Client.Controllers
         }
 
         /// <summary>
-        /// Get all tickets for Arfa raport
+        /// Get all tickets for Arfa report
         /// </summary>
         /// <param name="filters"></param>
         /// <param name="client"></param>
         /// <returns></returns>
-        private IList<Ticket> GetTicketsForArfaRaport(string from = "", string to = "", int client = 0)
+        private IList<Ticket> GetTicketsForArfaReport(string from = "", string to = "", int client = 0)
         {
             IList<Ticket> tickets = Context.Tickets.ToList();
 
