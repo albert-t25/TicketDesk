@@ -27,6 +27,7 @@ using ClosedXML.Excel;
 using TicketDesk.Localization.Controllers;
 using System.Text;
 using TicketDesk.Web.Client.Infrastructure.Helpers;
+using log4net;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -35,6 +36,7 @@ namespace TicketDesk.Web.Client.Controllers
     [TdAuthorize(Roles = "TdInternalUsers,TdHelpDeskUsers,TdAdministrators")]
     public class TicketCenterController : BaseController
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(TicketCenterController));
         private TdDomainContext Context { get; set; }
         public TicketCenterController(TdDomainContext context)
         {
@@ -478,7 +480,6 @@ namespace TicketDesk.Web.Client.Controllers
                         .Select(te => te).ToList();
                 //store in the Ticket Owner property the value of the Created by property since we do not need the Owner value
                 t.Owner = users.Any(u => u.UserId == t.CreatedBy) ? users.FirstOrDefault(u => u.UserId == t.CreatedBy).DisplayName : "I panjohur";
-                //t.TicketEvents.ForEach(te => te.EventBy = users.Any(us => us.UserId == te.EventBy) ? users.FirstOrDefault(us => us.UserId == te.EventBy).DisplayName : "I panjohur");
             });
             
             var newLine = "<br/>";
@@ -506,9 +507,9 @@ namespace TicketDesk.Web.Client.Controllers
                     table.StartTableBody();
                     row = table.AddRow();
                     row.AddCell(t.TicketId.ToString());
-                    row.AddCell(Status(t.TicketStatus.ToString()));
+                    row.AddCell(TranslateHelper.Status(t.TicketStatus.ToString()));
                     row.AddCell(t.Title);
-                    row.AddCell(Priority(t.Priority));
+                    row.AddCell(TranslateHelper.Priority(t.Priority));
                     row.AddCell(t.Owner);
                     row.AddCell(t.CreatedDate.ToString("dd/mm/yyyy") + " " + t.CreatedDate.ToString("HH:mm"));
                     row.Dispose();
@@ -531,15 +532,17 @@ namespace TicketDesk.Web.Client.Controllers
                     body = body + newLine + sb.ToString() + "<br/><hr><hr><br/>";
                     index++;
                 }
+
+                Log.Info($"Sending email to Arfa Net");
                 //send mail to Arfa
                 try
                 {
-                    EmailHelper.SendEmail("enrustani@gmail.com","Raporti për muajin " + date.Month + "/" + date.Year, body);
+                    EmailHelper.SendEmail("Raporti për muajin " + date.Month + "/" + date.Year, body);
                 }
 
                 catch (Exception ex)
                 {
-                    //
+                    Log.Error("Could not send email to Arfa Net!", ex);
                 }
             }
            
@@ -555,8 +558,10 @@ namespace TicketDesk.Web.Client.Controllers
             var query = from q in Context.Tickets
                         join e in Context.TicketEvents
                         on q.TicketId equals e.TicketId
-                        where e.EventDate.Month == date.Month && e.EventDate.Year == date.Year && (e.EventDescription != "shtoji koment" && e.EventDescription != "ka marrë kërkesën"
-                        && !e.EventDescription.Contains("kaloi kërkesën tek"))
+                        where e.EventDate.Month == date.Month && e.EventDate.Year == date.Year && 
+                              (!e.EventDescription.Contains("shtoji koment") 
+                               && !e.EventDescription.Contains("ka marrë kërkesën")
+                               && !e.EventDescription.Contains("kaloi kërkesën tek"))
                         select q;
             var tickets = query.Distinct().ToList();
 
@@ -565,15 +570,14 @@ namespace TicketDesk.Web.Client.Controllers
             {
                 t.TicketEvents = t.TicketEvents.Where(te => te.EventDate.Month == date.Month &&
                                                             te.EventDate.Year == date.Year &&
-                                                            (te.EventDescription != "shtoji koment" &&
-                                                             te.EventDescription != "ka marrë kërkesën"
-                                                             && !te.EventDescription.Contains("kaloi kërkesën tek")))
+                                                            (!te.EventDescription.Contains("shtoji koment") && 
+                                                             !te.EventDescription.Contains("ka marrë kërkesën") && 
+                                                             !te.EventDescription.Contains("kaloi kërkesën tek")))
                     .Select(te => te).ToList();
                 //store in the Ticket Owner property the value of the Created by property since we do not need the Owner value
                 t.Owner = users.Any(u => u.UserId == t.CreatedBy)
                     ? users.FirstOrDefault(u => u.UserId == t.CreatedBy).DisplayName
                     : "I panjohur";
-                //t.TicketEvents.ForEach(te =>te.EventBy = users.Any(u => u.UserId == te.EventBy) ? users.FirstOrDefault(u=> u.UserId == te.EventBy).DisplayName : "I panjohur");
             });
 
             //get clients with tickets
@@ -585,6 +589,8 @@ namespace TicketDesk.Web.Client.Controllers
                 var clientsTickets = tickets.Where(t => t.ProjectId == c.ProjectId).OrderBy(t => t.CreatedDate).ToList();
                 if (clientsTickets.Any())
                 {
+                    Log.Info($"Sending email to client: {c.ProjectName}"); 
+
                     StringBuilder sb = new StringBuilder();
 
                     //create raport table
@@ -613,9 +619,9 @@ namespace TicketDesk.Web.Client.Controllers
                             {
                                 r = table.AddRow();
                                 r.AddCell(tc.TicketId.ToString());
-                                r.AddCell(Status(tc.TicketStatus.ToString()));
+                                r.AddCell(TranslateHelper.Status(tc.TicketStatus.ToString()));
                                 r.AddCell(tc.Title);
-                                r.AddCell(Priority(tc.Priority));
+                                r.AddCell(TranslateHelper.Priority(tc.Priority));
                                 r.AddCell(tc.Owner);
                                 r.AddCell(tc.CreatedDate.ToString("dd/mm/yyyy") + " " + tc.CreatedDate.ToString("HH:mm"));
                                 r.AddCell(ev.EventDescription);
@@ -637,58 +643,17 @@ namespace TicketDesk.Web.Client.Controllers
                     //send mail to Client
                     try
                     {
-                        EmailHelper.SendEmail("enrustani@gmail.com", "Raporti për muajin " + date.Month + "/" + date.Year, finishedTable);
+                        EmailHelper.SendEmail(c.Email, "Raporti për muajin " + date.Month + "/" + date.Year, finishedTable);
                     }
 
                     catch (Exception ex)
                     {
-                        ///
+                        Log.Error("Could not send email to technical!", ex);
                     }
                 }
             }
         }
-
-        private string Priority(string priority= "")
-        {
-            switch (priority)
-            {
-                case "High":
-                    return "I lartë";
-
-                case "Medium":
-                    return "I mesëm";
-
-                case "Low":
-                    return "I ulët";
-
-                default:
-                    return "";
-
-            }
-        }
-
-        private string Status(string status = "")
-        {
-            switch (status)
-            {
-                case "Active":
-                    return "Aktive";
-
-                case "MoreInfo":
-                    return "Më shumë info";
-
-                case "Resolved":
-                    return "E zgjidhur";
-
-                case "Closed":
-                    return "E mbyllur";
-
-                default:
-                    return "";
-
-            }
-        }
-
+        
         #endregion
     }
 }

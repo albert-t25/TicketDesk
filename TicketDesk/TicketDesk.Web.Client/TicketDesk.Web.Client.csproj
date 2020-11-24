@@ -274,6 +274,7 @@
     <Compile Include="Infrastructure\Filters\TdAuthorizeAttribute.cs" />
     <Compile Include="Infrastructure\Helpers\DescriptionForHelper.cs" />
     <Compile Include="Infrastructure\Helpers\DisplayForHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\EmailActivities.cs" />
     <Compile Include="Infrastructure\Helpers\JsonCamelCaseResult.cs" />
     <Compile Include="Infrastructure\Helpers\MimeTypeMap.cs" />
     <Compile Include="Infrastructure\Helpers\PromptForHelper.cs" />

@@ -133,7 +133,7 @@
     <value>{0}: nga "{1}" te "{2}"</value>
   </data>
   <data name="Changes_From_In" xml:space="preserve">
-      <value>{0}: nga "{1}" në "{2}"</value>
+    <value>{0}: nga "{1}" në "{2}"</value>
   </data>
   <data name="Changes_Title" xml:space="preserve">
     <value>Ndryshime:</value>
@@ -214,7 +214,7 @@
     <value>kaloi kërkesën tek {0}</value>
   </data>
   <data name="TicketActivityPriority" xml:space="preserve">
-    <value>në prioritetin e {0}</value>
+    <value>në prioritetin: {0}</value>
   </data>
   <data name="TicketActivityReactivate" xml:space="preserve">
     <value>dhe riaktivizoi kërkesën.</value>

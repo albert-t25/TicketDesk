@@ -13,6 +13,7 @@
 
 using DocumentFormat.OpenXml.Wordprocessing;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
 using System.Globalization;
@@ -32,6 +33,7 @@ using TicketDesk.Web.Identity.Properties;
 using System.Net;
 using System.Net.Mail;
 using log4net;
+using TicketDesk.Web.Client.Infrastructure.Helpers;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -41,7 +43,7 @@ namespace TicketDesk.Web.Client.Controllers
     [ValidateInput(false)]
     public class TicketActivityController : BaseController
     {
-        private static readonly ILog log = LogManager.GetLogger(typeof(TicketActivityController));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(TicketActivityController));
 
         private TdDomainContext Context { get; set; }
         public TicketActivityController(TdDomainContext context)
@@ -290,22 +292,12 @@ namespace TicketDesk.Web.Client.Controllers
                 try
                 {
                     ticket.PerformAction(activityFn);
-
-                    if (ticket.TicketStatus.ToString().ToLower() == "Resolved".ToLower())
-                    {
-                        //ER: add logic to send email to client when a ticket is resolved
-                        PrepareEmailForResolved(ticket, comment);
-                    }
-
-                    if (activity.ToString().ToLower() == "AddComment".ToLower())
-                    {
-                        //send email if when a new comment is added
-                        PrepareEmailAddComment(ticket, comment);
-                    }
+                    //send email
+                    SendEmail(ticket:ticket, activity:activity, comment:comment);
                 }
                 catch (SecurityException ex)
                 {
-                    log.Error("Could not perform ticket activity!", ex);
+                    Log.Error("Could not perform ticket activity!", ex);
                     ModelState.AddModelError("Security", ex);
                 }
                 var result = await Context.SaveChangesAsync(); //save changes catches lastupdatedby and date automatically
@@ -322,6 +314,54 @@ namespace TicketDesk.Web.Client.Controllers
         }
 
         /// <summary>
+        /// Send email based in the activity
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="activity"></param>
+        /// <param name="comment"></param>
+        private void SendEmail(Ticket ticket, TicketActivity activity, string comment)
+        {
+            if (activity.ToString().ToLower() == "Resolved".ToLower())
+            {
+                //ER: add logic to send email to client when a ticket is resolved
+                PrepareEmailForResolved(ticket, comment);
+            }
+
+            if (activity.ToString().ToLower() == "AddComment".ToLower())
+            {
+                //send email if when a new comment is added
+                PrepareEmailAddComment(ticket, comment);
+            }
+
+            var activities = Enum.GetNames(typeof(EmailActivities)).ToList();
+            if (activities.Contains(activity.ToString()) && ticket.IsAssigned)
+            {
+                Log.Info($"Sending email to technical. Comment {comment}");
+
+                //send email to the person that the ticket is assigned
+                UserDisplayInfo userInfo = ticket.GetAssignedToInfo();
+
+                var root = Context.TicketDeskSettings.ClientSettings.GetDefaultSiteRootUrl();
+                //ticket.Priority = TranslateHelper.Priority(ticket.Priority);
+                string body = this.RenderViewToString(ControllerContext, "~/Views/Emails/Ticket.Html.cshtml", new TicketEmail()
+                {
+                    Ticket = ticket,
+                    SiteRootUrl = root,
+                    IsMultiProject = false
+                });
+                //send email
+                try
+                {
+                    EmailHelper.SendEmail(userInfo.Email, "Një detyrë e re për ju.", body);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("Could not send email to technical!", ex);
+                }
+            }
+        }
+
+        /// <summary>
         /// Sends mail to Arfa Net when a new comment is added to an existing ticket. 
         /// </summary>
         /// <param name="ticket"></param>
@@ -330,7 +370,8 @@ namespace TicketDesk.Web.Client.Controllers
         {
             if (!String.IsNullOrWhiteSpace(comment))
             {
-                log.Info($"Sending email to arfa manager. Comment {comment}");
+                Log.Info($"Sending email to arfa manager. Comment {comment}");
+
                 var user = ticket.GetLastUpdatedByInfo();
                 string body = "Përshëndetje,"
                        + "<br/>Një koment është shtuar në kërkesen:  \"<b>" + ticket.Title + "</b>\""
@@ -345,7 +386,7 @@ namespace TicketDesk.Web.Client.Controllers
 
                 catch (Exception ex)
                 {
-                    log.Error("Could not send email to arfa manager!", ex);
+                    Log.Error("Could not send email to arfa manager!", ex);
                 }
             }
 
@@ -360,7 +401,8 @@ namespace TicketDesk.Web.Client.Controllers
         {
             if (!String.IsNullOrWhiteSpace(ticket.Project.Email))
             {
-                log.Info($"Sending email to client {ticket.Project.Email}");
+                Log.Info($"Sending email to client {ticket.Project.Email}");
+
                 var assignedToInfo = ticket.GetAssignedToInfo();
                 var support = ticket.OnlineSupport ? "Online" : "Hardware Support";
                 var body = "I nderuar Klient."
@@ -379,7 +421,7 @@ namespace TicketDesk.Web.Client.Controllers
 
                 catch (Exception ex)
                 {
-                    log.Error($"Could not send email to client {ticket.Project.Email}", ex);
+                    Log.Error($"Could not send email to client {ticket.Project.Email}", ex);
                 }
             }
 

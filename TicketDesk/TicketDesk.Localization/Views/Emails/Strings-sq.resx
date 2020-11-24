@@ -121,7 +121,7 @@
     <value>Aktiviteti</value>
   </data>
   <data name="AssignedTo" xml:space="preserve">
-    <value>Caktuar për {0}</value>
+    <value>Caktuar për: {0}</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>Detajet</value>

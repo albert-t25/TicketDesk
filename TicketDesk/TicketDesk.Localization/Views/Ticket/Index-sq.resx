@@ -133,7 +133,7 @@
     <value>&lt;b&gt;Zotëruar nga:&lt;/b&gt; {0}</value>
   </data>
   <data name="Priority" xml:space="preserve">
-    <value>{0} Prioriteti</value>
+    <value>Prioriteti</value>
   </data>
   <data name="Subscribers" xml:space="preserve">
     <value>Subscribers</value>

@@ -43,7 +43,7 @@ namespace TicketDesk.Domain.Localization
             }
             if (!string.IsNullOrEmpty(newPriority))
             {
-                val += string.Format(pval, newPriority);
+                val += " " + string.Format(pval, newPriority);
             }
             return val;
         }

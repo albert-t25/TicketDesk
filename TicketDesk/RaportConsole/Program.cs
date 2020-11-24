@@ -19,8 +19,6 @@ namespace ReportConsole
 
             TdDomainContext context = new TdDomainContext();
             TicketCenterController ticketCenterController = new TicketCenterController(context);
-            //send monthly reports
-            //ticketCenterController.SendMonthlyReports(users);
 
             //send monthly report to ArfaNet
             ticketCenterController.SendMonthlyReportToArfaNet(users);
@@ -28,6 +26,10 @@ namespace ReportConsole
             ticketCenterController.SendMonthlyReportToArfaNetClients(users);
         }
 
+        /// <summary>
+        /// Get users in console application directly from database since we can not access users without initializing the start page
+        /// </summary>
+        /// <returns>Users list</returns>
         public static List<ReportConsoleUserModel> GetUsers()
         {
             List<ReportConsoleUserModel> userModels = new List<ReportConsoleUserModel>();
@@ -45,7 +47,7 @@ namespace ReportConsole
                     // while there is another record present
                     while (reader.Read())
                     {
-                        // write the data on to the screen
+                        //Added this for testing purposes / write the data on to the screen
                         Console.WriteLine(String.Format("{0} \t | {1} ",
                             // call the objects from their index
                             reader[0], reader[1]));

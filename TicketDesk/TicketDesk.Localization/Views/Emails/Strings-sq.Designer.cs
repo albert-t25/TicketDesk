@@ -70,7 +70,7 @@ namespace TicketDesk.Localization.Views.Emails {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Caktuar për {0}.
+        ///   Looks up a localized string similar to Caktuar për: {0}.
         /// </summary>
         public static string AssignedTo {
             get {

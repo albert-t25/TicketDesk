@@ -71,6 +71,7 @@
     <Compile Include="Model\SmsHelper.cs" />
     <Compile Include="Model\TicketDeskRole.cs" />
     <Compile Include="Model\TicketDeskUser.cs" />
+    <Compile Include="Model\TranslateHelper.cs" />
     <Compile Include="Model\UserDisplayInfoCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

@@ -11,6 +11,7 @@
 // attribution must remain intact, and a copy of the license must be 
 // provided to the recipient.
 
+using log4net;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
@@ -35,6 +36,7 @@ namespace TicketDesk.Web.Client.Controllers
     [TdAuthorize(Roles = "TdInternalUsers,TdHelpDeskUsers,TdAdministrators")]
     public class TicketController : BaseController
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(TicketController));
         private TdDomainContext Context { get; set; }
         public TicketController(TdDomainContext context)
         {
@@ -106,9 +108,6 @@ namespace TicketDesk.Web.Client.Controllers
                             //send email to the person that the ticket is assigned
                             UserDisplayInfo userInfo = ticket.GetAssignedToInfo();
                             var root = Context.TicketDeskSettings.ClientSettings.GetDefaultSiteRootUrl();
-
-                            var project = Context.Projects.Find(ticket.ProjectId);
-
                             string body = this.RenderViewToString(ControllerContext, "~/Views/Emails/Ticket.Html.cshtml", new TicketEmail()
                             {
                                 Ticket = ticket,
@@ -120,9 +119,9 @@ namespace TicketDesk.Web.Client.Controllers
                             {
                                 EmailHelper.SendEmail(userInfo.Email, "Një detyrë e re për ju.", body);
                             }
-                            catch (Exception e)
+                            catch (Exception ex)
                             {
-                                //
+                                Log.Error("Could not send email to technical!", ex);
                             }
 
                             //send sms to the person that the ticket is assigned

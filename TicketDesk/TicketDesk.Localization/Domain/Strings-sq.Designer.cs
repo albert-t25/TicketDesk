@@ -538,7 +538,7 @@ namespace TicketDesk.Localization.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to në prioritetin e {0}.
+        ///   Looks up a localized string similar to në prioritetin: {0}.
         /// </summary>
         public static string TicketActivityPriority {
             get {
