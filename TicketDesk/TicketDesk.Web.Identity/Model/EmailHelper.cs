@@ -11,21 +11,26 @@ namespace TicketDesk.Web.Identity.Model
         }
         public static void SendEmail(string to, string subject, string body)
         {
-            SmtpClient client = new SmtpClient(Settings.Default.Host);
-            client.Port = Settings.Default.Port;
-            client.EnableSsl = Settings.Default.EnableSSL;
-            client.Credentials = new NetworkCredential(Settings.Default.UserName, Settings.Default.Password);
+            SmtpClient client = new SmtpClient(Settings.Default.Host)
+            {
+                Port = Settings.Default.Port,
+                EnableSsl = Settings.Default.EnableSSL,
+                Credentials = new NetworkCredential(Settings.Default.UserName, Settings.Default.Password)
+            };
 
-            MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress(Settings.Default.From);
+            MailMessage mailMessage = new MailMessage()
+            {
+                From = new MailAddress(Settings.Default.From),
+                Subject = subject,
+                IsBodyHtml = true,
+                Body = body
+            };
             //mailMessage.To.Add("enxhela.rustani@pragmatic.al");
-            mailMessage.To.Add(to);
-            mailMessage.Subject = subject;
-            mailMessage.IsBodyHtml = true;
-            mailMessage.Body = body;
+            mailMessage.To.Add("enrustani@gmail.com");
+            //mailMessage.To.Add(to);
 
             client.Send(mailMessage);
         }
-        
+
     }
 }
