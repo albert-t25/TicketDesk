@@ -533,7 +533,7 @@ namespace TicketDesk.Web.Client.Controllers
                     index++;
                 }
 
-                Log.Info($"Sending email to Arfa Net");
+                Log.Info($"Sending email to ArfaNet");
                 //send mail to Arfa
                 try
                 {
@@ -542,7 +542,7 @@ namespace TicketDesk.Web.Client.Controllers
 
                 catch (Exception ex)
                 {
-                    Log.Error("Could not send email to Arfa Net!", ex);
+                    Log.Error("Could not send email to ArfaNet!", ex);
                 }
             }
            

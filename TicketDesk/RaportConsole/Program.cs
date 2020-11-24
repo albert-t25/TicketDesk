@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicketDesk.Domain;
 using TicketDesk.Web.Client.Controllers;
 using TicketDesk.Web.Client.Models;
@@ -12,7 +9,7 @@ namespace ReportConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             //get all users
             var users = GetUsers();
@@ -22,7 +19,7 @@ namespace ReportConsole
 
             //send monthly report to ArfaNet
             ticketCenterController.SendMonthlyReportToArfaNet(users);
-            //send monthly report to Arfa Net clients
+            //send monthly report to ArfaNet clients
             ticketCenterController.SendMonthlyReportToArfaNetClients(users);
         }
 

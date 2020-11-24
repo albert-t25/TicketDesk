@@ -362,7 +362,7 @@ namespace TicketDesk.Web.Client.Controllers
         }
 
         /// <summary>
-        /// Sends mail to Arfa Net when a new comment is added to an existing ticket. 
+        /// Sends mail to ArfaNet when a new comment is added to an existing ticket. 
         /// </summary>
         /// <param name="ticket"></param>
         /// <param name="comment"></param>
@@ -370,7 +370,7 @@ namespace TicketDesk.Web.Client.Controllers
         {
             if (!String.IsNullOrWhiteSpace(comment))
             {
-                Log.Info($"Sending email to arfa manager. Comment {comment}");
+                Log.Info($"Sending email to Arfa manager. Comment {comment}");
 
                 var user = ticket.GetLastUpdatedByInfo();
                 string body = "Përshëndetje,"
@@ -386,7 +386,7 @@ namespace TicketDesk.Web.Client.Controllers
 
                 catch (Exception ex)
                 {
-                    Log.Error("Could not send email to arfa manager!", ex);
+                    Log.Error("Could not send email to Arfa manager!", ex);
                 }
             }
 
