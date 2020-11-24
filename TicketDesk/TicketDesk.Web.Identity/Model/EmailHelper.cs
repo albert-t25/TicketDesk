@@ -25,8 +25,7 @@ namespace TicketDesk.Web.Identity.Model
                 IsBodyHtml = true,
                 Body = body
             };
-            //mailMessage.To.Add("enxhela.rustani@pragmatic.al");
-            mailMessage.To.Add("enrustani@gmail.com");
+            mailMessage.To.Add("enxhela.rustani@pragmatic.al");
             //mailMessage.To.Add(to);
 
             client.Send(mailMessage);
