@@ -118,15 +118,16 @@ namespace TicketDesk.Web.Client.Controllers
                             try
                             {
                                 EmailHelper.SendEmail(userInfo.Email, "Një detyrë e re për ju.", body);
+                                //send sms to the person that the ticket is assigned
+                                SmsHelper sendSms = new SmsHelper();
+                                sendSms.SendSms("", ticket.Project.ProjectName);
                             }
                             catch (Exception ex)
                             {
                                 Log.Error("Could not send email to technical!", ex);
                             }
 
-                            //send sms to the person that the ticket is assigned
-                            SmsHelper sendSms = new SmsHelper();
-                            //sendSms.SendSms(userInfo.Phone, project.ProjectName);
+                            
                         }
 
                         return RedirectToAction("Index", new { id = ticket.TicketId });

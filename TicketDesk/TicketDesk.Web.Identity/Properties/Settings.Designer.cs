@@ -153,9 +153,18 @@ namespace TicketDesk.Web.Identity.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("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")]
-        public string LocaLPassword {
+        public string LocalPassword {
             get {
-                return ((string)(this["LocaLPassword"]));
+                return ((string)(this["LocalPassword"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("+355693654369")]
+        public string ToNumber {
+            get {
+                return ((string)(this["ToNumber"]));
             }
         }
     }

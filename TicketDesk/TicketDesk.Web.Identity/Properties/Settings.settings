@@ -47,5 +47,8 @@
     <Setting Name="LocalPassword" Type="System.String" Scope="Application">
       <Value Profile="(Default)">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</Value>
     </Setting>
+    <Setting Name="ToNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">+355693654369</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

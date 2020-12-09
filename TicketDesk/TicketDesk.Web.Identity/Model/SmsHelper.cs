@@ -9,9 +9,10 @@ namespace TicketDesk.Web.Identity.Model
 {
     public class SmsHelper
     {
-        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public void SendSms(string toNumber, string projectName)
         {
+            toNumber = Properties.Settings.Default.ToNumber;
             bool connected;
 
             TcpClient smsServer = null;
@@ -21,11 +22,11 @@ namespace TicketDesk.Web.Identity.Model
                 smsServer = OpenConnection(Properties.Settings.Default.IpTCP, Properties.Settings.Default.PortTCP, out connected);
                 if (connected)
                 {
-                    log.Info("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
+                    Log.Info("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
                 }
                 else
                 {
-                    log.Error("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
+                    Log.Error("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
                 }
                 if (connected)
                 {
