@@ -9,7 +9,7 @@ namespace TicketDesk.Web.Identity.Model
 {
     public class SmsHelper
     {
-        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public void SendSms(string toNumber, string projectName)
         {
@@ -23,11 +23,11 @@ namespace TicketDesk.Web.Identity.Model
                 smsServer = OpenConnection(Properties.Settings.Default.IpTCP, Properties.Settings.Default.PortTCP, out connected);
                 if (connected)
                 {
-                    log.Info("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
+                    Log.Info("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
                 }
                 else
                 {
-                    log.Error("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
+                    Log.Error("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
                 }
                 if (connected)
                 {
@@ -82,7 +82,7 @@ namespace TicketDesk.Web.Identity.Model
                     if (response.Contains("Success") && message.Contains("Authentication accepted"))
                     {
                         Console.WriteLine("Authenticated");
-                        log.Info("Authenticated");
+                        Log.Info("Authenticated");
                         stream.Flush();
                         connected = true;
                         return tcpClient;
@@ -90,7 +90,7 @@ namespace TicketDesk.Web.Identity.Model
                     else
                     {
                         Console.WriteLine("Credentials error! Can't Authenticate");
-                        log.Error("Credentials error! Can't Authenticate");
+                        Log.Error("Credentials error! Can't Authenticate");
                         tcpClient.Close();
                         connected = false;
                         return tcpClient;
@@ -103,7 +103,7 @@ namespace TicketDesk.Web.Identity.Model
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                log.Error("Error opening connection with SMS Server", ex);
+                Log.Error("Error opening connection with SMS Server", ex);
             }
 
             connected = false;
@@ -123,7 +123,7 @@ namespace TicketDesk.Web.Identity.Model
             }
             catch (Exception ex)
             {
-                log.Error("Error closing connection", ex);
+                Log.Error("Error closing connection", ex);
             }
         }
 
@@ -148,18 +148,18 @@ namespace TicketDesk.Web.Identity.Model
                 byte[] smsResp = new byte[1000];
                 stm.Read(smsResp, 0, 1000);
                 response = asen.GetString(smsResp);
-                log.Error("Response " + response);
+                Log.Error("Response " + response);
                 if (!String.IsNullOrEmpty(response))
                 {
                     stm.Read(smsResp, 0, 1000);
                     message = asen.GetString(smsResp);
-                    log.Info("smsResp " + message);
+                    Log.Info("smsResp " + message);
                     if (!String.IsNullOrEmpty(message))
                     {
                         stm.Read(smsResp, 0, 1000);
 
                         eventMsg = asen.GetString(smsResp);
-                        log.Info("eventMsg " + eventMsg);
+                        Log.Info("eventMsg " + eventMsg);
                         if (!String.IsNullOrEmpty(eventMsg))
                         {
                             String[] list = eventMsg.Split('\n');
@@ -180,7 +180,7 @@ namespace TicketDesk.Web.Identity.Model
             }
             catch (Exception ex)
             {
-                log.Error("Error on sending SMS: ", ex);
+                Log.Error("Error on sending SMS: ", ex);
             }
         }
 
