@@ -115,18 +115,32 @@ namespace TicketDesk.Web.Client.Controllers
                                 IsMultiProject = false
                             });
 
+                            //send email
                             try
                             {
+                                //send email to the technician that the ticket is assigned to 
                                 EmailHelper.SendEmail(userInfo.Email, "Një detyrë e re për ju.", body);
-                                //send sms to the person that the ticket is assigned
-                                SmsHelper sendSms = new SmsHelper();
-                                sendSms.SendSms("", ticket.Project.ProjectName);
                             }
                             catch (Exception ex)
                             {
-                                Log.Error("Could not send email to technical!", ex);
+                                Log.Error($"Could not send email to technician! {ex}");
                             }
+                            //send sms
+                            try
+                            {
+                                var projectName = "";
+                                var project = Context.Projects.Find(ticket.ProjectId);
+                                if (project != null)
+                                    projectName = project.ProjectName;
 
+                                //send sms to the technician that the ticket is assigned to
+                                SmsHelper sendSms = new SmsHelper();
+                                sendSms.SendSms("", projectName);
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Error($"Could not send sms to technician! {ex}");
+                            }
                             
                         }
 

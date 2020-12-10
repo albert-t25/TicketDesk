@@ -336,7 +336,7 @@ namespace TicketDesk.Web.Client.Controllers
             var activities = Enum.GetNames(typeof(EmailActivities)).ToList();
             if (activities.Contains(activity.ToString()) && ticket.IsAssigned)
             {
-                Log.Info($"Sending email to technical. Comment {comment}");
+                Log.Info($"Sending email to technician. Comment {comment}");
 
                 //send email to the person that the ticket is assigned
                 UserDisplayInfo userInfo = ticket.GetAssignedToInfo();
@@ -356,7 +356,7 @@ namespace TicketDesk.Web.Client.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Log.Error("Could not send email to technical!", ex);
+                    Log.Error($"Could not send email to technician!{ex}");
                 }
             }
         }
