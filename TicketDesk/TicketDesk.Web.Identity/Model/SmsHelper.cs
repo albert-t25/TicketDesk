@@ -9,7 +9,8 @@ namespace TicketDesk.Web.Identity.Model
 {
     public class SmsHelper
     {
-        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public void SendSms(string toNumber, string projectName)
         {
             //toNumber = Properties.Settings.Default.ToNumber;
@@ -22,11 +23,11 @@ namespace TicketDesk.Web.Identity.Model
                 smsServer = OpenConnection(Properties.Settings.Default.IpTCP, Properties.Settings.Default.PortTCP, out connected);
                 if (connected)
                 {
-                    Log.Info("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
+                    log.Info("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
                 }
                 else
                 {
-                    Log.Error("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
+                    log.Error("Connected -> " + connected + "->" + smsServer.Client.AddressFamily.ToString());
                 }
                 if (connected)
                 {
@@ -81,7 +82,7 @@ namespace TicketDesk.Web.Identity.Model
                     if (response.Contains("Success") && message.Contains("Authentication accepted"))
                     {
                         Console.WriteLine("Authenticated");
-                        Log.Info("Authenticated");
+                        log.Info("Authenticated");
                         stream.Flush();
                         connected = true;
                         return tcpClient;
@@ -89,7 +90,7 @@ namespace TicketDesk.Web.Identity.Model
                     else
                     {
                         Console.WriteLine("Credentials error! Can't Authenticate");
-                        Log.Error("Credentials error! Can't Authenticate");
+                        log.Error("Credentials error! Can't Authenticate");
                         tcpClient.Close();
                         connected = false;
                         return tcpClient;
@@ -102,7 +103,7 @@ namespace TicketDesk.Web.Identity.Model
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                Log.Error("Error opening connection with SMS Server", ex);
+                log.Error("Error opening connection with SMS Server", ex);
             }
 
             connected = false;
@@ -122,7 +123,7 @@ namespace TicketDesk.Web.Identity.Model
             }
             catch (Exception ex)
             {
-                Log.Error("Error closing connection", ex);
+                log.Error("Error closing connection", ex);
             }
         }
 
@@ -147,18 +148,18 @@ namespace TicketDesk.Web.Identity.Model
                 byte[] smsResp = new byte[1000];
                 stm.Read(smsResp, 0, 1000);
                 response = asen.GetString(smsResp);
-                Log.Error("Response " + response);
+                log.Error("Response " + response);
                 if (!String.IsNullOrEmpty(response))
                 {
                     stm.Read(smsResp, 0, 1000);
                     message = asen.GetString(smsResp);
-                    Log.Info("smsResp " + message);
+                    log.Info("smsResp " + message);
                     if (!String.IsNullOrEmpty(message))
                     {
                         stm.Read(smsResp, 0, 1000);
 
                         eventMsg = asen.GetString(smsResp);
-                        Log.Info("eventMsg " + eventMsg);
+                        log.Info("eventMsg " + eventMsg);
                         if (!String.IsNullOrEmpty(eventMsg))
                         {
                             String[] list = eventMsg.Split('\n');
@@ -179,7 +180,7 @@ namespace TicketDesk.Web.Identity.Model
             }
             catch (Exception ex)
             {
-                Log.Error("Error on sending SMS: ", ex);
+                log.Error("Error on sending SMS: ", ex);
             }
         }
 
