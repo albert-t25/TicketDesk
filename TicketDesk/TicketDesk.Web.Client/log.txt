@@ -393,3 +393,129 @@ System.Net.Mail.SmtpException: Failure sending mail. ---> System.IO.IOException:
 2020-11-24 16:42:19,328 [30] INFO  TicketDesk.Web.Client.Controllers.TicketActivityController [(null)] - Sending email to technical. Comment 
 
 
+
+2020-12-09 19:42:05,639 [19] ERROR TicketDesk.Web.Client.Controllers.TicketController [(null)] - System.Net.Mail.SmtpException: Failure sending mail. ---> System.IO.IOException: Unable to read data from the transport connection: An established connection was aborted by the software in your host machine. ---> System.Net.Sockets.SocketException: An established connection was aborted by the software in your host machine
+   at System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at System.Net.DelegatedStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.BufferedReadStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   at System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String to, String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 31
+   at TicketDesk.Web.Client.Controllers.TicketController.<New>d__9.MoveNext() in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Client\Controllers\TicketController.cs:line 120
+
+
+
+2020-12-10 12:27:06,377 [6] ERROR TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send email to technician! System.Net.Mail.SmtpException: Failure sending mail. ---> System.IO.IOException: Unable to read data from the transport connection: net_io_connectionclosed.
+   at System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   at System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String to, String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 31
+   at TicketDesk.Web.Client.Controllers.TicketController.<New>d__9.MoveNext() in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Client\Controllers\TicketController.cs:line 122
+
+
+
+2020-12-10 12:27:46,660 [6] ERROR TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send sms to technician! System.NullReferenceException: Object reference not set to an instance of an object.
+   at TicketDesk.Web.Client.Controllers.TicketController.<New>d__9.MoveNext() in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Client\Controllers\TicketController.cs:line 133
+
+
+
+2020-12-10 12:28:37,586 [12] ERROR TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send email to technician! System.Net.Mail.SmtpException: Failure sending mail. ---> System.IO.IOException: Unable to read data from the transport connection: An established connection was aborted by the software in your host machine. ---> System.Net.Sockets.SocketException: An established connection was aborted by the software in your host machine
+   at System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at System.Net.DelegatedStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.BufferedReadStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   at System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String to, String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 31
+   at TicketDesk.Web.Client.Controllers.TicketController.<New>d__9.MoveNext() in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Client\Controllers\TicketController.cs:line 122
+
+
+
+2020-12-10 12:28:38,747 [12] ERROR TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send sms to technician! System.NullReferenceException: Object reference not set to an instance of an object.
+   at TicketDesk.Web.Client.Controllers.TicketController.<New>d__9.MoveNext() in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Client\Controllers\TicketController.cs:line 133
+
+
+
+2020-12-10 12:29:51,351 [12] ERROR TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send email to technician! System.Net.Mail.SmtpException: Failure sending mail. ---> System.IO.IOException: Unable to read data from the transport connection: net_io_connectionclosed.
+   at System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   at System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String to, String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 31
+   at TicketDesk.Web.Client.Controllers.TicketController.<New>d__9.MoveNext() in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Client\Controllers\TicketController.cs:line 122
+
+
+
+2020-12-10 12:45:06,820 [12] ERROR TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send email to technician! System.Net.Mail.SmtpException: Failure sending mail. ---> System.IO.IOException: Unable to read data from the transport connection: An established connection was aborted by the software in your host machine. ---> System.Net.Sockets.SocketException: An established connection was aborted by the software in your host machine
+   at System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at System.Net.DelegatedStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.BufferedReadStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   at System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String to, String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 31
+   at TicketDesk.Web.Client.Controllers.TicketController.<New>d__9.MoveNext() in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Client\Controllers\TicketController.cs:line 122
+
+
+
+2020-12-10 12:49:08,501 [11] ERROR TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send email to technician! System.Net.Mail.SmtpException: Failure sending mail. ---> System.IO.IOException: Unable to read data from the transport connection: net_io_connectionclosed.
+   at System.Net.Mail.SmtpReplyReaderFactory.ProcessRead(Byte[] buffer, Int32 offset, Int32 read, Boolean readLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   at System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String to, String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 31
+   at TicketDesk.Web.Client.Controllers.TicketController.<New>d__9.MoveNext() in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Client\Controllers\TicketController.cs:line 122
+
+
+
+2020-12-10 12:49:43,495 [11] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Error opening connection with SMS Server
+
+
+System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 109.69.4.163:5039
+   at System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+   at TicketDesk.Web.Identity.Model.SmsHelper.OpenConnection(String ip, Int32 port, Boolean& connected) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\SmsHelper.cs:line 57
+
+2020-12-10 12:49:44,557 [11] ERROR TicketDesk.Web.Identity.Model.SmsHelper [(null)] - Connected -> False->InterNetwork
+
+

@@ -648,7 +648,7 @@ namespace TicketDesk.Web.Client.Controllers
 
                     catch (Exception ex)
                     {
-                        Log.Error("Could not send email to technical!", ex);
+                        Log.Error($"Could not send email to technician! {ex}");
                     }
                 }
             }
