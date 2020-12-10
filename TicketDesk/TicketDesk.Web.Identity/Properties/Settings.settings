@@ -21,7 +21,7 @@
       <Value Profile="(Default)">5039</Value>
     </Setting>
     <Setting Name="SmsTemplateForNewTask" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Keni nje detyre per klientin: {0}, per me shume informacion kontaktoni me Fatjonin.</Value>
+      <Value Profile="(Default)">Një detyrë e re për ju për klientin "{0}", për më shumë informacion kontrolloni emailin tuaj ose kontaktoni me Fatjonin. Nga ArfaNet</Value>
     </Setting>
     <Setting Name="SmsUsername" Type="System.String" Scope="Application">
       <Value Profile="(Default)">pragmatic</Value>

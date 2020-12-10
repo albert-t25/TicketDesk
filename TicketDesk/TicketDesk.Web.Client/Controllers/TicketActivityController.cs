@@ -358,6 +358,31 @@ namespace TicketDesk.Web.Client.Controllers
                 {
                     Log.Error($"Could not send email to technician!{ex}");
                 }
+                //send sms
+                if (!string.IsNullOrWhiteSpace(userInfo.Phone))
+                {
+                    try
+                    {
+                        var projectName = "";
+                        var project = Context.Projects.Find(ticket.ProjectId);
+                        if (project != null)
+                            projectName = project.ProjectName;
+
+                        //send sms to the technician that the ticket is assigned to
+                        SmsHelper sendSms = new SmsHelper();
+                        sendSms.SendSms(userInfo.Phone, projectName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error($"Could not send sms to technician! {ex}");
+                    }
+
+                }
+                else
+                {
+                    Log.Info("Could not send sms to technician! Technician has no phone number!");
+                }
+                
             }
         }
 

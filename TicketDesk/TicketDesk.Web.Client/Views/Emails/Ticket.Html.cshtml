@@ -132,7 +132,7 @@
             </tr>
             <tr>
                 <td>
-                    @string.Format(Strings_sq.UpdatedBy, Model.Ticket.GetLastUpdatedByInfo().DisplayName, Model.Ticket.LastUpdateDate.DateTime.ToShortDateString(), Model.Ticket.LastUpdateDate.DateTime.ToString("HH:mm"))
+                    @string.Format(Strings_sq.UpdatedBy, Model.Ticket.GetLastUpdatedByInfo().DisplayName, Model.Ticket.LastUpdateDate.DateTime.ToString("dd'/'MM'/'yyyy"), @*Model.Ticket.LastUpdateDate.DateTime.ToString("HH:mm")*@"")
                 </td>
             </tr>
         </table>

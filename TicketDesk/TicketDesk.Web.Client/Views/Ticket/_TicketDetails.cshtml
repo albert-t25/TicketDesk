@@ -89,7 +89,7 @@
                             @Html.Raw(string.Format(Index_sq.OwnedBy, Model.GetOwnerInfo().DisplayName))
                         </div>
                         <div class="hidden-sm hidden-md hidden-lg">
-                            @Html.Raw(string.Format(Index_sq.UpdatedBy, Model.GetLastUpdatedByInfo().DisplayName, Model.LastUpdateDate.DateTime.ToShortDateString(), Model.LastUpdateDate.DateTime.ToShortTimeString()))
+                            @Html.Raw(string.Format(Index_sq.UpdatedBy, Model.GetLastUpdatedByInfo().DisplayName, Model.LastUpdateDate.DateTime.ToString("dd'/'MM'/'yyyy"), Model.LastUpdateDate.DateTime.ToShortTimeString()))
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                         <div class="row">
                             @Html.LabelFor(m => m.LastUpdateDate, new { @class = "col-sm-5 col-lg-4 text-right" })
                             <div class="col-sm-7 col-lg-8">
-                                @Model.LastUpdateDate.DateTime.ToShortDateString() @Model.LastUpdateDate.DateTime.ToShortTimeString()
+                                @Model.LastUpdateDate.DateTime.ToString("dd'/'MM'/'yyyy") @Model.LastUpdateDate.DateTime.ToShortTimeString()
                             </div>
                         </div>
 
@@ -135,7 +135,7 @@
                         <div class="row">
                             @Html.LabelFor(m => m.CurrentStatusDate, new { @class = "col-sm-5 col-lg-4 text-right" })
                             <div class="col-sm-7 col-lg-8">
-                                @Model.CurrentStatusDate.DateTime.ToShortDateString() @Model.CurrentStatusDate.DateTime.ToShortTimeString()
+                                @Model.CurrentStatusDate.DateTime.ToString("dd'/'MM'/'yyyy") @Model.CurrentStatusDate.DateTime.ToShortTimeString()
                             </div>
                         </div>
                         <div class="row">
@@ -147,7 +147,7 @@
                         <div class="row">
                             @Html.LabelFor(m => m.CreatedDate, new { @class = "col-sm-5 col-lg-4 text-right" })
                             <div class="col-sm-7 col-lg-8">
-                                @Model.CreatedDate.DateTime.ToShortDateString() @Model.CreatedDate.DateTime.ToShortTimeString()
+                                @Model.CreatedDate.DateTime.ToString("dd'/'MM'/'yyyy") @Model.CreatedDate.DateTime.ToShortTimeString()
                             </div>
                         </div>
                         <div class="row">

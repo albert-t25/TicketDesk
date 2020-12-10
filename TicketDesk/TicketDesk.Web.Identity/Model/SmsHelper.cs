@@ -12,7 +12,7 @@ namespace TicketDesk.Web.Identity.Model
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public void SendSms(string toNumber, string projectName)
         {
-            toNumber = Properties.Settings.Default.ToNumber;
+            //toNumber = Properties.Settings.Default.ToNumber;
             bool connected;
 
             TcpClient smsServer = null;

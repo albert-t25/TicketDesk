@@ -79,8 +79,8 @@ namespace TicketDesk.Web.Identity.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Keni nje detyre per klientin: {0}, per me shume informacion kontaktoni me Fatjoni" +
-            "n.")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Një detyrë e re për ju për klientin \"{0}\", për më shumë informacion kontrolloni e" +
+            "mailin tuaj ose kontaktoni me Fatjonin. Nga ArfaNet")]
         public string SmsTemplateForNewTask {
             get {
                 return ((string)(this["SmsTemplateForNewTask"]));
