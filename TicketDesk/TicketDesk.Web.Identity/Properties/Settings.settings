@@ -50,5 +50,8 @@
     <Setting Name="ToNumber" Type="System.String" Scope="Application">
       <Value Profile="(Default)">+355693654369</Value>
     </Setting>
+    <Setting Name="AssignedToId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">354eac05-9994-451a-b579-b8db47661714</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

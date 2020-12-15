@@ -617,3 +617,67 @@ System.Net.Sockets.SocketException (0x80004005): No connection could be made bec
 2020-12-10 15:43:24,191 [25] INFO  TicketDesk.Web.Client.Controllers.TicketActivityController [(null)] - Could not send sms to technician! Technician has no phone number!
 
 
+
+2020-12-15 12:03:17,536 [17] ERROR TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send email to technician! System.ArgumentNullException: Value cannot be null.
+Parameter name: addresses
+   at System.Net.Mail.MailAddressCollection.Add(String addresses)
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String to, String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 29
+   at TicketDesk.Web.Client.Controllers.TicketController.<New>d__9.MoveNext() in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Client\Controllers\TicketController.cs:line 123
+
+
+
+2020-12-15 12:03:27,720 [17] INFO  TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send sms to technician! Technician has no phone number!
+
+
+
+2020-12-15 12:19:19,748 [33] ERROR TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send email to technician! System.ArgumentNullException: Value cannot be null.
+Parameter name: addresses
+   at System.Net.Mail.MailAddressCollection.Add(String addresses)
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String to, String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 29
+   at TicketDesk.Web.Client.Controllers.TicketController.<New>d__9.MoveNext()
+
+
+
+2020-12-15 12:19:22,093 [33] INFO  TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send sms to technician! Technician has no phone number!
+
+
+
+2020-12-15 12:21:40,145 [51] ERROR TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send email to technician! System.ArgumentNullException: Value cannot be null.
+Parameter name: addresses
+   at System.Net.Mail.MailAddressCollection.Add(String addresses)
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String to, String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 29
+   at TicketDesk.Web.Client.Controllers.TicketController.<New>d__9.MoveNext()
+
+
+
+2020-12-15 12:21:41,434 [51] INFO  TicketDesk.Web.Client.Controllers.TicketController [(null)] - Could not send sms to technician! Technician has no phone number!
+
+
+
+2020-12-15 15:35:25,359 [28] INFO  TicketDesk.Web.Client.Controllers.TicketActivityController [(null)] - Sending email to technician. Comment 
+
+
+
+2020-12-15 15:35:27,397 [28] ERROR TicketDesk.Web.Client.Controllers.TicketActivityController [(null)] - Could not send email to technician!System.Net.Mail.SmtpException: Failure sending mail. ---> System.IO.IOException: Unable to read data from the transport connection: An established connection was aborted by the software in your host machine. ---> System.Net.Sockets.SocketException: An established connection was aborted by the software in your host machine
+   at System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at System.Net.DelegatedStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.BufferedReadStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLines(SmtpReplyReader caller, Boolean oneLine)
+   at System.Net.Mail.SmtpReplyReaderFactory.ReadLine(SmtpReplyReader caller)
+   at System.Net.Mail.CheckCommand.Send(SmtpConnection conn, String& response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   --- End of inner exception stack trace ---
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at TicketDesk.Web.Identity.Model.EmailHelper.SendEmail(String to, String subject, String body) in C:\Users\Enxhela\Documents\Visual Studio 2015\Projects\TicketDesk\TicketDesk\TicketDesk.Web.Identity\Model\EmailHelper.cs:line 31
+   at TicketDesk.Web.Client.Controllers.TicketActivityController.SendEmail(Ticket ticket, TicketActivity activity, String comment)
+
+
+
+2020-12-15 15:35:28,528 [28] INFO  TicketDesk.Web.Client.Controllers.TicketActivityController [(null)] - Could not send sms to technician! Technician has no phone number!
+
+

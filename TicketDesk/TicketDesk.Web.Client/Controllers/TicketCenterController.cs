@@ -161,7 +161,7 @@ namespace TicketDesk.Web.Client.Controllers
                     summaryTicket.AssignedTo = item.GetAssignedToInfo().DisplayName;
                     summaryTicket.TotalWorkingHours += item.WorkingHours;
                     summaryTicket.TicketsNumber++;
-                    summaryTicket.Status = item.TicketStatus.ToString();
+                    summaryTicket.Status = TranslateHelper.Status(item.TicketStatus.ToString());
                 }
                 model.Add(summaryTicket);
             }
@@ -190,7 +190,7 @@ namespace TicketDesk.Web.Client.Controllers
                     summaryTicket.TotalWorkingHours += item.WorkingHours;
                     summaryTicket.TotalWorkingDays += item.WorkingDays;
 
-                    summaryTicket.LastOwner = getUserName(item.Owner.ToString());
+                    summaryTicket.LastOwner = item.Project.ProjectName;
                     summaryTicket.LastWorkDate = item.LastUpdateDate;
                     summaryTicket.WithSupport = item.WithSupport;
                     summaryTicket.WithPersonalAuto = item.WithPersonalAuto;
@@ -200,6 +200,7 @@ namespace TicketDesk.Web.Client.Controllers
                 }
                 model.Add(summaryTicket);
             }
+            model = model.OrderByDescending(s => s.LastWorkDate).ToList();
             return model;
         }
         public ActionResult SummaryForTechnicals(string filters)

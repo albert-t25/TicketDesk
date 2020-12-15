@@ -13,7 +13,7 @@ namespace TicketDesk.Web.Identity.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
@@ -165,6 +165,15 @@ namespace TicketDesk.Web.Identity.Properties {
         public string ToNumber {
             get {
                 return ((string)(this["ToNumber"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("354eac05-9994-451a-b579-b8db47661714")]
+        public string AssignedToId {
+            get {
+                return ((string)(this["AssignedToId"]));
             }
         }
     }

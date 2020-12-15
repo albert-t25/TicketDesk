@@ -25,6 +25,7 @@ using TicketDesk.IO;
 using TicketDesk.Localization.Controllers;
 using TicketDesk.Web.Client.Models;
 using TicketDesk.Web.Identity.Model;
+using TicketDesk.Web.Identity.Properties;
 
 namespace TicketDesk.Web.Client.Controllers
 {
@@ -73,7 +74,7 @@ namespace TicketDesk.Web.Client.Controllers
             };
 
             await SetProjectInfoForModelAsync(model);
-
+            model.AssignedTo = model.AllowSetAssigned() ? null : Settings.Default.AssignedToId;
             ViewBag.TempId = Guid.NewGuid();
 
             return View(model);

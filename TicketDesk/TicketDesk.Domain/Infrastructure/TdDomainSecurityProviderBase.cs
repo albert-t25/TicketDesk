@@ -80,16 +80,19 @@ namespace TicketDesk.Domain
                 TicketActivity.CancelMoreInfo |
                 TicketActivity.CreateOnBehalfOf |
                 TicketActivity.TakeOver |
-                TicketActivity.Assign |
-                TicketActivity.ReAssign |
-                TicketActivity.Pass |
+                //TicketActivity.Assign |
+                //TicketActivity.ReAssign |
+                //TicketActivity.Pass |
                 TicketActivity.GiveUp |
                 TicketActivity.Resolve;
         }
 
         internal TicketActivity GetAdministratorUserPermissions()
         {
-            return GetInternalUserPermissions() | GetHelpDeskUserPermissions();
+            return GetInternalUserPermissions() | GetHelpDeskUserPermissions() | 
+                TicketActivity.Assign |
+                TicketActivity.ReAssign |
+                TicketActivity.Pass ;
         }
 
         public TicketActivity GetValidTicketActivities(Ticket ticket)
