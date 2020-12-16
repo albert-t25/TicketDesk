@@ -435,7 +435,8 @@ namespace TicketDesk.Web.Client.Controllers
                                + $"<br/>Përshkrimi i problemit: {HtmlHelperExtensions.HtmlToPlainText(ticket.Details)}"
                                + $"<br/><br/>Specialisti që asistoi: {assignedToInfo.DisplayName}({assignedToInfo.Email})"
                                + $"<br/>Lloji i asistencës: {support.ToString()}" 
-                               + $"<br/>Përshkrimi i shërbimit të kryer: {HtmlHelperExtensions.HtmlToPlainText(comment).Trim()}";
+                               + $"<br/>Përshkrimi i shërbimit të kryer: {HtmlHelperExtensions.HtmlToPlainText(comment).Trim()}"
+                               + "<br/><br/><b>ArfaNet</b>";
 
                 //send mail to client
                 try
