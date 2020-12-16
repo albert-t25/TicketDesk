@@ -258,7 +258,7 @@ namespace TicketDesk.Web.Client.Controllers
         public async Task<ActionResult> Resolve(int ticketId, [ModelBinder(typeof(SummernoteModelBinder))] string comment)
         {
             var activityFn = Context.TicketActions.Resolve(comment);
-            return await PerformTicketAction(ticketId, activityFn, TicketActivity.ReOpen, comment);
+            return await PerformTicketAction(ticketId, activityFn, TicketActivity.Resolve, comment);
         }
 
         [HttpPost]
