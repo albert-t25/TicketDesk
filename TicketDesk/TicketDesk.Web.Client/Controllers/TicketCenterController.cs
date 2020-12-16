@@ -471,74 +471,71 @@ namespace TicketDesk.Web.Client.Controllers
                         on q.TicketId equals e.TicketId
                         where e.EventDate.Month == date.Month && e.EventDate.Year == date.Year
                         select q;
-            var tickets = query.Distinct().ToList();
+            var tickets = query.Distinct().OrderBy(tc => tc.CreatedDate).ToList();
 
             //remove ticket events that are not done this month
             tickets.ForEach(t =>
             {
-                t.TicketEvents = t.TicketEvents
-                        .Where(te => te.EventDate.Month == date.Month && te.EventDate.Year == date.Year)
-                        .Select(te => te).ToList();
-                //store in the Ticket Owner property the value of the Created by property since we do not need the Owner value
-                t.Owner = users.Any(u => u.UserId == t.CreatedBy) ? users.FirstOrDefault(u => u.UserId == t.CreatedBy).DisplayName : "I panjohur";
+                //t.TicketEvents = t.TicketEvents
+                //        .Where(te => te.EventDate.Month == date.Month && te.EventDate.Year == date.Year)
+                //        .Select(te => te).ToList();
+                //save in the Ticket Owner property the value of the Created by property since we do not need the Owner value
+                t.Owner = users.Any(u => u.UserId == t.CreatedBy) ? users.FirstOrDefault(u => u.UserId == t.CreatedBy).DisplayName : "Pa Përcaktuar";
+                //save in the Ticket TagList property the value of the Assiged to property since we do not need the TagList value
+                t.TagList = !string.IsNullOrWhiteSpace(t.AssignedTo) ? users.Any(u => u.UserId == t.AssignedTo) ? users.FirstOrDefault(u => u.UserId == t.AssignedTo).DisplayName : "Pa Përcaktuar" : "Pa Përcaktuar";
+                //save in the Ticket TagList property the value of the LastUpdateBy  property since we do not need the TicketType value
+                t.TicketType = !string.IsNullOrWhiteSpace(t.LastUpdateBy) ? users.Any(u => u.UserId == t.LastUpdateBy) ? users.FirstOrDefault(u => u.UserId == t.LastUpdateBy).DisplayName : "Pa Përcaktuar" : "";
             });
             
-            var newLine = "<br/>";
             //check if there is any activity this month
             if (tickets.Any())
             {
-                var index = 1;
                 //get ticket activity html
-                string body = "Raporti për muajin " + date.Month + "/" + date.Year + ". Kërkesat që janë krijuar ose modifikuar gjatë këtij muaji! <br/> <br/> <br/>";
+                string body = $"Raporti për muajin {date.Month}/{date.Year}. Kërkesat që janë krijuar ose modifikuar gjatë këtij muaji! <br/> <br/> <br/>";
 
-                foreach (var t in tickets.OrderByDescending(tc => tc.CreatedDate))
+                StringBuilder sb = new StringBuilder();
+                //create table
+                Table table = new Table(sb);
+                //add table headers
+                Row row = table.AddHeaderRow();
+                row.AddCell("Numri i kërkesës");
+                row.AddCell("Statusi i kërkesës");
+                row.AddCell("Titulli i kërkesës");
+                row.AddCell("Tekniku");
+                row.AddCell("Prioriteti i kërkesës");
+                row.AddCell("Krijuar nga");
+                row.AddCell("Krijuar më");
+                row.AddCell("Ndryshimi i fundit nga");
+                row.AddCell("Ndryshimi i fundit më");
+                row.Dispose();
+
+                table.StartTableBody();
+                foreach (var t in tickets)
                 {
-                    body = body + "<strong> " + index + ". Kerkesa: " + t.Title + "</strong>";
-                    StringBuilder sb = new StringBuilder();
-                    Table table = new Table(sb);
-                    Row row = table.AddHeaderRow();
-                    row.AddCell("Numri i kërkesës");
-                    row.AddCell("Statusi i kërkesës");
-                    row.AddCell("Titulli i kërkesës");
-                    row.AddCell("Prioriteti i kërkesës");
-                    row.AddCell("Krijuar nga");
-                    row.AddCell("Krijuar më");
-                    row.Dispose();
-
-                    table.StartTableBody();
                     row = table.AddRow();
-                    row.AddCell(t.TicketId.ToString());
+                    row.AddCell($"<a href=\"https://ticketdesk.arfanet.al/ticket/{t.TicketId}\">{t.TicketId}</a>");
                     row.AddCell(TranslateHelper.Status(t.TicketStatus.ToString()));
-                    row.AddCell(t.Title);
+                    row.AddCell($"<a href=\"https://ticketdesk.arfanet.al/ticket/{t.TicketId}\">{t.Title}</a>");
+                    row.AddCell(t.TagList);
                     row.AddCell(TranslateHelper.Priority(t.Priority));
                     row.AddCell(t.Owner);
-                    row.AddCell(t.CreatedDate.ToString("dd/mm/yyyy") + " " + t.CreatedDate.ToString("HH:mm"));
+                    row.AddCell(t.CreatedDate.DateTime.ToString("dd/MM/yyyy HH:mm:ss"));
+                    row.AddCell(t.TicketType);
+                    row.AddCell(t.LastUpdateDate.DateTime.ToString("dd/MM/yyyy HH:mm:ss"));
                     row.Dispose();
-
-                    row = table.AddRow();
-                    row.AddCellWithSpanValue("<b> Aktiviteti i kerkeses </b>" + newLine, 6);
-                    row.Dispose();
-
-                    foreach (var ev in t.TicketEvents)
-                    {
-                        var eventBy = users.Any(u => u.UserId == ev.EventBy) ? users.FirstOrDefault(u => u.UserId == ev.EventBy).DisplayName : "I panjohur";
-                        row = table.AddRow();
-                        row.AddCellWithSpanValue(eventBy + ": " + ev.EventDescription + newLine + ev.EventDate.ToString("dd/mm/yyyy") + " " + ev.EventDate.ToString("HH:mm") + newLine
-                                    + newLine + (!string.IsNullOrWhiteSpace(ev.Comment) ? "Koment: " + ev.Comment : ""), 6);
-                        row.Dispose();
-                    }
-                    
-                    table.EndTableBody();
-                    table.Dispose();
-                    body = body + newLine + sb.ToString() + "<br/><hr><hr><br/>";
-                    index++;
                 }
+                table.EndTableBody();
 
+                //end of table
+                table.Dispose();
+
+                body = body + sb.ToString();
                 Log.Info($"Sending email to ArfaNet");
                 //send mail to Arfa
                 try
                 {
-                    EmailHelper.SendEmail("Raporti për muajin " + date.Month + "/" + date.Year, body);
+                    EmailHelper.SendEmail("enrustani@gmail.com","Raporti për muajin " + date.Month + "/" + date.Year, body);
+                    Log.Info($"Email send to ArfaNet");
                 }
 
                 catch (Exception ex)

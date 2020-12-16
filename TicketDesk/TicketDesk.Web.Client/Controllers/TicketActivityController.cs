@@ -430,13 +430,12 @@ namespace TicketDesk.Web.Client.Controllers
 
                 var assignedToInfo = ticket.GetAssignedToInfo();
                 var support = ticket.OnlineSupport ? "Online" : "Hardware Support";
-                var body = "I nderuar Klient."
-                               + "<br/>Kërkesa e krijuar nga ju për " + "<b>" + ticket.Project.ProjectName + "</b>" + " është mbyllur."
-                               + "<br/><br/>Subjekti: " + ticket.Title
-                               + "<br/>Përshkrimi i problemit: " + HtmlHelperExtensions.HtmlToPlainText(ticket.Details)
-                               + "<br/><br/>Specialisti që asistoi: " + assignedToInfo.DisplayName + "(" + assignedToInfo.Email + ")"
-                               + "<br/>Lloji i asistencës: " + support.ToString()
-                               + "<br/>Përshkrimi i shërbimit të kryer: " + HtmlHelperExtensions.HtmlToPlainText(comment).Trim();
+                var body = "I nderuar Klient,"
+                               + $"<br/> <br/>Kërkesa <b>\"{ticket.Title}\"</b> e krijuar nga ju është mbyllur."
+                               + $"<br/>Përshkrimi i problemit: {HtmlHelperExtensions.HtmlToPlainText(ticket.Details)}"
+                               + $"<br/><br/>Specialisti që asistoi: {assignedToInfo.DisplayName}({assignedToInfo.Email})"
+                               + $"<br/>Lloji i asistencës: {support.ToString()}" 
+                               + $"<br/>Përshkrimi i shërbimit të kryer: {HtmlHelperExtensions.HtmlToPlainText(comment).Trim()}";
 
                 //send mail to client
                 try

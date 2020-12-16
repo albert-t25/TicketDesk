@@ -20,7 +20,7 @@ namespace ReportConsole
             //send monthly report to ArfaNet
             ticketCenterController.SendMonthlyReportToArfaNet(users);
             //send monthly report to ArfaNet clients
-            ticketCenterController.SendMonthlyReportToArfaNetClients(users);
+            //ticketCenterController.SendMonthlyReportToArfaNetClients(users);
         }
 
         /// <summary>
