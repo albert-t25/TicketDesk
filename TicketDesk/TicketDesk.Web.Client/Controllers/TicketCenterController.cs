@@ -483,7 +483,7 @@ namespace TicketDesk.Web.Client.Controllers
                 t.Owner = users.Any(u => u.UserId == t.CreatedBy) ? users.FirstOrDefault(u => u.UserId == t.CreatedBy).DisplayName : "Pa Përcaktuar";
                 //save in the Ticket TagList property the value of the Assiged to property since we do not need the TagList value
                 t.TagList = !string.IsNullOrWhiteSpace(t.AssignedTo) ? users.Any(u => u.UserId == t.AssignedTo) ? users.FirstOrDefault(u => u.UserId == t.AssignedTo).DisplayName : "Pa Përcaktuar" : "Pa Përcaktuar";
-                //save in the Ticket TagList property the value of the LastUpdateBy  property since we do not need the TicketType value
+                //save in the TicketType property the value of the LastUpdateBy property since we do not need the TicketType value
                 t.TicketType = !string.IsNullOrWhiteSpace(t.LastUpdateBy) ? users.Any(u => u.UserId == t.LastUpdateBy) ? users.FirstOrDefault(u => u.UserId == t.LastUpdateBy).DisplayName : "Pa Përcaktuar" : "";
             });
 
