@@ -458,7 +458,7 @@ namespace TicketDesk.Web.Client.Controllers
         }
 
         #region Monthly Reports
-        
+
         /// <summary>
         /// Sends an email to ArfaNet containing a report of the tickets that are created/modified this month
         /// </summary>
@@ -486,7 +486,7 @@ namespace TicketDesk.Web.Client.Controllers
                 //save in the Ticket TagList property the value of the LastUpdateBy  property since we do not need the TicketType value
                 t.TicketType = !string.IsNullOrWhiteSpace(t.LastUpdateBy) ? users.Any(u => u.UserId == t.LastUpdateBy) ? users.FirstOrDefault(u => u.UserId == t.LastUpdateBy).DisplayName : "Pa Përcaktuar" : "";
             });
-            
+
             //check if there is any activity this month
             if (tickets.Any())
             {
@@ -534,7 +534,7 @@ namespace TicketDesk.Web.Client.Controllers
                 //send mail to Arfa
                 try
                 {
-                    EmailHelper.SendEmail("enrustani@gmail.com","Raporti për muajin " + date.Month + "/" + date.Year, body);
+                    EmailHelper.SendEmail("Raporti për muajin " + date.Month + "/" + date.Year, body);
                     Log.Info($"Email send to ArfaNet");
                 }
 
@@ -543,7 +543,11 @@ namespace TicketDesk.Web.Client.Controllers
                     Log.Error("Could not send email to ArfaNet!", ex);
                 }
             }
-           
+            else
+            {
+                Log.Info("No tickets were created or modified this month");
+            }
+
         }
 
         /// <summary>
@@ -556,8 +560,8 @@ namespace TicketDesk.Web.Client.Controllers
             var query = from q in Context.Tickets
                         join e in Context.TicketEvents
                         on q.TicketId equals e.TicketId
-                        where e.EventDate.Month == date.Month && e.EventDate.Year == date.Year && 
-                              (!e.EventDescription.Contains("shtoji koment") 
+                        where e.EventDate.Month == date.Month && e.EventDate.Year == date.Year &&
+                              (!e.EventDescription.Contains("shtoji koment")
                                && !e.EventDescription.Contains("ka marrë kërkesën")
                                && !e.EventDescription.Contains("kaloi kërkesën tek"))
                         select q;
@@ -568,8 +572,8 @@ namespace TicketDesk.Web.Client.Controllers
             {
                 t.TicketEvents = t.TicketEvents.Where(te => te.EventDate.Month == date.Month &&
                                                             te.EventDate.Year == date.Year &&
-                                                            (!te.EventDescription.Contains("shtoji koment") && 
-                                                             !te.EventDescription.Contains("ka marrë kërkesën") && 
+                                                            (!te.EventDescription.Contains("shtoji koment") &&
+                                                             !te.EventDescription.Contains("ka marrë kërkesën") &&
                                                              !te.EventDescription.Contains("kaloi kërkesën tek")))
                     .Select(te => te).ToList();
                 //store in the Ticket Owner property the value of the Created by property since we do not need the Owner value
@@ -587,7 +591,7 @@ namespace TicketDesk.Web.Client.Controllers
                 var clientsTickets = tickets.Where(t => t.ProjectId == c.ProjectId).OrderBy(t => t.CreatedDate).ToList();
                 if (clientsTickets.Any())
                 {
-                    Log.Info($"Sending email to client: {c.ProjectName}"); 
+                    Log.Info($"Sending email to client: {c.ProjectName}");
 
                     StringBuilder sb = new StringBuilder();
 
@@ -628,7 +632,7 @@ namespace TicketDesk.Web.Client.Controllers
                                     ? users.FirstOrDefault(u => u.UserId == ev.EventBy).DisplayName
                                     : "I panjohur";
                                 r.AddCell(eventBy);
-                                r.AddCell(!string.IsNullOrWhiteSpace(ev.Comment)? /*HtmlHelperExtensions.HtmlToPlainText(ev.Comment).Trim()*/ev.Comment : "");
+                                r.AddCell(ev.Comment ?? /*HtmlHelperExtensions.HtmlToPlainText(ev.Comment).Trim()*/ev.Comment);
                                 r.Dispose();
                             }
                         }
@@ -636,7 +640,7 @@ namespace TicketDesk.Web.Client.Controllers
                     }
 
                     string finishedTable = "<h3> <strong>Raport për: " + c.ProjectName + newLine + "</h3> </strong> "
-                           + "<h3> <strong> Periudha kohore: " + date.Month + " / " + date.Year + newLine + "</h3> </strong> <hr>"+ newLine + sb.ToString();
+                           + "<h3> <strong> Periudha kohore: " + date.Month + " / " + date.Year + newLine + "</h3> </strong> <hr>" + newLine + sb.ToString();
 
                     //send mail to Client
                     try
@@ -651,7 +655,7 @@ namespace TicketDesk.Web.Client.Controllers
                 }
             }
         }
-        
+
         #endregion
     }
 }
