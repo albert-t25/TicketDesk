@@ -321,7 +321,7 @@ namespace TicketDesk.Web.Client.Controllers
         /// <param name="comment"></param>
         private void SendEmail(Ticket ticket, TicketActivity activity, string comment)
         {
-            if (activity.ToString().ToLower() == "Resolved".ToLower())
+            if (activity.ToString().ToLower() == "Resolve".ToLower())
             {
                 //ER: add logic to send email to client when a ticket is resolved
                 PrepareEmailForResolved(ticket, comment);
@@ -448,6 +448,10 @@ namespace TicketDesk.Web.Client.Controllers
                 {
                     Log.Error($"Could not send email to client {ticket.Project.Email}", ex);
                 }
+            }
+            else
+            {
+                Log.Info("Cannot send email to client because client does not have an email address!");
             }
 
         }
